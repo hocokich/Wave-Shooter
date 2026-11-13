@@ -3,7 +3,7 @@ namespace WaveShooter.Features.Input.InputModules
     using UnityEngine.InputSystem;
 
     /// <summary>
-    /// Модуль события перезарядки.
+    /// Модуль перезарядки.
     /// </summary>
     public class InputActionReload : InputActionGunModule
     {

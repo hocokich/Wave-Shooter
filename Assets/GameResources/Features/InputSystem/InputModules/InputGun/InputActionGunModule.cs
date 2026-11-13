@@ -5,7 +5,7 @@ namespace WaveShooter.Features.Input.InputModules
     using WaveShooter.Features.Shooting;
 
     /// <summary>
-    /// Модуль InputAction связанный с оружием.
+    /// Абстрактный модуль InputAction связанный с оружием.
     /// </summary>
     public abstract class InputActionGunModule : InputActionModule
     {
