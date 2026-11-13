@@ -1,0 +1,20 @@
+namespace Unitskills.Features.Lesson5.Input.InputModules
+{
+    using UnityEngine.InputSystem;
+
+    /// <summary>
+    /// Модуль события перезарядки.
+    /// </summary>
+    public class InputActionReload : InputActionGunModule
+    {
+        protected override InputAction GetInputAction(InputSystemModule inputSystemModule)
+        {
+            return inputSystemModule.InputActions.Gameplay.Reload;
+        }
+
+        protected override void OnAction(InputAction.CallbackContext context)
+        {
+            gunController.Reload();
+        }
+    }
+}
