@@ -18,12 +18,15 @@ namespace WaveShooter.Features.MoveCharacter
         [SerializeField] protected float walkSpeed = 2f;
         [SerializeField] protected float sprintSpeed = 5f;
 
-        private Vector2 moveVector = Vector2.zero;
-        private Coroutine moveRoutine;
+        protected Vector2 moveVector = Vector2.zero;
+        protected Transform characterBody;
+        protected Coroutine moveRoutine;
 
         protected override void OnInited()
         {
             CurrentSpeed = walkSpeed;
+
+            characterBody = ConcreteFacade.transform;
         }
         protected override void OnDisposed()
         {
@@ -45,7 +48,7 @@ namespace WaveShooter.Features.MoveCharacter
         }
 
         /// <summary>
-        /// 
+        /// Текущее направление движения.
         /// Вызывается из InputActionMove.
         /// </summary>
         public void SetMoveDirection(Vector2 vector)
@@ -63,7 +66,17 @@ namespace WaveShooter.Features.MoveCharacter
         {
             while (moveVector.sqrMagnitude > 0.01f)
             {
-                Vector3 direction = new Vector3(moveVector.x, 0, moveVector.y) * CurrentSpeed;
+                Vector3 forward = characterBody.forward;
+                Vector3 right = characterBody.right;
+
+                forward.y = 0f;
+                right.y = 0f;
+                forward.Normalize();
+                right.Normalize();
+
+                Vector3 direction = (forward * moveVector.y + right * moveVector.x).normalized;
+                direction *= CurrentSpeed;
+
                 ChangeSpeed(direction);
                 
                 yield return new WaitForFixedUpdate(); 

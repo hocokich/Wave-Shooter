@@ -14,21 +14,27 @@ namespace WaveShooter.Features.CamController
         [SerializeField] protected float minPitch = -80f;
         [SerializeField] protected float maxPitch = 80f;
 
-        [Header("Ссылки на персонажа и камеру")]
-        [SerializeField] protected Transform characterBody;
-        [SerializeField] protected Transform cameraPivot;
+        protected Transform cameraPivot;
+        protected Transform characterBody;
 
-        private Vector2 lookVector = Vector2.zero;
-        private float currentPitch = 0f;
-        private Coroutine lookRoutine;
+        protected Vector2 lookVector = Vector2.zero;
+        protected float currentPitch = 0f;
+        protected Coroutine lookRoutine;
 
         protected override void OnInited()
         {
+            characterBody = ConcreteFacade.transform;
+            cameraPivot = Camera.main.transform;
+
+
             if (characterBody == null) characterBody = transform;
             if (cameraPivot == null && Camera.main != null) cameraPivot = Camera.main.transform;
 
             if (cameraPivot != null)
                 currentPitch = cameraPivot.localEulerAngles.x;
+
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
         protected override void OnDisposed()
         {
