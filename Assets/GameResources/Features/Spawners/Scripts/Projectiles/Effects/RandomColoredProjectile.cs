@@ -9,23 +9,22 @@ namespace WaveShooter.Features.Spawners.Projectiles.Effects
     public class RandomColoredProjectile : MonoBehaviour
     {
         [SerializeField] protected Renderer rendererView = default;
-        [SerializeField] protected SpawnItem warningSpawnItem;
+        [SerializeField] protected SpawnItem spawnItem;
         
         protected virtual void Awake()
         {
             if(rendererView == null)
                 rendererView = GetComponent<Renderer>();
+
+            if(spawnItem == null)
+                spawnItem = GetComponent<SpawnItem>();
         }   
-        protected virtual void Start()
-        {
-            if (warningSpawnItem == null)
-                warningSpawnItem = GetComponent<SpawnItem>();
-        }
-        protected virtual void OnEnable() => warningSpawnItem.onLaunch += PaintRandom;
+
+        protected virtual void OnEnable() => spawnItem.onLaunch += PaintRandom;
         protected virtual void OnDisable()
         {   
-            if(warningSpawnItem != null)
-                warningSpawnItem.onLaunch -= PaintRandom;
+            if(spawnItem != null)
+                spawnItem.onLaunch -= PaintRandom;
         }
 
         protected virtual void PaintRandom()

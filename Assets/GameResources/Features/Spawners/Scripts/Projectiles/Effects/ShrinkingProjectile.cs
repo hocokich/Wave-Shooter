@@ -9,30 +9,32 @@ namespace WaveShooter.Features.Spawners.Projectiles.Effects
     public class ShrinkingProjectile : MonoBehaviour
     {
         [SerializeField, Range(0.1f, 1)] protected float shrinkSpeed = 0.5f;
-        [SerializeField] protected SpawnItem warningSpawnItem;
+        [SerializeField] protected SpawnItem spawnItem;
         
         protected Coroutine shrinkCoroutine = default;
         protected Vector3 originalScale = default;
 
-        protected virtual void Awake() => originalScale = transform.localScale;
-        protected virtual void Start()
+        protected virtual void Awake()
         {
-            if (warningSpawnItem == null)
-                warningSpawnItem = GetComponent<SpawnItem>();
+            if (spawnItem == null)
+                spawnItem = GetComponent<SpawnItem>();
+
+            originalScale = transform.localScale;
         }
+        
         protected virtual void OnEnable()
         {
-            warningSpawnItem.onLaunch += StartShrink;
-            warningSpawnItem.onComplete += StopShrink;
+            spawnItem.onLaunch += StartShrink;
+            spawnItem.onComplete += StopShrink;
         }
         protected virtual void OnDisable()
         {   
             StopShrink();
 
-            if(warningSpawnItem != null)
+            if(spawnItem != null)
             {
-                warningSpawnItem.onLaunch -= StartShrink;
-                warningSpawnItem.onComplete -= StopShrink;
+                spawnItem.onLaunch -= StartShrink;
+                spawnItem.onComplete -= StopShrink;
             }
         }
 
