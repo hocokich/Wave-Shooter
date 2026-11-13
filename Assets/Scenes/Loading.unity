@@ -816,9 +816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d45b6cca40a24bf2a93a7318b91044a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.SwitchScenes.SceneLoader
-  dataNewScene: {fileID: 11400000, guid: 280dbe7ff349e7a48b213428c11565f8, type: 2}
   progressValue: {fileID: 458256943}
-  LoadSceneName: Menu
   timeFakeLoad: 3
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
