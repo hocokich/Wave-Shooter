@@ -31,14 +31,12 @@ namespace WaveShooter.Features.Shooting
         public AmmoModel Ammo => modelAmmo;
 
         [SerializeField] protected AmmoModel modelAmmo = default;
-
         [SerializeField, Min(0)] protected float cooldown = 1.0f;
 
         protected float nextShotTime = 0f;
-
         protected int originCount = 0;
 
-        protected virtual void Awake() => originCount = modelAmmo.AmmoCount;
+        protected virtual void Awake() => originCount = modelAmmo.AmmoTotal;
 
         /// <summary>
         /// Выстрелить
@@ -47,12 +45,10 @@ namespace WaveShooter.Features.Shooting
         {
             onGunTryShoot.Invoke();
 
-            if (Time.time < nextShotTime || modelAmmo.AmmoCount <= 0)
-            {
+            if (Time.time < nextShotTime || modelAmmo.AmmoMag <= 0)
                 return;
-            }
 
-            modelAmmo.AmmoCount--;
+            modelAmmo.AmmoMag--;
             onGunShooted();
             nextShotTime = Time.time + cooldown;
         }
@@ -62,9 +58,14 @@ namespace WaveShooter.Features.Shooting
         /// </summary>
         public virtual void Reload()
         {
-            if (modelAmmo.AmmoCount != 0) return;
+            if (!modelAmmo.CanReload) return;
 
-            modelAmmo.AmmoCount = 20;
+            int needed = modelAmmo.MaxAmmoMag - modelAmmo.AmmoMag;
+            int taken  = Mathf.Min(needed, modelAmmo.AmmoTotal);
+
+            modelAmmo.AmmoTotal -= taken;
+            modelAmmo.AmmoMag += taken;
+
             onGunReload();
         }
     }
