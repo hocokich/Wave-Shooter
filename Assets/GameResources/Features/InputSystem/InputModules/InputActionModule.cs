@@ -1,4 +1,4 @@
-namespace Unitskills.Features.Lesson5.Input.InputModules
+namespace WaveShooter.Features.Input.InputModules
 {
     using WaveShooter.Features.Facade;
     using UnityEngine.InputSystem;
