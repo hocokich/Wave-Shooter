@@ -1,5 +1,6 @@
 namespace WaveShooter.Features.MoveCharacter
 {
+    using System.Collections;
     using UnityEngine;
     using WaveShooter.Features.Facade;
 
@@ -9,44 +10,69 @@ namespace WaveShooter.Features.MoveCharacter
     public class MoveController : GenericModuleFacade<CharacterFacade>
     {
         /// <summary>
-        /// Направление движения.
+        /// Текущая скорость
         /// </summary>
-        public Vector2 MoveDirection => moveDirection;
+        public float CurrentSpeed { get; private set; }
 
-        [SerializeField] protected float speed = 5f;
-        [SerializeField] protected Rigidbody body = default;
+        [Header("Настройки скорости")]
+        [SerializeField] protected float walkSpeed = 2f;
+        [SerializeField] protected float sprintSpeed = 5f;
 
-        protected Vector2 moveDirection = Vector2.zero;
-
-        /// <summary>
-        /// Задать направление движения.
-        /// </summary>
-        public void SetMoveDirection(Vector2 direction)
-        {
-            moveDirection = Vector2.ClampMagnitude(direction, 1f);
-        }
+        private Vector2 moveVector = Vector2.zero;
+        private Coroutine moveRoutine;
 
         protected override void OnInited()
         {
-            if (body == null)
-                body = GetComponent<Rigidbody>();
-
-            if (body == null)
-                Debug.LogError("MoveController: Rigidbody не найден");
+            CurrentSpeed = walkSpeed;
         }
-
         protected override void OnDisposed()
         {
-            moveDirection = Vector2.zero;
+            if (moveRoutine != null)
+            {
+                StopCoroutine(moveRoutine);
+                moveRoutine = null;
+            }
+            moveVector = Vector2.zero;
         }
 
-        protected virtual void FixedUpdate()
+        /// <summary>
+        /// Вкл/Выкл спринт.
+        /// Вызывается из InputActionSprint
+        /// </summary>
+        public void SetSprint(bool isSprinting)
         {
-            if (body == null) return;
+            CurrentSpeed = isSprinting ? sprintSpeed : walkSpeed;
+        }
 
-            Vector3 delta = new Vector3(moveDirection.x, 0f, moveDirection.y) * (speed * Time.fixedDeltaTime);
+        /// <summary>
+        /// 
+        /// Вызывается из InputActionMove.
+        /// </summary>
+        public void SetMoveDirection(Vector2 vector)
+        {
+            moveVector = vector;
 
-            body.MovePosition(body.position + delta);
+            if (moveVector.sqrMagnitude > 0.01f)
+            {
+                if (moveRoutine == null) 
+                    moveRoutine = StartCoroutine(MoveRoutine());
+            }
+        }
+
+        protected IEnumerator MoveRoutine()
+        {
+            while (moveVector.sqrMagnitude > 0.01f)
+            {
+                Vector3 direction = new Vector3(moveVector.x, 0, moveVector.y) * CurrentSpeed;
+                ChangeSpeed(direction);
+                
+                yield return new WaitForFixedUpdate(); 
+            }
+            moveRoutine = null;
+        }
+        protected void ChangeSpeed(Vector3 direction)
+        {
+            transform.position += direction * Time.fixedDeltaTime;
         }
     }
 }
