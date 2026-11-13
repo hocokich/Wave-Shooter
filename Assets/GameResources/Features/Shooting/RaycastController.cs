@@ -10,11 +10,13 @@ namespace WaveShooter.Features.Shooting
     /// </summary>
     public class RaycastController : GenericModuleFacade<CharacterFacade>
     {
-        [SerializeField] protected Camera cameraView = default;
-
-        [SerializeField, Min(0)] protected float rayDistance = 100.0f;
-
+        /// <summary>
+        /// Камера
+        /// </summary>
         public virtual Camera CameraView => cameraView;
+
+        [SerializeField] protected Camera cameraView = default;
+        [SerializeField, Min(0)] protected float rayDistance = 100.0f;
 
         protected virtual void Awake()
         {

@@ -15,6 +15,9 @@ namespace WaveShooter.Features.Shooting
         /// </summary>
         public event Action onAmmoCountChanged = delegate { };
 
+        /// <summary>
+        /// Количество патрон.
+        /// </summary>
         public int AmmoCount
         {
             get => ammoCount;
