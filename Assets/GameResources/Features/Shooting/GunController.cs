@@ -25,6 +25,9 @@ namespace WaveShooter.Features.Shooting
         /// </summary>
         public event Action onGunReload = delegate { };
 
+        /// <summary>
+        /// Дата патрон
+        /// </summary>
         public AmmoModel Ammo => modelAmmo;
 
         [SerializeField] protected AmmoModel modelAmmo = default;
@@ -43,7 +46,7 @@ namespace WaveShooter.Features.Shooting
         public virtual void TryShoot()
         {
             onGunTryShoot.Invoke();
-            
+
             if (Time.time < nextShotTime || modelAmmo.AmmoCount <= 0)
             {
                 return;
