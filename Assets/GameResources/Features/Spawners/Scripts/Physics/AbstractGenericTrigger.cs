@@ -1,4 +1,4 @@
-namespace Unitskills.Features.Lesson6.Physics
+namespace WaveShooter.Features.Spawners.Physics
 {
     using UnityEngine;
 

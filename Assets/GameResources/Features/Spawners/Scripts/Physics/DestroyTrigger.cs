@@ -1,6 +1,6 @@
-namespace Unitskills.Features.Lesson6.Physics
+namespace WaveShooter.Features.Spawners.Physics
 {
-    using Unitskills.Features.Lesson6.Spawners;
+    using WaveShooter.Features.Spawners;
 
     /// <summary>
     /// Мишень.

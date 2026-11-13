@@ -2,6 +2,7 @@ namespace WaveShooter.Features.Spawners
 {
     using WaveShooter.Features.Spawners.Projectiles;
     using WaveShooter.Features.Shooting;
+    using WaveShooter.Features.Container;
     using UnityEngine;
 
     /// <summary>

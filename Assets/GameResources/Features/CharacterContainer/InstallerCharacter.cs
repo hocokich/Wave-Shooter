@@ -10,7 +10,7 @@ namespace WaveShooter.Features.Container
     {
         [SerializeField] protected CharacterFacade characterFacade = default;
 
-        [SerializeField] protected CharacterContainer containerCharacter = default;
+        [SerializeField] protected ContainerCharacter containerCharacter = default;
 
         protected virtual void Awake() => containerCharacter.FacadeInstance = characterFacade;
 

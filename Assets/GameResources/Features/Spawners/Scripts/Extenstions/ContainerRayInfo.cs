@@ -1,8 +1,8 @@
-namespace Unitskills.Features.Lesson6.Extenstions
+namespace WaveShooter.Features.Spawners.Extenstions
 {
-    using Unitskills.Features.Lesson5;
-    using Unitskills.Features.Lesson5.Container;
     using UnityEngine;
+    using WaveShooter.Features.Container;
+    using WaveShooter.Features.Shooting;
 
     /// <summary>
     /// Утилитный класс.

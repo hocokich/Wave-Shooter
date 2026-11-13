@@ -1,6 +1,8 @@
 namespace WaveShooter.Features.Spawners.Projectiles
 {
     using UnityEngine;
+    using WaveShooter.Features.Container;
+    using WaveShooter.Features.Spawners.Extenstions;
 
     /// <summary>
     /// Толкает снаряд вперёд от камеры. Вызывается после сброса скорости.
@@ -15,14 +17,14 @@ namespace WaveShooter.Features.Spawners.Projectiles
         public virtual void Apply(Camera cameraView)
         {
             Rigidbody body = GetComponent<Rigidbody>();
-            ProviderCharacterComponent pcc = GetComponent<ProviderCharacterComponent>();
+            ProviderCharacter pc = GetComponent<ProviderCharacter>();
 
-            if (body == null || cameraView == null || pcc == null)
+            if (body == null || cameraView == null || pc == null)
             {
                 return;
             }
 
-            pcc.Container.GetRayDirAndRot(out Vector3 direction, out Quaternion rotation);
+            pc.Container.GetRayDirAndRot(out Vector3 direction, out Quaternion rotation);
             
             body.rotation = rotation;
             body.AddForce(direction * force, ForceMode.Impulse);
