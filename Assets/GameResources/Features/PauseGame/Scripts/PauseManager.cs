@@ -35,7 +35,7 @@ namespace WaveShooter.Features.PauseGame
 
         protected override void OnDestroy()
         {
-            base.OnDestroy(); // Отписываемся от событий контейнера
+            base.OnDestroy();
             
             if (inputActions != null)
             {
@@ -46,7 +46,6 @@ namespace WaveShooter.Features.PauseGame
 
         protected override void OnFacadeInited()
         {
-            // Берем InputSystemModule прямо из фасада внутри контейнера
             var inputSys = Container.FacadeInstance?.GetModuleFacade<InputSystemModule>();
             
             if (inputSys == null || inputSys.InputActions == null)
@@ -57,13 +56,11 @@ namespace WaveShooter.Features.PauseGame
 
             inputActions = inputSys.InputActions;
 
-            // Подписываемся на обе карты
             inputActions.Gameplay.Pause.performed += OnPausePressed;
             inputActions.UI.Pause.performed += OnPausePressed;
         }
         protected override void OnFacadeDisposed()
         {
-            // Отписываемся, когда контейнер уничтожается (например, при смене сцены)
             if (inputActions != null)
             {
                 inputActions.Gameplay.Pause.performed -= OnPausePressed;

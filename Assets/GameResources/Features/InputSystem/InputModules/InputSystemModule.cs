@@ -31,6 +31,7 @@ namespace WaveShooter.Features.Input.InputModules
             if(InputActions != null)
             {
                 InputActions.Gameplay.Disable();
+                InputActions.Disable();
                 InputActions.Dispose();
                 InputActions = null;
             }
@@ -38,10 +39,15 @@ namespace WaveShooter.Features.Input.InputModules
 
         protected virtual void OnEnable() => InputActions?.Gameplay.Enable();
         protected virtual void OnDisable() => InputActions?.Gameplay.Disable();
+
         protected virtual void OnDestroy()
         {
-            InputActions?.Dispose();
-            InputActions = null;
+            if (InputActions != null)
+            {
+                InputActions.Disable();
+                InputActions.Dispose();
+                InputActions = null;
+            }
         }
     }
 }

@@ -7,7 +7,7 @@ namespace WaveShooter.Features.PauseGame
     /// Кнопка, которая делает то же самое, что и нажатие Esc (снимает/ставит паузу).
     /// </summary>
     [RequireComponent(typeof(Button))]
-    public class ResumeButton : MonoBehaviour
+    public sealed class ResumeButton : MonoBehaviour
     {
         [SerializeField] private PauseManager pauseManager = default;
         private Button button;
