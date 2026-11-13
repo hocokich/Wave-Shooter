@@ -18,10 +18,19 @@ namespace WaveShooter.Features.Facade
             concreteFacade = facade as T;
             OnInited();
         }
+        public sealed override void OnModuleDisposed()
+        {
+            concreteFacade = facade as T;
+            OnDisposed();
+        }
 
         protected virtual void OnInited()
         {
             //TODO: На случай дополнительной логики на Inited воспользоваться override данного метода
+        }
+        protected virtual void OnDisposed()
+        {
+            //TODO: На случай дополнительной логики на Disposed воспользоваться override данного метода
         }
     }
 }

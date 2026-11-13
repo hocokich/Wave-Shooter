@@ -2,6 +2,7 @@ namespace WaveShooter.Features.Shooting
 {
     using WaveShooter.Features.Facade;
     using UnityEngine;
+    using UnityEngine.InputSystem;
 
     /// <summary>
     /// Контроллер луча персонажа.
@@ -42,7 +43,12 @@ namespace WaveShooter.Features.Shooting
                 return false;
             }
 
-            ray = cameraView.ScreenPointToRay(ReadPointer());
+            if (!TryReadPointer(out Vector2 screenPosition))
+            {
+                return false;
+            }
+
+            ray = cameraView.ScreenPointToRay(screenPosition);
             return true;
         }
 
@@ -80,16 +86,21 @@ namespace WaveShooter.Features.Shooting
         }
 
         /// <summary>
-        /// Палец, если он сейчас на экране, иначе курсор.
+        /// Экранная позиция текущего указателя (мышь / палец / перо).
         /// </summary>
-        protected virtual Vector3 ReadPointer()
+        protected virtual bool TryReadPointer(out Vector2 screenPosition)
         {
-            if (UnityEngine.Input.touchCount > 0)
+            screenPosition = default;
+
+            Pointer pointer = Pointer.current;
+            if (pointer == null)
             {
-                return UnityEngine.Input.GetTouch(0).position;
+                return false;
+
             }
 
-            return UnityEngine.Input.mousePosition;
+            screenPosition = pointer.position.ReadValue();
+            return true;
         }
     }
 }

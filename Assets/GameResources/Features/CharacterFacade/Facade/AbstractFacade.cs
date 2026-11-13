@@ -15,7 +15,7 @@ namespace WaveShooter.Features.Facade
         public event Action onFacadeInited = delegate { };
 
         /// <summary>
-        /// Фасад деактивирован
+        /// Фасад удален
         /// </summary>
         public event Action onFacadeDeactivated = delegate { };
 
@@ -92,6 +92,10 @@ namespace WaveShooter.Features.Facade
             dataModuleFacades.ForEach(x => x.Initialize(this));
         }
 
-        protected virtual void OnDisable() => dataModuleFacades.ForEach(x => x.Dispose());
+        protected virtual void OnDisable()
+        {
+            modules.ForEach(x => x.Dispose());
+            dataModuleFacades.ForEach(x => x.Dispose());
+        }
     }
 }
