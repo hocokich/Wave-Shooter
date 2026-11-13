@@ -25,7 +25,7 @@ namespace WaveShooter.Features.Enemy
         /// </summary>
         public event Action onDied = delegate { };
 
-        [SerializeField] protected int maxHealth = 100;
+        [SerializeField, Range(1, 100)] protected int maxHealth = 100;
 
         protected virtual void Awake()
         {
