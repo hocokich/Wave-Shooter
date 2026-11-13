@@ -15,14 +15,30 @@ namespace WaveShooter.Features.Timer
         public event Action onTimerIsDone = delegate {};
 
         /// <summary>
-        /// Событие что таймер уменьшился на 1 с.
+        /// Событие что тика таймера.
         /// </summary>
         public event Action<float> onTimeDecrese = delegate {};
 
         /// <summary>
-        /// С какого времени начинается отсчет.
+        /// Событие что таймер увеличился.
         /// </summary>
-        public float Seconds => seconds;
+        public event Action onTimeIncrese = delegate {};
+
+        /// <summary>
+        /// Текущее время.
+        /// </summary>
+        public float Seconds
+        {
+            get => seconds;
+            set
+            {
+                if(seconds != value)
+                {
+                    seconds = value;
+                    onTimeIncrese.Invoke();
+                }
+            }
+        }
         
         [SerializeField] protected float seconds = 60f;
         protected Coroutine coroutine = default;
