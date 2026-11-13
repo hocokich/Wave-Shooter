@@ -491,7 +491,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0422\u0410\u0419\u041C\u0415\u0420 \u0418\u0421\u0422\u0415\u041A ..."
+  m_Text: "\u0418\u0413\u0420\u0410 \u041E\u041A\u041E\u041D\u0427\u0415\u041D\u0410 ..."
 --- !u!222 &189708500
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -510,6 +510,7 @@ GameObject:
   m_Component:
   - component: {fileID: 271547711}
   - component: {fileID: 271547712}
+  - component: {fileID: 271547724}
   - component: {fileID: 271547717}
   - component: {fileID: 271547716}
   - component: {fileID: 271547719}
@@ -556,6 +557,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.Facade.CharacterFacade
   id: 
   modules:
+  - {fileID: 271547724}
   - {fileID: 271547717}
   - {fileID: 271547716}
   - {fileID: 271547719}
@@ -568,6 +570,7 @@ MonoBehaviour:
   - {fileID: 145276417}
   dataModuleFacades:
   - {fileID: 11400000, guid: 1dc2e21087314e44faf4a5cabc44835a, type: 2}
+  - {fileID: 11400000, guid: 1c7ccf8201bc1cd4e9eb6c6642660d47, type: 2}
 --- !u!114 &271547716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -683,6 +686,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &271547724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 271547710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13846d324c210494fa75a244d4fea09e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.Health.HealthController
+  id: 
+  facade: {fileID: 0}
+  healthModel: {fileID: 11400000, guid: 1c7ccf8201bc1cd4e9eb6c6642660d47, type: 2}
 --- !u!1 &365112493
 GameObject:
   m_ObjectHideFlags: 0
@@ -948,6 +966,7 @@ GameObject:
   - component: {fileID: 561708359}
   - component: {fileID: 561708360}
   - component: {fileID: 561708361}
+  - component: {fileID: 561708362}
   m_Layer: 0
   m_Name: TimerCountdown
   m_TagString: Untagged
@@ -999,6 +1018,19 @@ MonoBehaviour:
   endScreen: {fileID: 1330200940}
   timerCountdown: {fileID: 0}
   pauseManager: {fileID: 0}
+--- !u!114 &561708362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561708358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ebe63b84027f8c41b14ff00eb01e735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.Timer.HealthPlayerObserver
+  container: {fileID: 11400000, guid: e89dd9cad07457f4d88ced8a36a95fb0, type: 2}
 --- !u!1 &625657513
 GameObject:
   m_ObjectHideFlags: 0
@@ -1535,6 +1567,7 @@ RectTransform:
   m_Children:
   - {fileID: 796463623}
   - {fileID: 2058358062}
+  - {fileID: 927381188}
   m_Father: {fileID: 1272634042}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1684,6 +1717,102 @@ Transform:
   - {fileID: 1004057725}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &927381187
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 927381188}
+  - component: {fileID: 927381192}
+  - component: {fileID: 927381191}
+  - component: {fileID: 927381193}
+  m_Layer: 0
+  m_Name: HealthView
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &927381188
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927381187}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 803916562}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 50, y: 50}
+  m_SizeDelta: {x: 250, y: 100}
+  m_Pivot: {x: 0, y: 0}
+--- !u!114 &927381191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927381187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 60
+    m_FontStyle: 1
+    m_BestFit: 1
+    m_MinSize: 3
+    m_MaxSize: 60
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 000
+--- !u!222 &927381192
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927381187}
+  m_CullTransparentMesh: 1
+--- !u!114 &927381193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927381187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3c9a39ce1296b34b9baf42399f14c19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.Facade.View.HealthView
+  container: {fileID: 11400000, guid: e89dd9cad07457f4d88ced8a36a95fb0, type: 2}
+  textView: {fileID: 0}
+  fullHealthColor: {r: 1, g: 1, b: 1, a: 1}
+  lowHealthColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &1004057724
 GameObject:
   m_ObjectHideFlags: 0
@@ -2556,6 +2685,7 @@ GameObject:
   - component: {fileID: 1594360921}
   - component: {fileID: 1594360923}
   - component: {fileID: 1594360924}
+  - component: {fileID: 1594360929}
   - component: {fileID: 1594360925}
   - component: {fileID: 1594360926}
   - component: {fileID: 1594360928}
@@ -2628,7 +2758,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1.5, z: 0}
@@ -2672,6 +2802,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.Health.HealthController
   maxHealth: 100
+--- !u!114 &1594360929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1594360920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e07928e6a7a9c141804ad403ddd64e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.Enemy.EnemyAttack
+  damage: 5
 --- !u!1 &1677100813
 GameObject:
   m_ObjectHideFlags: 0
