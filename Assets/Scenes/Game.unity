@@ -1744,7 +1744,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0f6b4e57c904d31af1e0a9b8c7d6e54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.Spawners.SpawnItemPool
-  itemPrefab: {fileID: 293830283083158228, guid: c536351fa33149c4b800b2b23af5c50f, type: 3}
+  itemPrefab: {fileID: 3432639355292630380, guid: c536351fa33149c4b800b2b23af5c50f, type: 3}
   preloadCount: 4
   poolRoot: {fileID: 1004057725}
 --- !u!1 &1012223338
@@ -2557,8 +2557,8 @@ GameObject:
   - component: {fileID: 1594360923}
   - component: {fileID: 1594360924}
   - component: {fileID: 1594360925}
-  - component: {fileID: 1594360927}
   - component: {fileID: 1594360926}
+  - component: {fileID: 1594360928}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -2658,8 +2658,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.Enemy.IncreseSeconds
   seconds: 5
   timerCountdown: {fileID: 0}
-  destroyEnemy: {fileID: 0}
---- !u!114 &1594360927
+  enemyHealth: {fileID: 0}
+--- !u!114 &1594360928
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2668,9 +2668,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1594360920}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef5c6641659e476479791b73c67bf649, type: 3}
+  m_Script: {fileID: 11500000, guid: e48d8281eb87f9444b2af2ee88ef2511, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.Enemy.DestroyEnemy
+  m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.Health.HealthController
+  maxHealth: 100
 --- !u!1 &1677100813
 GameObject:
   m_ObjectHideFlags: 0
