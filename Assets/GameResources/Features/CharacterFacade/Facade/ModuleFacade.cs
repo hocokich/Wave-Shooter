@@ -14,6 +14,11 @@ namespace WaveShooter.Features.Facade
         public event Action onModuleInited = delegate { };
 
         /// <summary>
+        /// Модуль удален
+        /// </summary>
+        public event Action onModuleDisposed = delegate { };
+
+        /// <summary>
         /// Фасад модуля
         /// </summary>
         /// <value></value>
@@ -46,8 +51,24 @@ namespace WaveShooter.Features.Facade
         }
 
         /// <summary>
+        /// Удаление модуля
+        /// </summary>
+        public void Dispose()
+        {
+            onModuleDisposed.Invoke();
+
+            Facade = null;
+            OnModuleDisposed();
+        }
+
+        /// <summary>
         /// Метод срабатывающий по факту инициализации модуля фасада
         /// </summary>
         public abstract void OnModuleInited();
+
+        /// <summary>
+        /// Метод срабатывающий по факту удаления модуля фасада
+        /// </summary>
+        public abstract void OnModuleDisposed();
     }
 }
