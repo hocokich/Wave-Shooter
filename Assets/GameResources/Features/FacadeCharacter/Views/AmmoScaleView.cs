@@ -23,21 +23,16 @@ namespace WaveShooter.Features.Facade.View
             ammo = container.FacadeInstance.GetModuleFacade<GunController>().Ammo;
 
             if(ammo != null)
-                ammo.onAmmoCountChanged += PlayOnce;
+                ammo.onAmmoMagChanged += PlayOnce;
         }
 
         protected override void OnFacadeDisposed()
         {
             StopScale();
 
-            if (container.FacadeInstance == null)
-            {
-                return;
-            }
-
             if(ammo != null)
             {
-                ammo.onAmmoCountChanged -= PlayOnce;
+                ammo.onAmmoMagChanged -= PlayOnce;
                 ammo = null;
             }
         }

@@ -11,7 +11,10 @@ namespace WaveShooter.Features.Facade.View
     public class AmmoView : ProviderCharacter
     {
         [SerializeField] protected Text textView = default;
-        
+
+        [SerializeField] protected Color colorEmptyMag = Color.red;
+        [SerializeField] protected Color colorFullMag  = Color.white;
+
         protected AmmoModel ammo = default;
 
         protected override void OnFacadeInited()
@@ -22,7 +25,8 @@ namespace WaveShooter.Features.Facade.View
             }
 
             ammo = container.FacadeInstance.GetModuleFacade<GunController>().Ammo;
-            ammo.onAmmoCountChanged += UpdateView;
+            ammo.onAmmoMagChanged += UpdateView;
+            ammo.onAmmoTotalChanged += UpdateView;
 
             UpdateView();
         }
@@ -31,7 +35,8 @@ namespace WaveShooter.Features.Facade.View
         {
             if (ammo != null)
             {
-                ammo.onAmmoCountChanged -= UpdateView;
+                ammo.onAmmoMagChanged -= UpdateView;
+                ammo.onAmmoTotalChanged      -= UpdateView;
                 ammo = null;
             }
         }
@@ -42,6 +47,17 @@ namespace WaveShooter.Features.Facade.View
             base.OnDestroy();
         }
 
-        protected virtual void UpdateView() => textView.text = $"{ammo.AmmoCount} : {ammo.AmmoCount}";
+        protected virtual void UpdateView()
+        {
+            int magazine = ammo.AmmoMag;
+            int total = ammo.AmmoTotal;
+            int maxMag = Mathf.Max(1, ammo.MaxAmmoMag);
+
+            float t = Mathf.Clamp01(magazine / (float)maxMag);
+            Color magColor = Color.Lerp(colorEmptyMag, colorFullMag, t);
+            string hex = "#" + ColorUtility.ToHtmlStringRGB(magColor);
+
+            textView.text = $"<color={hex}>{magazine}</color> / {total}";
+        }
     }
 }
