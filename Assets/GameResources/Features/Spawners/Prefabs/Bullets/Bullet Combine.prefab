@@ -15,8 +15,7 @@ GameObject:
   - component: {fileID: 1496758785151599361}
   - component: {fileID: 293830283083158228}
   - component: {fileID: 709094689651561173}
-  - component: {fileID: 1433192570815003543}
-  - component: {fileID: 3143816102562506712}
+  - component: {fileID: 1684517171636781583}
   m_Layer: 0
   m_Name: Bullet Combine
   m_TagString: Untagged
@@ -34,8 +33,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -170,7 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.Spawners.Projectiles.ProjectileImpulse
   force: 16
---- !u!114 &1433192570815003543
+--- !u!114 &1684517171636781583
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -179,22 +178,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5577859710920310103}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84850e4a0bd803b4387c2e60551cbb83, type: 3}
+  m_Script: {fileID: 11500000, guid: e104dc40de91aac4aa25d80576730ca4, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Unitskills.Features.Lesson6.Projectiles.Effects.ShrinkingProjectile
-  shrinkSpeed: 0.5
-  spawnItem: {fileID: 0}
---- !u!114 &3143816102562506712
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5577859710920310103}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2454a2c834a3fc43acaddd2c70c7b8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Unitskills.Features.Lesson6.Spawners.SpawnItemRandColored
-  rendererView: {fileID: 0}
-  spawnItem: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.Container.ProviderCharacterComponent
+  container: {fileID: 11400000, guid: e89dd9cad07457f4d88ced8a36a95fb0, type: 2}
