@@ -2,13 +2,11 @@ namespace WaveShooter.Features.Enemy
 {
     using System;
     using UnityEngine;
-    using WaveShooter.Features.Spawners;
-    using WaveShooter.Features.Spawners.Physics;
 
     /// <summary>
     /// Здоровье врага.
     /// </summary>
-    public class EnemyHealth : AbstractGenericTrigger<Bullet>
+    public class EnemyHealth : MonoBehaviour
     {
         /// <summary>
         /// Текущее хп.
@@ -32,20 +30,20 @@ namespace WaveShooter.Features.Enemy
             CurrentHealth = maxHealth;
         }
 
-        protected override void OnTriggerEnterSuccessfully(Bullet bullet)
+        public virtual void TakeDamage(int amount)
         {
-            CurrentHealth -= bullet.Damage;
-            CurrentHealth = Mathf.Max(0, CurrentHealth);
-
-            onHealthChanged.Invoke(CurrentHealth, maxHealth);
+            int currentHealth = CurrentHealth - amount;
+            CurrentHealth = Mathf.Max(0, currentHealth);
 
             if (CurrentHealth <= 0)
             {
-                EnemyDie();
-                base.OnTriggerEnterSuccessfully(bullet); 
+                Die();
+                return;
             }
+
+            onHealthChanged.Invoke(CurrentHealth, maxHealth);
         }
-        protected virtual void EnemyDie()
+        protected virtual void Die()
         {
             onDied.Invoke();
             Destroy(gameObject);

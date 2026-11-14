@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3432639355292630380}
   - component: {fileID: 709094689651561173}
   - component: {fileID: 1684517171636781583}
+  - component: {fileID: 6672636053428268022}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -183,3 +184,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.Container.ProviderCharacterComponent
   container: {fileID: 11400000, guid: e89dd9cad07457f4d88ced8a36a95fb0, type: 2}
+--- !u!114 &6672636053428268022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5577859710920310103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8061a13386bd04daa99804b0b026572c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.Spawners.Physics.DestroyTrigger
