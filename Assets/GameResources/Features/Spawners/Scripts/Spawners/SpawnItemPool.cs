@@ -38,7 +38,7 @@ namespace WaveShooter.Features.Spawners
         }
 
         /// <summary>
-        /// Взять кубик и поставить его в точку спауна.
+        /// Взять итем и поставить его в точку спауна.
         /// </summary>
         public virtual SpawnItem Get(Vector3 position, Quaternion rotation)
         {
@@ -56,7 +56,7 @@ namespace WaveShooter.Features.Spawners
         }
 
         /// <summary>
-        /// Вернуть кубик в пул.
+        /// Вернуть итем в пул.
         /// </summary>
         public virtual void Release(SpawnItem item)
         {
