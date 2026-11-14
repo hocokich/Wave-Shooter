@@ -1,0 +1,33 @@
+namespace WaveShooter.Features.Spawner.EnemySpawner
+{
+    using UnityEngine;
+
+    /// <summary>
+    /// Управляет логикой лимита врагов.
+    /// </summary>
+    public class EnemyWaveController : MonoBehaviour
+    {
+        [SerializeField] protected EnemyWaveModel waveModel = default;
+
+        protected virtual void Awake()
+        {
+            if (waveModel != null)
+                waveModel.ResetModel();
+        }
+
+        /// <summary>
+        /// Проверяет, можно ли заспавнить врага, и если да — вычитает его из лимита.
+        /// </summary>
+        public bool TryConsumeEnemy()
+        {
+            if (waveModel == null) return false;
+
+            if (waveModel.IsInfinite) return true;
+
+            if (waveModel.CurrentEnemies <= 0) return false;
+
+            waveModel.CurrentEnemies--;
+            return true;
+        }
+    }
+}
