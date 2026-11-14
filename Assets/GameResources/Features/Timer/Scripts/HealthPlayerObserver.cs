@@ -6,11 +6,13 @@ namespace WaveShooter.Features.Timer
 
     /// <summary>
     /// Следит за здоровьем игрока.
+    /// Сбрасывает время в 0 если здоровье критическое.
     /// </summary>
     public sealed class HealthPlayerObserver : ProviderCharacter
     {
         TimerCountdown timerCountdown = default;
         HealthController healthController = default;
+
         protected override void Awake()
         {
             base.Awake();
@@ -23,14 +25,14 @@ namespace WaveShooter.Features.Timer
 
             if(healthController != null)
             {
-                healthController.onDie += ZeroTime;
+                healthController.onDied += ZeroTime;
             }
         }
         protected override void OnFacadeDisposed()
         {
             if(healthController != null)
             {
-                healthController.onDie -= ZeroTime;
+                healthController.onDied -= ZeroTime;
                 healthController = null;
             }
 
@@ -38,9 +40,6 @@ namespace WaveShooter.Features.Timer
         }
 
 
-        private void ZeroTime()
-        {
-            timerCountdown.Seconds = 0;
-        } 
+        private void ZeroTime() => timerCountdown.Seconds = 0;
     }
 }

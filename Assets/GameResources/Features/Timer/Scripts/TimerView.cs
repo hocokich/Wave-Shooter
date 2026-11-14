@@ -21,11 +21,13 @@ namespace WaveShooter.Features.Timer
 
             if(timerCountdown == null)
             timerCountdown = FindAnyObjectByType<TimerCountdown>();
-        }
-        protected virtual void OnEnable() => timerCountdown.onTimeDecrese += OnTimeDecrese;
-        protected virtual void OnDisable() => timerCountdown.onTimeDecrese -= OnTimeDecrese;
 
-        protected virtual void OnTimeDecrese(float sec)
+            OnTimeChanged(timerCountdown.Seconds);
+        }
+        protected virtual void OnEnable() => timerCountdown.onTimeChanged += OnTimeChanged;
+        protected virtual void OnDisable() => timerCountdown.onTimeChanged -= OnTimeChanged;
+
+        protected virtual void OnTimeChanged(float sec)
         {
             minutes = Mathf.FloorToInt(sec / 60);
             seconds = Mathf.FloorToInt(sec % 60);

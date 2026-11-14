@@ -15,14 +15,9 @@ namespace WaveShooter.Features.Timer
         public event Action onTimerIsDone = delegate {};
 
         /// <summary>
-        /// Событие что тика таймера.
+        /// Событие изменения таймера.
         /// </summary>
-        public event Action<float> onTimeDecrese = delegate {};
-
-        /// <summary>
-        /// Событие что таймер увеличился.
-        /// </summary>
-        public event Action onTimeIncrese = delegate {};
+        public event Action<float> onTimeChanged = delegate {};
 
         /// <summary>
         /// Текущее время.
@@ -35,7 +30,7 @@ namespace WaveShooter.Features.Timer
                 if(seconds != value)
                 {
                     seconds = value;
-                    onTimeIncrese.Invoke();
+                    onTimeChanged.Invoke(seconds);
                 }
             }
         }
@@ -52,11 +47,20 @@ namespace WaveShooter.Features.Timer
         {
             float elapsed = 0f;
 
-            while (elapsed < seconds) 
+            while (seconds > 0) 
             {
-                seconds--;
-                onTimeDecrese.Invoke(seconds);
-                yield return new WaitForSeconds(1f);
+                elapsed += Time.deltaTime; 
+
+                if (elapsed >= 1f)
+                {
+                    elapsed -= 1f;
+                    seconds--;
+
+                    if (seconds < 0) seconds = 0; 
+
+                    onTimeChanged.Invoke(seconds);
+                }
+                yield return null;
             } 
             onTimerIsDone.Invoke();
         }
