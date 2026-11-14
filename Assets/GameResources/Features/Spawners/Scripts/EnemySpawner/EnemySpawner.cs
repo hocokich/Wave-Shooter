@@ -2,6 +2,8 @@ namespace WaveShooter.Features.Spawner.EnemySpawner
 {
     using System.Collections;
     using UnityEngine;
+    using WaveShooter.Features.Enemy;
+    using WaveShooter.Features.Facade;
     using WaveShooter.Features.Spawners;
 
     /// <summary>
@@ -11,13 +13,22 @@ namespace WaveShooter.Features.Spawner.EnemySpawner
     {
         [SerializeField] protected SpawnEnemyPool itemPool = default;
         [SerializeField] protected EnemyWaveController waveController = default;
+
         [SerializeField] protected float spawnInterval = 1.5f;
         [SerializeField] protected Transform spawnPoint = default;
+
+        [SerializeField] protected Transform playerTarget = default; 
 
         private Coroutine spawnRoutine;
 
         protected virtual void Start()
         {
+            if (playerTarget == null)
+            {
+                var facade = FindAnyObjectByType<CharacterFacade>();
+                if (facade != null) playerTarget = facade.transform;
+            }
+
             spawnRoutine = StartCoroutine(SpawnRoutine());
         }
 
@@ -60,6 +71,12 @@ namespace WaveShooter.Features.Spawner.EnemySpawner
             if (enemy != null)
             {
                 enemy.SetCooldownHandler(ReleaseEnemy);
+
+                if (enemy.TryGetComponent(out EnemyMovement movement))
+                {
+                    movement.Initialize(playerTarget);
+                }
+
                 enemy.Launch(); 
             }
         }

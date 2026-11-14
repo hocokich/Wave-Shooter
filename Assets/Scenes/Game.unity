@@ -634,7 +634,7 @@ MonoBehaviour:
   id: 
   facade: {fileID: 0}
   modelAmmo: {fileID: 11400000, guid: 1dc2e21087314e44faf4a5cabc44835a, type: 2}
-  cooldown: 1
+  cooldown: 0.5
 --- !u!114 &271547719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2061,6 +2061,7 @@ MonoBehaviour:
   waveController: {fileID: 1034640084}
   spawnInterval: 2
   spawnPoint: {fileID: 1034640081}
+  playerTarget: {fileID: 0}
 --- !u!114 &1034640086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3026,7 +3027,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1927296464
 Transform:
   m_ObjectHideFlags: 0
