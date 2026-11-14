@@ -396,7 +396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a85a8a754cdcd4f4a9473f9df1dea41b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.Enemy.EnemySpawnItem
-  cooldown: 2
+  cooldown: 0
 --- !u!114 &3721841450002239389
 MonoBehaviour:
   m_ObjectHideFlags: 0

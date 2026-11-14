@@ -2007,15 +2007,16 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1034640081}
-  - component: {fileID: 1034640083}
-  - component: {fileID: 1034640082}
+  - component: {fileID: 1034640084}
+  - component: {fileID: 1034640085}
+  - component: {fileID: 1034640086}
   m_Layer: 0
   m_Name: SpawnerPool
   m_TagString: Untagged
   m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1034640081
 Transform:
   m_ObjectHideFlags: 0
@@ -2025,13 +2026,13 @@ Transform:
   m_GameObject: {fileID: 1034640080}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -15, y: 0.5, z: 15}
+  m_LocalPosition: {x: 0, y: 1, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 160196293}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1034640082
+--- !u!114 &1034640084
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2040,27 +2041,42 @@ MonoBehaviour:
   m_GameObject: {fileID: 1034640080}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0f6b4e57c904d31af1e0a9b8c7d6e54, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d10ab9ea0bf2e8498c275a88a073660, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.Spawners.SpawnItemPool
-  itemPrefab: {fileID: 3432639355292630380, guid: c536351fa33149c4b800b2b23af5c50f, type: 3}
-  preloadCount: 4
+  m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.Spawner.EnemySpawner.EnemyWaveController
+  waveModel: {fileID: 11400000, guid: 7dcd699ff30a9234fa8c1d4617f6c5ee, type: 2}
+--- !u!114 &1034640085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1034640080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab4be5c2dc4d11a4d93b93d950301745, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.Spawner.EnemySpawner.EnemySpawner
+  itemPool: {fileID: 1034640086}
+  waveController: {fileID: 1034640084}
+  spawnInterval: 2
+  spawnPoint: {fileID: 1034640081}
+--- !u!114 &1034640086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1034640080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42c2538e7293aab438126bd0f90ac5c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.Spawner.EnemySpawner.LimitedSpawnItemPool
+  itemPrefab: {fileID: 7501443921230873615, guid: 2eed5addb4dd7a84899352ae7a4c714a, type: 3}
+  preloadCount: 3
   poolRoot: {fileID: 1034640081}
---- !u!114 &1034640083
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1034640080}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1a7c5f68d014e42b02f1b0c9d8e7f65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.Spawners.ObjectPoolSpawner
-  container: {fileID: 11400000, guid: e89dd9cad07457f4d88ced8a36a95fb0, type: 2}
-  spawnDistance: 2
-  itemPool: {fileID: 1034640082}
+  maxCount: 3
 --- !u!1 &1272634041
 GameObject:
   m_ObjectHideFlags: 0
@@ -3541,63 +3557,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3458555797850989763, guid: 1fc1db9498f460d4c9692740c24c519a, type: 3}
   m_PrefabInstance: {fileID: 1191281727227526131}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1349119934578750677
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4836318343403280642, guid: 2eed5addb4dd7a84899352ae7a4c714a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 5.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 4836318343403280642, guid: 2eed5addb4dd7a84899352ae7a4c714a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4836318343403280642, guid: 2eed5addb4dd7a84899352ae7a4c714a, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 6.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4836318343403280642, guid: 2eed5addb4dd7a84899352ae7a4c714a, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4836318343403280642, guid: 2eed5addb4dd7a84899352ae7a4c714a, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4836318343403280642, guid: 2eed5addb4dd7a84899352ae7a4c714a, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4836318343403280642, guid: 2eed5addb4dd7a84899352ae7a4c714a, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4836318343403280642, guid: 2eed5addb4dd7a84899352ae7a4c714a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4836318343403280642, guid: 2eed5addb4dd7a84899352ae7a4c714a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4836318343403280642, guid: 2eed5addb4dd7a84899352ae7a4c714a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5635364342543582681, guid: 2eed5addb4dd7a84899352ae7a4c714a, type: 3}
-      propertyPath: m_Name
-      value: Enemy
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 2eed5addb4dd7a84899352ae7a4c714a, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -3607,4 +3566,3 @@ SceneRoots:
   - {fileID: 188874645}
   - {fileID: 58078688}
   - {fileID: 927355912}
-  - {fileID: 1349119934578750677}
