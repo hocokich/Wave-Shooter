@@ -1,6 +1,8 @@
 namespace WaveShooter.Features.Enemy
 {
+    using System;
     using UnityEngine;
+    using Random = UnityEngine.Random;
 
     /// <summary>
     /// Движение врага к игроку по физике.
@@ -8,13 +10,44 @@ namespace WaveShooter.Features.Enemy
     [RequireComponent(typeof(Rigidbody))]
     public class EnemyMovement : MonoBehaviour
     {
+        /// <summary>
+        /// Текущая скорость.
+        /// </summary>
+        public float CurrentSpeed
+        {
+            get => currentSpeed;
+            set
+            {
+                if(currentSpeed != value)
+                {
+                    currentSpeed = value;
+                    onSpeedChanged.Invoke(currentSpeed);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Минимальная скорость.
+        /// </summary>
+        public float MinSpeed => minSpeed;
+
+        /// <summary>
+        /// Максимальная скорость.
+        /// </summary>
+        public float MaxSpeed => maxSpeed;
+
+        /// <summary>
+        /// Скорость задана.
+        /// </summary>
+        public event Action<float> onSpeedChanged = delegate { };
+
         [SerializeField] protected float minSpeed = 1f;
         [SerializeField] protected float maxSpeed = 3.5f;
         [SerializeField] protected float rotationSpeed = 10f;
 
         protected Rigidbody rb;
         protected Transform playerTarget;
-        protected float currentSpeed;
+        [SerializeField] protected float currentSpeed;
 
         protected virtual void Awake()
         {
@@ -32,6 +65,10 @@ namespace WaveShooter.Features.Enemy
             playerTarget = targetTransform;
             
             currentSpeed = Random.Range(minSpeed, maxSpeed);
+
+            CurrentSpeed = currentSpeed;
+            
+            onSpeedChanged.Invoke(currentSpeed);
         }
 
         protected virtual void FixedUpdate()
