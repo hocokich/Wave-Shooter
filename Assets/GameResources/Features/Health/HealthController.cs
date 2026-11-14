@@ -50,14 +50,14 @@ namespace WaveShooter.Features.Health
         {
             if (healthModel == null) return;
 
+            int currentHealth = healthModel.CurrentHealth - amount;
+            healthModel.CurrentHealth = Mathf.Max(0, currentHealth);
+            
             if (healthModel.CurrentHealth <= 0)
             {
                 Die();
                 return;
             }
-
-            int currentHealth = healthModel.CurrentHealth - amount;
-            healthModel.CurrentHealth = Mathf.Max(0, currentHealth);
 
             onDamaged.Invoke();
         }
