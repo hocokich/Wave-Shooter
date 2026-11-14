@@ -16,37 +16,37 @@ namespace WaveShooter.Features.Enemy
 
         [SerializeField] protected int seconds = 5;
         [SerializeField] protected TimerCountdown timerCountdown = default;
-        [SerializeField] protected DestroyEnemy destroyEnemy = default;
+        [SerializeField] protected EnemyHealth enemyHealth = default;
 
         protected void Start()
         {
             if(timerCountdown == null)
                 timerCountdown = FindAnyObjectByType<TimerCountdown>();
             
-            if(destroyEnemy == null)
+            if(enemyHealth == null)
             {
-                destroyEnemy = GetComponent<DestroyEnemy>();
-                destroyEnemy.onDestroyEnemy += IncreaseSeconds;  
+                enemyHealth = GetComponent<EnemyHealth>();
+                enemyHealth.onDied += IncreaseSeconds;  
             }
         }
 
         protected virtual void OnEnable()
         {
-            if(destroyEnemy != null)
+            if(enemyHealth != null)
             {
-                destroyEnemy.onDestroyEnemy += IncreaseSeconds;
+                enemyHealth.onDied += IncreaseSeconds;
             }
         }
         protected virtual void OnDisable()
         {
-            if(destroyEnemy != null)
+            if(enemyHealth != null)
             {
-                destroyEnemy.onDestroyEnemy -= IncreaseSeconds;
+                enemyHealth.onDied -= IncreaseSeconds;
             }
         }
         protected virtual void IncreaseSeconds()
         {
-            timerCountdown.Seconds += 5;
+            timerCountdown.Seconds += seconds;
             onIncreseSeconds.Invoke();
         }
     }
