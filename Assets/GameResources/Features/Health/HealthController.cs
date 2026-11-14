@@ -9,9 +9,27 @@ namespace WaveShooter.Features.Health
     /// </summary>
     public sealed class HealthController : GenericModuleFacade<CharacterFacade>
     {
-        public event Action onDie = delegate { };
-        [SerializeField] private HealthModel healthModel = default;
+        /// <summary>
+        /// Получил урон.
+        /// </summary>
+        public event Action onDamaged = delegate { };
+
+        /// <summary>
+        /// Вылечился.
+        /// </summary>
+        public event Action onHealed = delegate { };
+
+        /// <summary>
+        /// Игрок умер.
+        /// </summary>
+        public event Action onDied = delegate { };
+
+        /// <summary>
+        /// Дата здоровья.
+        /// </summary>
         public HealthModel Model => healthModel;
+
+        [SerializeField] private HealthModel healthModel = default;
 
         protected override void OnInited()
         {
@@ -32,25 +50,34 @@ namespace WaveShooter.Features.Health
         {
             if (healthModel == null) return;
 
-            healthModel.ApplyDamage(amount);
-            
             if (healthModel.CurrentHealth <= 0)
             {
                 Die();
+                return;
             }
+
+            int currentHealth = healthModel.CurrentHealth - amount;
+            healthModel.CurrentHealth = Mathf.Max(0, currentHealth);
+
+            onDamaged.Invoke();
         }
 
         /// <summary>
-        /// Вылечить игрока (аптечка).
+        /// Вылечить игрока
         /// </summary>
         public void Heal(int amount)
         {
-            healthModel?.ApplyHeal(amount);
+            if (healthModel.CurrentHealth <= 0) return;
+
+            int currentHealth = healthModel.CurrentHealth + amount;
+            healthModel.CurrentHealth = Mathf.Min(currentHealth, healthModel.MaxHealth);
+
+            onHealed.Invoke();
         }
 
         private void Die()
         {
-            onDie.Invoke();
+            onDied.Invoke();
         }
     }
 }

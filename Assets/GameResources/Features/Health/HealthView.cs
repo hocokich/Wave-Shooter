@@ -32,10 +32,6 @@ namespace WaveShooter.Features.Facade.View
                 healthModel.onHealthChanged += UpdateView;
                 UpdateView(healthModel.CurrentHealth, healthModel.MaxHealth);
             }
-            else
-            {
-                Debug.LogError("HealthView: HealthModel не найден в фасаде!");
-            }
         }
 
         protected override void OnFacadeDisposed()

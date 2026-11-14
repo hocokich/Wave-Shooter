@@ -14,11 +14,6 @@ namespace WaveShooter.Features.Health
         /// Здоровье изменилось (текущее, максимальное).
         /// </summary>
         public event Action<int, int> onHealthChanged = delegate { };
-        
-        /// <summary>
-        /// Игрок умер.
-        /// </summary>
-        public event Action onDied = delegate { };
 
         /// <summary>
         /// Максимум здоровья.
@@ -28,38 +23,25 @@ namespace WaveShooter.Features.Health
         /// <summary>
         /// Текущее здоровье.
         /// </summary>
-        public int CurrentHealth { get; private set; }
+        public int CurrentHealth
+        {
+            get => currentHealth;
+            set
+            {
+                if(currentHealth != value)
+                {
+                    currentHealth = value;
+                    onHealthChanged.Invoke(currentHealth, maxHealth);
+                }
+            }
+        }
 
         [SerializeField] protected int maxHealth = 100;
+        [SerializeField] protected int currentHealth = 100;
 
         public override void OnModuleInited()
         {
             CurrentHealth = maxHealth;
-            onHealthChanged.Invoke(CurrentHealth, maxHealth);
-        }
-
-        public void ApplyDamage(int amount)
-        {
-            if (CurrentHealth <= 0) return;
-
-            CurrentHealth -= amount;
-            CurrentHealth = Mathf.Max(0, CurrentHealth);
-
-            onHealthChanged.Invoke(CurrentHealth, maxHealth);
-
-            if (CurrentHealth <= 0)
-            {
-                onDied.Invoke();
-            }
-        }
-
-        public void ApplyHeal(int amount)
-        {
-            if (CurrentHealth <= 0) return;
-
-            CurrentHealth += amount;
-            CurrentHealth = Mathf.Min(CurrentHealth, maxHealth);
-
             onHealthChanged.Invoke(CurrentHealth, maxHealth);
         }
     }
