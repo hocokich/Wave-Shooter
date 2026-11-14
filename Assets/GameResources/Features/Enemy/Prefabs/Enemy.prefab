@@ -307,6 +307,7 @@ GameObject:
   - component: {fileID: 4836318343403280642}
   - component: {fileID: 2823275550097480534}
   - component: {fileID: 4168422992651264656}
+  - component: {fileID: 7501443921230873615}
   - component: {fileID: 3721841450002239389}
   - component: {fileID: 1480029425961038400}
   - component: {fileID: 482439850877363808}
@@ -383,6 +384,19 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7501443921230873615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5635364342543582681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a85a8a754cdcd4f4a9473f9df1dea41b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.Enemy.EnemySpawnItem
+  cooldown: 2
 --- !u!114 &3721841450002239389
 MonoBehaviour:
   m_ObjectHideFlags: 0

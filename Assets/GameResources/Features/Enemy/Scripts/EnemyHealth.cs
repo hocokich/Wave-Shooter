@@ -46,7 +46,15 @@ namespace WaveShooter.Features.Enemy
         protected virtual void Die()
         {
             onDied.Invoke();
-            Destroy(gameObject);
+
+            if (TryGetComponent(out EnemySpawnItem spawnItem))
+            {
+                spawnItem.Complete();
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }
