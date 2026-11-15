@@ -454,8 +454,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 048369fc437206242bea1efbe3653a37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.Enemy.EnemyMovement
-  minSpeed: 1
-  maxSpeed: 3.5
+  minSpeed: 3
+  maxSpeed: 7
   rotationSpeed: 10
   currentSpeed: 0
 --- !u!114 &1480029425961038400
@@ -486,3 +486,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.Health.HealthController
   maxHealth: 100
+  currentHealth: 100

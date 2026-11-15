@@ -53,8 +53,6 @@ namespace WaveShooter.Features.SaveSystem
             wave.CurrentEnemies = SaveManager.GetEnemiesLeft();
             wave.SetKilledEnemies(SaveManager.GetKilled());
             wave.SetActiveEnemies(SaveManager.GetActive());
-
-            Debug.Log("Игра загружена из сохранения!");
         }
 
         private void ResetForNewGame()
@@ -66,8 +64,6 @@ namespace WaveShooter.Features.SaveSystem
             ammo.OnModuleInited();
             health.OnModuleInited();
             wave.ResetModel();
-            
-            Debug.Log("Новая игра. Модели сброшены.");
         }
     }
 }
