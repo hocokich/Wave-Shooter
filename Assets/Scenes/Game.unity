@@ -4314,13 +4314,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1880180115}
     m_Modifications:
+    - target: {fileID: 966219849299332947, guid: 1fc1db9498f460d4c9692740c24c519a, type: 3}
+      propertyPath: m_Name
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 1116766257849252453, guid: 1fc1db9498f460d4c9692740c24c519a, type: 3}
+      propertyPath: m_Name
+      value: Wall
+      objectReference: {fileID: 0}
     - target: {fileID: 1700755732471231140, guid: 1fc1db9498f460d4c9692740c24c519a, type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 13400000, guid: e5f6a7b8c9d041234567890abcdef345, type: 2}
+    - target: {fileID: 2132924969351271792, guid: 1fc1db9498f460d4c9692740c24c519a, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2258298865820538603, guid: 1fc1db9498f460d4c9692740c24c519a, type: 3}
       propertyPath: m_Name
       value: Room
+      objectReference: {fileID: 0}
+    - target: {fileID: 2414091060299434002, guid: 1fc1db9498f460d4c9692740c24c519a, type: 3}
+      propertyPath: m_Name
+      value: Floor
+      objectReference: {fileID: 0}
+    - target: {fileID: 2563224620049441239, guid: 1fc1db9498f460d4c9692740c24c519a, type: 3}
+      propertyPath: m_Name
+      value: Wall
       objectReference: {fileID: 0}
     - target: {fileID: 3458555797850989763, guid: 1fc1db9498f460d4c9692740c24c519a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4362,6 +4382,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3987666772331580883, guid: 1fc1db9498f460d4c9692740c24c519a, type: 3}
+      propertyPath: m_Name
+      value: Wall
+      objectReference: {fileID: 0}
     - target: {fileID: 4464739218989892635, guid: 1fc1db9498f460d4c9692740c24c519a, type: 3}
       propertyPath: m_Material
       value: 
@@ -4382,6 +4406,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 13400000, guid: e5f6a7b8c9d041234567890abcdef345, type: 2}
+    - target: {fileID: 8348305788682266232, guid: 1fc1db9498f460d4c9692740c24c519a, type: 3}
+      propertyPath: m_Name
+      value: Roof
+      objectReference: {fileID: 0}
     - target: {fileID: 8348305788682266232, guid: 1fc1db9498f460d4c9692740c24c519a, type: 3}
       propertyPath: m_IsActive
       value: 1

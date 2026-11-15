@@ -493,7 +493,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &844991277
 RectTransform:
   m_ObjectHideFlags: 0
@@ -904,6 +904,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.SwitchScenes.SceneLoader
   timeFakeLoad: 1
   fillImage: {fileID: 232929226}
+  colorStart: {r: 0.3301887, g: 0.3301887, b: 0.3301887, a: 1}
+  colorEnd: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
