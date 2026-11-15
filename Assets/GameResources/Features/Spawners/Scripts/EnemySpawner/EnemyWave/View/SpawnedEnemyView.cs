@@ -36,7 +36,7 @@ namespace WaveShooter.Features.Spawner.EnemySpawner.EnemyWave
         {
             if (text != null)
             {
-                text.text = $"Врагов на сцене: {activeEnemies}"; 
+                text.text = $"Врагов заспавнено: {activeEnemies}"; 
             }
         }
     }

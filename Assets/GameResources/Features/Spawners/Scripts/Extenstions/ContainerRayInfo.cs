@@ -2,7 +2,7 @@ namespace WaveShooter.Features.Spawners.Extenstions
 {
     using UnityEngine;
     using WaveShooter.Features.Container;
-    using WaveShooter.Features.Shooting;
+    using WaveShooter.Features.ShootingCharacter;
 
     /// <summary>
     /// Утилитный класс.

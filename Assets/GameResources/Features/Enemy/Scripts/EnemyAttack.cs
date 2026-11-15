@@ -3,8 +3,8 @@ namespace WaveShooter.Features.Enemy
     using System;
     using System.Collections;
     using UnityEngine;
-    using WaveShooter.Features.Health;
     using WaveShooter.Features.Spawners.Physics;
+    using WaveShooter.Features.HealthCharacter;
 
     /// <summary>
     /// Атака врага.
