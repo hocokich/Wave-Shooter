@@ -9,12 +9,15 @@ namespace WaveShooter.Features.PauseGame
     /// </summary>
     public sealed class BackMenuButton : SwitchSceneButton
     {
-        [SerializeField] private SaveGameController saveController;
+        private SaveGameController saveController;
 
-        protected override void Awake()
+        /// <summary>
+        /// Вызывается из TogglePauseMenu
+        /// </summary>
+        /// <param name="controller"></param>
+        public void Initialize(SaveGameController controller)
         {
-            base.Awake();
-            saveController = FindAnyObjectByType<SaveGameController>();
+            saveController = controller;
         }
 
         protected override void OnClick()
