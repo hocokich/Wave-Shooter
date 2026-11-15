@@ -11,20 +11,9 @@ namespace WaveShooter.Features.MoveCharacter
     public class MoveController : GenericModuleFacade<CharacterFacade>
     {
         /// <summary>
-        /// Движение персонажа.
-        /// </summary>
-        public event Action<bool> onMoveStateChanged = delegate { };
-
-        /// <summary>
         /// Текущая скорость.
         /// </summary>
         public float CurrentSpeed { get; private set; }
-
-        /// <summary>
-        /// Двигается ли сейчас персонаж.
-        /// </summary>
-        public bool IsMoving => moveVector.sqrMagnitude > 0.01f;
-
 
         [Header("Настройки скорости")]
         [SerializeField] protected float walkSpeed = 2f;
