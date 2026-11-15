@@ -5,9 +5,14 @@ namespace WaveShooter.Features.Spawner.EnemySpawner
     /// <summary>
     /// Управляет логикой лимита врагов.
     /// </summary>
-    public class EnemyWaveController : MonoBehaviour
+    public class ControllerEnemyWave : MonoBehaviour
     {
-        [SerializeField] protected EnemyWaveModel waveModel = default;
+        /// <summary>
+        /// Модель волн врагов.
+        /// </summary>
+        public ModelEnemyWave Model => waveModel;
+
+        [SerializeField] protected ModelEnemyWave waveModel = default;
 
         protected virtual void Awake()
         {
@@ -21,13 +26,22 @@ namespace WaveShooter.Features.Spawner.EnemySpawner
         public bool TryConsumeEnemy()
         {
             if (waveModel == null) return false;
-
             if (waveModel.IsInfinite) return true;
-
             if (waveModel.CurrentEnemies <= 0) return false;
 
             waveModel.CurrentEnemies--;
             return true;
+        }
+
+        /// <summary>
+        /// Вызывается, когда врага убивают.
+        /// </summary>
+        public void RegisterKill()
+        {
+            if (waveModel != null)
+            {
+                waveModel.AddKill();
+            }
         }
     }
 }
