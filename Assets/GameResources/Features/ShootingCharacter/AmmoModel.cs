@@ -33,7 +33,6 @@ namespace WaveShooter.Features.ShootingCharacter
 
                 ammoMag = clamped;
                 onAmmoMagChanged();
-                SavePrefs();
             }
         }
         /// <summary>
@@ -48,7 +47,6 @@ namespace WaveShooter.Features.ShootingCharacter
                 {
                     ammoTotal = value;
                     onAmmoTotalChanged();
-                    SavePrefs();
                 }
             }
         }
@@ -90,34 +88,15 @@ namespace WaveShooter.Features.ShootingCharacter
         [SerializeField, Range(1, 30)] protected int ammoMag = 20;
         [SerializeField, Range(0, 300)] protected int ammoTotal = 60;
 
-
         protected override void OnInited()
         {
             base.OnInited();
-            LoadPrefs();
-        }
-
-        protected virtual void SavePrefs()
-        {
-            PlayerPrefs.SetInt("ammoInMagazine", ammoMag);
-            PlayerPrefs.SetInt("ammoTotal", ammoTotal);
-        }
-
-        protected virtual void LoadPrefs()
-        {
-            if (!PlayerPrefs.HasKey("ammoInMagazine")
-                && !PlayerPrefs.HasKey("ammoTotal")
-                && PlayerPrefs.HasKey("ammo"))
-            {
-                int legacy = PlayerPrefs.GetInt("ammo");
-                AmmoMag = Mathf.Min(legacy, maxAmmoMag);
-                AmmoTotal = Mathf.Min(Mathf.Max(0, legacy - AmmoMag), maxAmmoTotal);
-                PlayerPrefs.DeleteKey("ammo");
-                return;
-            }
-
-            AmmoMag = PlayerPrefs.GetInt("ammoInMagazine", ammoMag);
-            AmmoTotal      = PlayerPrefs.GetInt("ammoTotal", ammoTotal);
+            
+            ammoMag = maxAmmoMag;
+            ammoTotal = maxAmmoTotal;
+            
+            onAmmoMagChanged();
+            onAmmoTotalChanged();
         }
     }
 }

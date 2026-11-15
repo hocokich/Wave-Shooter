@@ -102,5 +102,27 @@ namespace WaveShooter.Features.Spawner.EnemySpawner.EnemyWave
             ActiveEnemies = Mathf.Max(0, ActiveEnemies - 1);
             onActiveEnemiesChanged.Invoke(ActiveEnemies);
         }
+
+        /// <summary>
+        /// Установка убитых врагов на сцене.
+        /// Нужно при загрузке сохранения.
+        /// </summary>
+        /// <param name="value"></param>
+        public void SetKilledEnemies(int value)
+        {
+            KilledEnemies = value;
+            onKilledChanged.Invoke(KilledEnemies);
+        }
+
+        /// <summary>
+        /// Установка живых врагов на сцене.
+        /// Нужно при загрузке сохранения.
+        /// </summary>
+        /// <param name="value"></param>
+        public void SetActiveEnemies(int value)
+        {
+            ActiveEnemies = value;
+            onActiveEnemiesChanged.Invoke(ActiveEnemies);
+        }
     }
 }
