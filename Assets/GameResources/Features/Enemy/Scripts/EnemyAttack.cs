@@ -11,6 +11,16 @@ namespace WaveShooter.Features.Enemy
     /// </summary>
     public class EnemyAttack : AbstractGenericTrigger<HealthController>
     {
+        /// <summary>
+        /// Начал атаку (догнал игрока).
+        /// </summary>
+        public event Action onAttackStarted = delegate { };
+        
+        /// <summary>
+        /// Закончил атаку (игрок отбежал).
+        /// </summary>
+        public event Action onAttackEnded = delegate { };
+
         [SerializeField, Range(1, 100)] protected int damage = 5;
         [SerializeField, Min(0.1f)] protected float cooldown = 1f;
 
@@ -23,6 +33,7 @@ namespace WaveShooter.Features.Enemy
 
             if (attackRoutine == null)
             {
+                onAttackStarted.Invoke();
                 attackRoutine = StartCoroutine(AttackRoutine());
             }
         }
@@ -30,6 +41,7 @@ namespace WaveShooter.Features.Enemy
         protected override void OnTriggerExitSuccessfully(HealthController healthController)
         {
             StopAttack();
+            onAttackEnded.Invoke();
         }
 
         private IEnumerator AttackRoutine()
