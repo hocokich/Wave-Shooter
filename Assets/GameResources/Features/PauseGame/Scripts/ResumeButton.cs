@@ -1,44 +1,30 @@
 namespace WaveShooter.Features.PauseGame
 {
     using UnityEngine;
-    using UnityEngine.UI;
+    using WaveShooter.Features.UIElements;
 
     /// <summary>
-    /// Кнопка, которая делает то же самое, что и нажатие Esc (снимает/ставит паузу).
+    /// Кнопка, которая делает то же самое, что и нажатие Esc.
     /// </summary>
-    [RequireComponent(typeof(Button))]
-    public sealed class ResumeButton : MonoBehaviour
+    public sealed class ResumeButton : AbstractButtonView
     {
-        [SerializeField] private PauseManager pauseManager = default;
-        private Button button;
+        private PauseManager pauseManager;
 
-        private void Awake()
+        /// <summary>
+        /// Вызывается из TogglePauseMenu
+        /// </summary>
+        /// <param name="manager"></param>
+        public void Initialize(PauseManager manager)
         {
-            button = GetComponent<Button>();
+            pauseManager = manager;
         }
 
-        private void OnEnable()
-        {
-            if (button != null)
-            {
-                button.onClick.AddListener(OnButtonClicked);
-            }
-        }
-        private void OnDisable()
-        {
-            if (button != null)
-            {
-                button.onClick.RemoveListener(OnButtonClicked);
-            }
-        }
-
-        private void OnButtonClicked()
+        protected override void OnClick()
         {
             if (pauseManager != null)
             {
                 pauseManager.TogglePause(); 
             }
-
         }
     }
 }

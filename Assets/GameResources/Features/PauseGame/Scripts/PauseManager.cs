@@ -33,16 +33,7 @@ namespace WaveShooter.Features.PauseGame
         private InputActions inputActions;
         private bool isPaused = false;
 
-        protected override void OnDestroy()
-        {
-            base.OnDestroy();
-            
-            if (inputActions != null)
-            {
-                inputActions.Gameplay.Pause.performed -= OnPausePressed;
-                inputActions.UI.Pause.performed -= OnPausePressed;
-            }
-        }
+
 
         protected override void OnFacadeInited()
         {
@@ -69,12 +60,33 @@ namespace WaveShooter.Features.PauseGame
             }
         }
 
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            
+            if (inputActions != null)
+            {
+                inputActions.Gameplay.Pause.performed -= OnPausePressed;
+                inputActions.UI.Pause.performed -= OnPausePressed;
+            }
+        }
+
         /// <summary>
-        /// Вкл/Выкл. паузу.
+        /// Переключает паузу.
         /// </summary>
         public void TogglePause()
         {
-            IsPaused = !IsPaused; 
+            SetPause(!IsPaused);
+        }
+
+        /// <summary>
+        /// Жестко задает состояние паузы.
+        /// </summary>
+        public void SetPause(bool pauseState)
+        {
+            if (IsPaused == pauseState) return;
+
+            IsPaused = pauseState;
 
             if (IsPaused)
             {
@@ -82,8 +94,11 @@ namespace WaveShooter.Features.PauseGame
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
 
-                inputActions.Gameplay.Disable();
-                inputActions.UI.Enable();
+                if (inputActions != null)
+                {
+                    inputActions.Gameplay.Disable();
+                    inputActions.UI.Enable();
+                }
             }
             else
             {
@@ -91,8 +106,23 @@ namespace WaveShooter.Features.PauseGame
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
 
-                inputActions.UI.Disable();
-                inputActions.Gameplay.Enable();
+                if (inputActions != null)
+                {
+                    inputActions.UI.Disable();
+                    inputActions.Gameplay.Enable();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Отключает возможность ставить паузу (для Game Over).
+        /// </summary>
+        public void DisablePauseInput()
+        {
+            if (inputActions != null)
+            {
+                inputActions.Gameplay.Pause.Disable();
+                inputActions.UI.Pause.Disable();
             }
         }
 
