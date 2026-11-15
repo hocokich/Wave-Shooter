@@ -21,7 +21,7 @@ namespace WaveShooter.Features.ScreenSpawner
         [Header("Контроллеры сцены")]
         [SerializeField] private PauseManager pauseManager;
         [SerializeField] private TimerCountdown timerCountdown;
-        [SerializeField] private SaveGameController saveController; // Нужен для кнопки в меню паузы
+        [SerializeField] private SaveGameController saveController;
 
         private GameObject currentPauseMenu;
         private GameObject currentGameOver;

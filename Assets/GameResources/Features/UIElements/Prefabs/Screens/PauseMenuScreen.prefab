@@ -834,11 +834,33 @@ PrefabInstance:
       propertyPath: m_Text
       value: "\u0417\u0430\u043D\u043E\u0432\u043E"
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4095442581773038456, guid: ef26237c7dd018c428da9a76b92ce0dd, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 988192177222491764, guid: ef26237c7dd018c428da9a76b92ce0dd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3667412713749801779}
   m_SourcePrefab: {fileID: 100100000, guid: ef26237c7dd018c428da9a76b92ce0dd, type: 3}
+--- !u!1 &6958704282384041831 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 988192177222491764, guid: ef26237c7dd018c428da9a76b92ce0dd, type: 3}
+  m_PrefabInstance: {fileID: 7864563826322512147}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3667412713749801779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6958704282384041831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36b3191a91db84b8aa2ecb33a138e253, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.SwitchScenes.SwitchSceneButton
+  newSceneName: Game
 --- !u!224 &8271211536421154763 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2300693104772642520, guid: ef26237c7dd018c428da9a76b92ce0dd, type: 3}

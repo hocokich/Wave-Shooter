@@ -361,7 +361,7 @@ GameObject:
   - component: {fileID: 6365390193916999454}
   - component: {fileID: 6688036210436273797}
   - component: {fileID: 4897841009975868052}
-  - component: {fileID: 293102312896476633}
+  - component: {fileID: 6300868752369475109}
   m_Layer: 0
   m_Name: BackMenuButton
   m_TagString: Untagged
@@ -471,7 +471,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &293102312896476633
+--- !u!114 &6300868752369475109
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -480,9 +480,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4849591942922979953}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47253ac6b7f48804a9cbd7d5d15bbb94, type: 3}
+  m_Script: {fileID: 11500000, guid: 36b3191a91db84b8aa2ecb33a138e253, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.PauseGame.BackMenuButton
+  m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.SwitchScenes.SwitchSceneButton
   newSceneName: Menu
 --- !u!1 &5781556159456336641
 GameObject:
@@ -589,7 +589,7 @@ GameObject:
   - component: {fileID: 4556653846410036733}
   - component: {fileID: 5409911590709125570}
   - component: {fileID: 1907527116955620497}
-  - component: {fileID: 4051498566989829327}
+  - component: {fileID: 2192462361619204009}
   m_Layer: 0
   m_Name: RestartButton
   m_TagString: Untagged
@@ -699,7 +699,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &4051498566989829327
+--- !u!114 &2192462361619204009
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -708,9 +708,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6423224773086610087}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47253ac6b7f48804a9cbd7d5d15bbb94, type: 3}
+  m_Script: {fileID: 11500000, guid: 36b3191a91db84b8aa2ecb33a138e253, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.PauseGame.BackMenuButton
+  m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.SwitchScenes.SwitchSceneButton
   newSceneName: Game
 --- !u!1 &6711123495600016156
 GameObject:
