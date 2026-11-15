@@ -1,9 +1,8 @@
-namespace WaveShooter.Features.Facade.View
+namespace WaveShooter.Features.ShootingCharacter.View
 {
     using System.Collections;
     using UnityEngine;
     using WaveShooter.Features.Container;
-    using WaveShooter.Features.Shooting;
 
     /// <summary>
     /// Трясёт камеру один раз: смещение утихает от амплитуды до нуля.

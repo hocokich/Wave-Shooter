@@ -1,9 +1,8 @@
-namespace WaveShooter.Features.Facade.View
+namespace WaveShooter.Features.HealthCharacter
 {
     using UnityEngine;
     using UnityEngine.UI;
     using WaveShooter.Features.Container;
-    using WaveShooter.Features.Health;
 
     /// <summary>
     /// Вью здоровья игрока.

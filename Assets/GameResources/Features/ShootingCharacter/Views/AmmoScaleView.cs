@@ -1,9 +1,8 @@
-namespace WaveShooter.Features.Facade.View
+namespace WaveShooter.Features.ShootingCharacter.View
 {
     using UnityEngine;
     using System.Collections;
     using WaveShooter.Features.Container;
-    using WaveShooter.Features.Shooting;
 
     /// <summary>
     /// Анимирует скейл текста патронов один раз: от максимума к минимуму.

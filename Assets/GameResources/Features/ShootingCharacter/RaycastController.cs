@@ -1,4 +1,4 @@
-namespace WaveShooter.Features.Shooting
+namespace WaveShooter.Features.ShootingCharacter
 {
     using WaveShooter.Features.Facade;
     using UnityEngine;
