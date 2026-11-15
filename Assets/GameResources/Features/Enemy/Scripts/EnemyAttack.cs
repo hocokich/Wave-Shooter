@@ -12,12 +12,12 @@ namespace WaveShooter.Features.Enemy
     public class EnemyAttack : AbstractGenericTrigger<HealthController>
     {
         /// <summary>
-        /// Начал атаку (догнал игрока).
+        /// Начала атаку.
         /// </summary>
         public event Action onAttackStarted = delegate { };
-        
+
         /// <summary>
-        /// Закончил атаку (игрок отбежал).
+        /// Закончил атаку.
         /// </summary>
         public event Action onAttackEnded = delegate { };
 
@@ -26,10 +26,12 @@ namespace WaveShooter.Features.Enemy
 
         private HealthController playerHealth;
         private Coroutine attackRoutine;
+        
+        private float cooldownTimer = 0f; 
 
-        protected override void OnTriggerEnterSuccessfully(HealthController HealthController)
+        protected override void OnTriggerEnterSuccessfully(HealthController healthController)
         {
-            playerHealth = HealthController;
+            playerHealth = healthController;
 
             if (attackRoutine == null)
             {
@@ -48,9 +50,18 @@ namespace WaveShooter.Features.Enemy
         {
             while (playerHealth != null && playerHealth.Model.CurrentHealth > 0)
             {
-                playerHealth.TakeDamage(damage);
+                if (cooldownTimer <= 0f)
+                {
+                    playerHealth.TakeDamage(damage);
+                    cooldownTimer = cooldown;
+                }
+                
+                if (cooldownTimer > 0f)
+                {
+                    cooldownTimer -= Time.deltaTime;
+                }
 
-                yield return new WaitForSeconds(cooldown);
+                yield return null; 
             }
             attackRoutine = null;
             playerHealth = null;
@@ -64,6 +75,11 @@ namespace WaveShooter.Features.Enemy
                 attackRoutine = null;
             }
             playerHealth = null;
+        }
+
+        private void OnDisable()
+        {
+            StopAttack();
         }
     }
 }
