@@ -1,6 +1,7 @@
 namespace WaveShooter.Features.Spawner.EnemySpawner
 {
     using System.Collections;
+    using System.Collections.Generic;
     using UnityEngine;
     using WaveShooter.Features.Enemy;
     using WaveShooter.Features.Facade;
@@ -15,7 +16,7 @@ namespace WaveShooter.Features.Spawner.EnemySpawner
         [SerializeField] protected EnemyWaveController waveController = default;
 
         [SerializeField] protected float spawnInterval = 1.5f;
-        [SerializeField] protected Transform spawnPoint = default;
+        [SerializeField] protected List<Transform> spawnPoints = new List<Transform>();
 
         [SerializeField] protected Transform playerTarget = default; 
 
@@ -63,8 +64,20 @@ namespace WaveShooter.Features.Spawner.EnemySpawner
                 return;
             }
 
-            Vector3 position = spawnPoint != null ? spawnPoint.position : transform.position;
-            Quaternion rotation = spawnPoint != null ? spawnPoint.rotation : transform.rotation;
+            Vector3 position = transform.position;
+            Quaternion rotation = transform.rotation;
+
+            if (spawnPoints != null && spawnPoints.Count > 0)
+            {
+                int randomIndex = Random.Range(0, spawnPoints.Count);
+                Transform randomPoint = spawnPoints[randomIndex];
+
+                if (randomPoint != null)
+                {
+                    position = randomPoint.position;
+                    rotation = randomPoint.rotation;
+                }
+            }
 
             SpawnItem enemy = itemPool.Get(position, rotation);
 

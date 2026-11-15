@@ -52,9 +52,6 @@ namespace WaveShooter.Features.Enemy
         protected virtual void Awake()
         {
             rb = GetComponent<Rigidbody>();
-
-            rb.isKinematic = true;
-            rb.useGravity = false;
         }
 
         /// <summary>
@@ -65,9 +62,8 @@ namespace WaveShooter.Features.Enemy
             playerTarget = targetTransform;
             
             currentSpeed = Random.Range(minSpeed, maxSpeed);
-
             CurrentSpeed = currentSpeed;
-            
+
             onSpeedChanged.Invoke(currentSpeed);
         }
 
