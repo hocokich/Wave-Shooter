@@ -1,4 +1,4 @@
-namespace WaveShooter.Features.Spawner.EnemySpawner
+namespace WaveShooter.Features.Spawner.EnemySpawner.EnemyWave
 {
     using System;
     using UnityEngine;
@@ -18,6 +18,11 @@ namespace WaveShooter.Features.Spawner.EnemySpawner
         /// Кол-во убитых врагов.
         /// </summary>
         public event Action<int> onKilledChanged = delegate { };
+
+        /// <summary>
+        /// Кол-во врагов на сцене изменилось.
+        /// </summary>
+        public event Action<int> onActiveEnemiesChanged = delegate { };
 
         /// <summary>
         /// Максимум врагов.
@@ -46,6 +51,11 @@ namespace WaveShooter.Features.Spawner.EnemySpawner
         public int KilledEnemies { get; private set; }
 
         /// <summary>
+        /// Текущее количество врагов на сцене.
+        /// </summary>
+        public int ActiveEnemies { get; private set; }
+
+        /// <summary>
         /// Флаг режима.
         /// </summary>
         public bool IsInfinite => isInfinite;
@@ -54,17 +64,43 @@ namespace WaveShooter.Features.Spawner.EnemySpawner
         [SerializeField] protected int currentEnemies = 0;
         [SerializeField] protected bool isInfinite = false;
         
+        /// <summary>
+        /// Ресетим модель.
+        /// </summary>
         public void ResetModel()
         {
             CurrentEnemies = totalEnemies;
             KilledEnemies = 0;
+            ActiveEnemies = 0;
+
             onKilledChanged.Invoke(KilledEnemies);
         }
 
+        /// <summary>
+        /// Добавляем убитого врага.
+        /// </summary>
         public void AddKill()
         {
             KilledEnemies++;
             onKilledChanged.Invoke(KilledEnemies);
+        }
+
+        /// <summary>
+        /// Добавляем заспавненного врага.
+        /// </summary>
+        public void AddActiveEnemy()
+        {
+            ActiveEnemies++;
+            onActiveEnemiesChanged.Invoke(ActiveEnemies);
+        }
+
+        /// <summary>
+        /// Убрать заспавненого врага.
+        /// </summary>
+        public void RemoveActiveEnemy()
+        {
+            ActiveEnemies = Mathf.Max(0, ActiveEnemies - 1);
+            onActiveEnemiesChanged.Invoke(ActiveEnemies);
         }
     }
 }
