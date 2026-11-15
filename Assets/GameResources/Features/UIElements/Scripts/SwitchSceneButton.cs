@@ -13,6 +13,7 @@ namespace WaveShooter.Features.SwitchScenes
 
         protected override void OnClick()
         {
+            Time.timeScale = 1f;
             SceneFlow.Load(newSceneName);
         }
     }
