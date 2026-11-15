@@ -12,6 +12,9 @@ namespace WaveShooter.Features.SwitchScenes
         [Header("Опционально: если нужно красить слайдер")]
         [SerializeField] private Image fillImage = default;
 
+        [SerializeField] private Color colorStart = Color.red;
+        [SerializeField] private Color colorEnd = Color.green;
+
         private Slider progressSlider = default;
 
         private void Awake()
@@ -27,7 +30,7 @@ namespace WaveShooter.Features.SwitchScenes
 
             if (fillImage != null)
             {
-                fillImage.color = Color.Lerp(Color.red, Color.green, value / 100f);
+                fillImage.color = Color.Lerp(colorStart, colorEnd, value / 100f);
             }
         }
     }
