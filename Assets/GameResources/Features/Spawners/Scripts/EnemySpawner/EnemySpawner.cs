@@ -1,7 +1,10 @@
 namespace WaveShooter.Features.Spawner.EnemySpawner
 {
     using System.Collections;
+    using System.Collections.Generic;
     using UnityEngine;
+    using WaveShooter.Features.Enemy;
+    using WaveShooter.Features.Facade;
     using WaveShooter.Features.Spawners;
 
     /// <summary>
@@ -11,13 +14,22 @@ namespace WaveShooter.Features.Spawner.EnemySpawner
     {
         [SerializeField] protected SpawnEnemyPool itemPool = default;
         [SerializeField] protected EnemyWaveController waveController = default;
+
         [SerializeField] protected float spawnInterval = 1.5f;
-        [SerializeField] protected Transform spawnPoint = default;
+        [SerializeField] protected List<Transform> spawnPoints = new List<Transform>();
+
+        [SerializeField] protected Transform playerTarget = default; 
 
         private Coroutine spawnRoutine;
 
         protected virtual void Start()
         {
+            if (playerTarget == null)
+            {
+                var facade = FindAnyObjectByType<CharacterFacade>();
+                if (facade != null) playerTarget = facade.transform;
+            }
+
             spawnRoutine = StartCoroutine(SpawnRoutine());
         }
 
@@ -52,14 +64,32 @@ namespace WaveShooter.Features.Spawner.EnemySpawner
                 return;
             }
 
-            Vector3 position = spawnPoint != null ? spawnPoint.position : transform.position;
-            Quaternion rotation = spawnPoint != null ? spawnPoint.rotation : transform.rotation;
+            Vector3 position = transform.position;
+            Quaternion rotation = transform.rotation;
+
+            if (spawnPoints != null && spawnPoints.Count > 0)
+            {
+                int randomIndex = Random.Range(0, spawnPoints.Count);
+                Transform randomPoint = spawnPoints[randomIndex];
+
+                if (randomPoint != null)
+                {
+                    position = randomPoint.position;
+                    rotation = randomPoint.rotation;
+                }
+            }
 
             SpawnItem enemy = itemPool.Get(position, rotation);
 
             if (enemy != null)
             {
                 enemy.SetCooldownHandler(ReleaseEnemy);
+
+                if (enemy.TryGetComponent(out EnemyMovement movement))
+                {
+                    movement.Initialize(playerTarget);
+                }
+
                 enemy.Launch(); 
             }
         }

@@ -27,11 +27,11 @@ Transform:
   m_GameObject: {fileID: 53301803519221619}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.70710677, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.5, z: -0.5}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0.5}
   m_LocalScale: {x: 0.375, y: 0.375, z: 0.375}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 5822455181748142844}
+  m_Father: {fileID: 4836318343403280642}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!33 &5296136453169806160
 MeshFilter:
@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 5822455181748142844}
   - component: {fileID: 6747856216629074059}
   - component: {fileID: 1136646837549035936}
-  - component: {fileID: 4567975329854386235}
+  - component: {fileID: 701306746456907739}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -121,9 +121,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2518078913226541347}
-  - {fileID: 2799445612298624342}
+  m_Children: []
   m_Father: {fileID: 4836318343403280642}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6747856216629074059
@@ -183,29 +181,20 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &4567975329854386235
-CapsuleCollider:
+--- !u!114 &701306746456907739
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4985658428089630072}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efec208aa5b9f624da625c29409bfe77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ColoringEnemy
+  slowColor: {r: 0.42477888, g: 1, b: 0, a: 1}
+  fastColor: {r: 1, g: 0, b: 0.07964587, a: 1}
 --- !u!1 &5222410035455274085
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,6 +206,7 @@ GameObject:
   - component: {fileID: 2799445612298624342}
   - component: {fileID: 5529256542897183857}
   - component: {fileID: 2617122818122937831}
+  - component: {fileID: 2944588066288872176}
   m_Layer: 0
   m_Name: Backpack
   m_TagString: Untagged
@@ -233,11 +223,11 @@ Transform:
   m_GameObject: {fileID: 5222410035455274085}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.5}
+  m_LocalPosition: {x: 0, y: 0, z: -0.5}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 5822455181748142844}
+  m_Father: {fileID: 4836318343403280642}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5529256542897183857
 MeshFilter:
@@ -296,6 +286,20 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2944588066288872176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5222410035455274085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efec208aa5b9f624da625c29409bfe77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.Enemy.ColoringEnemy
+  slowColor: {r: 0, g: 1, b: 0, a: 1}
+  fastColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &5635364342543582681
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,8 +311,10 @@ GameObject:
   - component: {fileID: 4836318343403280642}
   - component: {fileID: 2823275550097480534}
   - component: {fileID: 4168422992651264656}
+  - component: {fileID: 3943840294156151571}
   - component: {fileID: 7501443921230873615}
   - component: {fileID: 3721841450002239389}
+  - component: {fileID: 3237804423647135453}
   - component: {fileID: 1480029425961038400}
   - component: {fileID: 482439850877363808}
   m_Layer: 0
@@ -331,7 +337,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2799445612298624342}
   - {fileID: 5822455181748142844}
+  - {fileID: 2518078913226541347}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &2823275550097480534
@@ -384,6 +392,29 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &3943840294156151571
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5635364342543582681}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7501443921230873615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -411,6 +442,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.Enemy.EnemyAttack
   damage: 5
   cooldown: 1
+--- !u!114 &3237804423647135453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5635364342543582681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 048369fc437206242bea1efbe3653a37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.Enemy.EnemyMovement
+  minSpeed: 1
+  maxSpeed: 3.5
+  rotationSpeed: 10
+  currentSpeed: 0
 --- !u!114 &1480029425961038400
 MonoBehaviour:
   m_ObjectHideFlags: 0
