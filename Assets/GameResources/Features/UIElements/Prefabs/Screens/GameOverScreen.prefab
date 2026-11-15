@@ -484,7 +484,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.PauseGame.BackMenuButton
   newSceneName: Menu
-  saveController: {fileID: 0}
 --- !u!1 &5781556159456336641
 GameObject:
   m_ObjectHideFlags: 0
@@ -615,7 +614,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 50}
+  m_AnchoredPosition: {x: 0, y: 100}
   m_SizeDelta: {x: 500, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4556653846410036733
@@ -713,7 +712,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.PauseGame.BackMenuButton
   newSceneName: Game
-  saveController: {fileID: 0}
 --- !u!1 &6711123495600016156
 GameObject:
   m_ObjectHideFlags: 0
