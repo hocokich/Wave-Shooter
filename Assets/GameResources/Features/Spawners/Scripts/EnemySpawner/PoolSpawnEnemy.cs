@@ -6,7 +6,7 @@ namespace WaveShooter.Features.Spawner.EnemySpawner
     /// <summary>
     /// Пул с ограничением на максимальное количество созданных объектов.
     /// </summary>
-    public class SpawnEnemyPool : SpawnItemPool
+    public class PoolSpawnEnemy : SpawnItemPool
     {
         /// <summary>
         /// Есть ли свободный объект в пуле или возможность создать новый (если не достигнут лимит).

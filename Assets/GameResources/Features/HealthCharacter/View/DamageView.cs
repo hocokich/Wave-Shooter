@@ -1,4 +1,4 @@
-namespace WaveShooter.Features.Health
+namespace WaveShooter.Features.HealthCharacter
 {
     using System.Collections;
     using UnityEngine;

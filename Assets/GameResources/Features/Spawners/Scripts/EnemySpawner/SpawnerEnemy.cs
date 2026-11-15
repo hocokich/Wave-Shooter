@@ -10,10 +10,10 @@ namespace WaveShooter.Features.Spawner.EnemySpawner
     /// <summary>
     /// Спавнер врага.
     /// </summary>
-    public class EnemySpawner : MonoBehaviour
+    public class SpawnerEnemy : MonoBehaviour
     {
-        [SerializeField] protected SpawnEnemyPool itemPool = default;
-        [SerializeField] protected EnemyWaveController waveController = default;
+        [SerializeField] protected PoolSpawnEnemy itemPool = default;
+        [SerializeField] protected ControllerEnemyWave waveController = default;
 
         [SerializeField] protected float spawnInterval = 1.5f;
         [SerializeField] protected List<Transform> spawnPoints = new List<Transform>();

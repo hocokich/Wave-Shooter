@@ -7,7 +7,7 @@ namespace WaveShooter.Features.Spawner.EnemySpawner
     /// Модель волн врагов.
     /// </summary>
     [CreateAssetMenu(fileName = "New EnemyWaveModel", menuName = "WaveShooter/Features/EnemyWaveModel")]
-    public class EnemyWaveModel : ScriptableObject
+    public class ModelEnemyWave : ScriptableObject
     {
         /// <summary>
         /// Кол-во противников поменялось.
@@ -15,11 +15,18 @@ namespace WaveShooter.Features.Spawner.EnemySpawner
         public event Action<int> onEnemiesCountChanged = delegate { };
 
         /// <summary>
+        /// Кол-во убитых врагов.
+        /// </summary>
+        public event Action<int> onKilledChanged = delegate { };
+
+        /// <summary>
         /// Максимум врагов.
         /// </summary>
         public int MaxEnemies => totalEnemies;
 
-        // Текущее кол-во врагов.
+        /// <summary>
+        /// Текущее кол-во врагов.
+        /// </summary>
         public int CurrentEnemies 
         {
             get => currentEnemies;
@@ -34,6 +41,11 @@ namespace WaveShooter.Features.Spawner.EnemySpawner
         }
 
         /// <summary>
+        /// Кол-во убитых врагов
+        /// </summary>
+        public int KilledEnemies { get; private set; }
+
+        /// <summary>
         /// Флаг режима.
         /// </summary>
         public bool IsInfinite => isInfinite;
@@ -44,9 +56,15 @@ namespace WaveShooter.Features.Spawner.EnemySpawner
         
         public void ResetModel()
         {
-            currentEnemies = totalEnemies;
+            CurrentEnemies = totalEnemies;
+            KilledEnemies = 0;
+            onKilledChanged.Invoke(KilledEnemies);
+        }
 
-            CurrentEnemies = currentEnemies;
+        public void AddKill()
+        {
+            KilledEnemies++;
+            onKilledChanged.Invoke(KilledEnemies);
         }
     }
 }
