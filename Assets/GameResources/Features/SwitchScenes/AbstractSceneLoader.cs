@@ -3,15 +3,13 @@ namespace WaveShooter.Features.SwitchScenes
     using System.Collections;
     using UnityEngine;
     using UnityEngine.SceneManagement;
-    using UnityEngine.UI;
 
     /// <summary>
-    /// Класс асинхронной загрузки сцены.
+    /// Базовый класс асинхронной загрузки сцены.
     /// </summary>
-    public class SceneLoader : MonoBehaviour
+    public abstract class AbstractSceneLoader : MonoBehaviour
     {
-        [SerializeField] protected Text  progressValue = default;
-        [SerializeField] protected float timeFakeLoad  = 3f;
+        [SerializeField] protected float timeFakeLoad = 3f;
 
         private string targetScene;
 
@@ -35,6 +33,7 @@ namespace WaveShooter.Features.SwitchScenes
             SetProgressPercent(50);
             StartCoroutine(LoadGame());
         }
+
         protected virtual IEnumerator LoadGame()
         {
             var op = SceneManager.LoadSceneAsync(targetScene);
@@ -51,12 +50,10 @@ namespace WaveShooter.Features.SwitchScenes
             op.allowSceneActivation = true;
         }
 
-        protected virtual void SetProgressPercent(int value)
-        {
-            if (progressValue == null) return;
-
-            progressValue.text  = $"{value} %";
-            progressValue.color = Color.Lerp(Color.red, Color.green, value / 100f);
-        }
+        /// <summary>
+        /// Абстрактный метод. Наследники реализуют отображение (Текст, Слайдер, Полоска).
+        /// </summary>
+        /// <param name="value">Процент от 0 до 100.</param>
+        protected abstract void SetProgressPercent(int value);
     }
 }
