@@ -709,6 +709,7 @@ GameObject:
   - component: {fileID: 271547716}
   - component: {fileID: 271547719}
   - component: {fileID: 271547721}
+  - component: {fileID: 271547725}
   - component: {fileID: 271547722}
   - component: {fileID: 271547723}
   m_Layer: 0
@@ -727,7 +728,7 @@ Transform:
   m_GameObject: {fileID: 271547710}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.04, y: 1.25, z: -6.46}
+  m_LocalPosition: {x: 0, y: 1.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -895,6 +896,22 @@ MonoBehaviour:
   id: 
   facade: {fileID: 0}
   healthModel: {fileID: 11400000, guid: 1c7ccf8201bc1cd4e9eb6c6642660d47, type: 2}
+--- !u!114 &271547725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 271547710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95488f3d4e5d3944a9180e38ddab8684, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.MoveCharacter.CharacterBounds
+  minX: -10
+  maxX: 10
+  minZ: -10
+  maxZ: 10
 --- !u!1 &365112493
 GameObject:
   m_ObjectHideFlags: 0
