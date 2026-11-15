@@ -173,7 +173,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.PauseGame.BackMenuButton
   newSceneName: Menu
-  saveController: {fileID: 0}
 --- !u!1 &3686367815886251612
 GameObject:
   m_ObjectHideFlags: 0
@@ -186,6 +185,7 @@ GameObject:
   - component: {fileID: 6827311597403296244}
   - component: {fileID: 1999659248010240509}
   - component: {fileID: 7547585855564659402}
+  - component: {fileID: 8500634387729442621}
   m_Layer: 0
   m_Name: PauseMenuScreen
   m_TagString: Untagged
@@ -279,6 +279,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &8500634387729442621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3686367815886251612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ab713a729d818846a76fcf7b8f3d80e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.PauseGame.TogglePauseMenu
+  container: {fileID: 11400000, guid: e89dd9cad07457f4d88ced8a36a95fb0, type: 2}
 --- !u!1 &4366699742734964045
 GameObject:
   m_ObjectHideFlags: 0
@@ -725,7 +738,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1532147c55cd274eaa48e9ec098e637, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseButton
-  pauseManager: {fileID: 0}
 --- !u!1001 &7864563826322512147
 PrefabInstance:
   m_ObjectHideFlags: 0
