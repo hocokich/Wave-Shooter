@@ -1,5 +1,6 @@
 namespace WaveShooter.Features.MoveCharacter
 {
+    using System;
     using System.Collections;
     using UnityEngine;
     using WaveShooter.Features.Facade;
@@ -10,7 +11,7 @@ namespace WaveShooter.Features.MoveCharacter
     public class MoveController : GenericModuleFacade<CharacterFacade>
     {
         /// <summary>
-        /// Текущая скорость
+        /// Текущая скорость.
         /// </summary>
         public float CurrentSpeed { get; private set; }
 

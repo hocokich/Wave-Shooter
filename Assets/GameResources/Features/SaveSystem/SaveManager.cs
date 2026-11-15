@@ -24,7 +24,6 @@ namespace WaveShooter.Features.SaveSystem
             PlayerPrefs.SetInt("Save_Active", active);
             
             PlayerPrefs.Save();
-            Debug.Log("Игра сохранена.");
         }
 
         public static void DeleteSave()
