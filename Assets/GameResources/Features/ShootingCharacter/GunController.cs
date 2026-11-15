@@ -1,4 +1,4 @@
-namespace WaveShooter.Features.Shooting
+namespace WaveShooter.Features.ShootingCharacter
 {
     using System;
     using WaveShooter.Features.Facade;

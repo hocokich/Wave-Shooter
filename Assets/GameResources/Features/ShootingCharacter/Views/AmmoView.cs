@@ -1,9 +1,8 @@
-namespace WaveShooter.Features.Facade.View
+namespace WaveShooter.Features.ShootingCharacter.View
 {
     using UnityEngine.UI;
     using UnityEngine;
     using WaveShooter.Features.Container;
-    using WaveShooter.Features.Shooting;
 
     /// <summary>
     /// Вью патронов

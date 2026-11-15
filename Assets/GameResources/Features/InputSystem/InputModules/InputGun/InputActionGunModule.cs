@@ -2,7 +2,7 @@ namespace WaveShooter.Features.Input.InputModules
 {
     using UnityEngine;
     using UnityEngine.InputSystem;
-    using WaveShooter.Features.Shooting;
+    using WaveShooter.Features.ShootingCharacter;
 
     /// <summary>
     /// Абстрактный модуль InputAction связанный с оружием.

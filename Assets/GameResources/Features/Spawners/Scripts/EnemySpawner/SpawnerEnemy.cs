@@ -6,6 +6,7 @@ namespace WaveShooter.Features.Spawner.EnemySpawner
     using WaveShooter.Features.Enemy;
     using WaveShooter.Features.Facade;
     using WaveShooter.Features.Spawners;
+    using WaveShooter.Features.Spawner.EnemySpawner.EnemyWave;
 
     /// <summary>
     /// Спавнер врага.
@@ -90,13 +91,19 @@ namespace WaveShooter.Features.Spawner.EnemySpawner
                     movement.Initialize(playerTarget);
                 }
 
-                enemy.Launch(); 
+                enemy.Launch();
+
+                if (waveController != null)
+                {
+                    waveController.RegisterSpawn();
+                }
             }
         }
 
         protected virtual void ReleaseEnemy(SpawnItem item)
         {
             itemPool.Release(item);
+            waveController.RegisterKill();
         }
     }
 }

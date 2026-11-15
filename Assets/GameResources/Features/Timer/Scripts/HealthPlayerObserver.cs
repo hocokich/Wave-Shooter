@@ -2,7 +2,7 @@ namespace WaveShooter.Features.Timer
 {
     using UnityEngine;
     using WaveShooter.Features.Container;
-    using WaveShooter.Features.Health;
+    using WaveShooter.Features.HealthCharacter;
 
     /// <summary>
     /// Следит за здоровьем игрока.

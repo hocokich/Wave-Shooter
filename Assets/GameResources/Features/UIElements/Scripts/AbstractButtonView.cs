@@ -1,18 +1,15 @@
-namespace WaveShooter.Features.SwitchScenes
+namespace WaveShooter.Features.UIElements
 {
     using UnityEngine;
     using UnityEngine.UI;
 
     /// <summary>
-    /// Кнопка переключения сцен.
+    /// Кнопка делает что-то по нажатию.
     /// </summary>
     [RequireComponent(typeof(Button))]
-    public class SwitchSceneButton : MonoBehaviour
+    public abstract class ButtonView : MonoBehaviour
     {
-        [SerializeField] protected string newSceneName = "Game";
         protected Button btn;
-
-
         protected virtual void Awake()
         {
             if(btn == null)
@@ -24,7 +21,7 @@ namespace WaveShooter.Features.SwitchScenes
 
         protected virtual void OnClick()
         {
-            SceneFlow.Load(newSceneName);
+            //Что то делает по клику.
         }
     }
 }

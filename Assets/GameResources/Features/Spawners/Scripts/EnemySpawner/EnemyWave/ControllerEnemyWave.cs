@@ -1,4 +1,4 @@
-namespace WaveShooter.Features.Spawner.EnemySpawner
+namespace WaveShooter.Features.Spawner.EnemySpawner.EnemyWave
 {
     using UnityEngine;
 
@@ -41,6 +41,17 @@ namespace WaveShooter.Features.Spawner.EnemySpawner
             if (waveModel != null)
             {
                 waveModel.AddKill();
+            }
+        }
+
+        /// <summary>
+        /// Вызывается при успешном спавне врага.
+        /// </summary>
+        public void RegisterSpawn()
+        {
+            if (waveModel != null)
+            {
+                waveModel.AddActiveEnemy();
             }
         }
     }
