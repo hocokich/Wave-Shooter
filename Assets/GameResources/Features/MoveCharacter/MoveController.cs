@@ -1,5 +1,6 @@
 namespace WaveShooter.Features.MoveCharacter
 {
+    using System;
     using System.Collections;
     using UnityEngine;
     using WaveShooter.Features.Facade;
@@ -10,9 +11,20 @@ namespace WaveShooter.Features.MoveCharacter
     public class MoveController : GenericModuleFacade<CharacterFacade>
     {
         /// <summary>
-        /// Текущая скорость
+        /// Движение персонажа.
+        /// </summary>
+        public event Action<bool> onMoveStateChanged = delegate { };
+
+        /// <summary>
+        /// Текущая скорость.
         /// </summary>
         public float CurrentSpeed { get; private set; }
+
+        /// <summary>
+        /// Двигается ли сейчас персонаж.
+        /// </summary>
+        public bool IsMoving => moveVector.sqrMagnitude > 0.01f;
+
 
         [Header("Настройки скорости")]
         [SerializeField] protected float walkSpeed = 2f;
