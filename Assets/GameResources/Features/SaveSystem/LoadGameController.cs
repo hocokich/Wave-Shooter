@@ -10,7 +10,7 @@ namespace WaveShooter.Features.SaveSystem
     /// <summary>
     /// Контроллер загруки.
     /// </summary>
-    public sealed class GameSessionLoader : MonoBehaviour
+    public sealed class LoadGameController : MonoBehaviour
     {
         [SerializeField] private CharacterFacade characterFacade;
         [SerializeField] private TimerCountdown timerCountdown;
