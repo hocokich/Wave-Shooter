@@ -7,7 +7,7 @@ namespace WaveShooter.Features.UIElements
     /// Кнопка делает что-то по нажатию.
     /// </summary>
     [RequireComponent(typeof(Button))]
-    public abstract class ButtonView : MonoBehaviour
+    public abstract class AbstractButtonView : MonoBehaviour
     {
         protected Button btn;
         protected virtual void Awake()
@@ -21,7 +21,7 @@ namespace WaveShooter.Features.UIElements
 
         protected virtual void OnClick()
         {
-            //Что то делает по клику.
+            //TODO по клику.
         }
     }
 }

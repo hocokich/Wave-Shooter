@@ -8,7 +8,7 @@ namespace WaveShooter.Features.SwitchScenes
     /// Кнопка переключения сцен.
     /// </summary>
     [RequireComponent(typeof(Button))]
-    public class SwitchSceneButton : ButtonView
+    public class SwitchSceneButton : AbstractButtonView
     {
         [SerializeField] protected string newSceneName = "Game";
 

@@ -213,7 +213,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6294162397756587730, guid: ef26237c7dd018c428da9a76b92ce0dd, type: 3}
       propertyPath: m_Interactable
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6294162397756587730, guid: ef26237c7dd018c428da9a76b92ce0dd, type: 3}
       propertyPath: m_Colors.m_DisabledColor.b
@@ -235,13 +235,34 @@ PrefabInstance:
     - {fileID: 4095442581773038456, guid: ef26237c7dd018c428da9a76b92ce0dd, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 988192177222491764, guid: ef26237c7dd018c428da9a76b92ce0dd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 146236161}
   m_SourcePrefab: {fileID: 100100000, guid: ef26237c7dd018c428da9a76b92ce0dd, type: 3}
 --- !u!224 &146236159 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2300693104772642520, guid: ef26237c7dd018c428da9a76b92ce0dd, type: 3}
   m_PrefabInstance: {fileID: 146236158}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &146236160 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 988192177222491764, guid: ef26237c7dd018c428da9a76b92ce0dd, type: 3}
+  m_PrefabInstance: {fileID: 146236158}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &146236161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146236160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 471417559f22b8249b4d7ea87acbc7fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.UIElements.LoadSaveGameButton
+  newSceneName: Game
 --- !u!1 &293360569
 GameObject:
   m_ObjectHideFlags: 0
@@ -709,9 +730,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 823842144}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36b3191a91db84b8aa2ecb33a138e253, type: 3}
+  m_Script: {fileID: 11500000, guid: d1213b49901a0f94aa74166f29941f0e, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.SwitchScenes.SwitchSceneButton
+  m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.UIElements.NewGameButton
   newSceneName: Game
 --- !u!1 &1933627672
 GameObject:
@@ -820,7 +841,7 @@ GameObject:
   - component: {fileID: 1999659248715427348}
   - component: {fileID: 7547585856262501667}
   m_Layer: 0
-  m_Name: PauseScreen
+  m_Name: MainMenuScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

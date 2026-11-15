@@ -3,9 +3,9 @@ namespace WaveShooter.Features.UIElements
     using UnityEngine;
 
     /// <summary>
-    /// Скрипт для выхода из игры.
+    /// Кнопка выхода из игры.
     /// </summary>
-    public sealed class QuitGameButton : ButtonView
+    public sealed class QuitGameButton : AbstractButtonView
     {
         protected override void OnClick() => QuitGame();
         private void QuitGame()
