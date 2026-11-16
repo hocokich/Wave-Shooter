@@ -50,7 +50,7 @@ GameObject:
   - component: {fileID: 3169097024486881155}
   - component: {fileID: 8796873717694575088}
   - component: {fileID: 2956106161989709288}
-  - component: {fileID: 1652821664589072245}
+  - component: {fileID: 1907940262766308400}
   m_Layer: 0
   m_Name: BackMenuButton
   m_TagString: Untagged
@@ -160,7 +160,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1652821664589072245
+--- !u!114 &1907940262766308400
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -169,9 +169,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2678018106830742981}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47253ac6b7f48804a9cbd7d5d15bbb94, type: 3}
+  m_Script: {fileID: 11500000, guid: 36b3191a91db84b8aa2ecb33a138e253, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.PauseGame.BackMenuButton
+  m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.SwitchScenes.SwitchSceneButton
   newSceneName: Menu
 --- !u!1 &3686367815886251612
 GameObject:

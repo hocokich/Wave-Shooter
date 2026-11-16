@@ -1,31 +1,18 @@
 namespace WaveShooter.Features.SaveSystem
 {
     using UnityEngine;
-    using WaveShooter.Features.Timer;
-    using WaveShooter.Features.Facade;
     using WaveShooter.Features.HealthCharacter;
     using WaveShooter.Features.ShootingCharacter;
-    using WaveShooter.Features.Spawner.EnemySpawner.EnemyWave;
 
     /// <summary>
     /// Контроллер загруки.
     /// </summary>
-    public sealed class LoadGameController : MonoBehaviour
+    public sealed class LoadGameController : SaveSystemController
     {
-        [SerializeField] private CharacterFacade characterFacade;
-        [SerializeField] private TimerCountdown timerCountdown;
-        [SerializeField] private ControllerEnemyWave waveController;
-        
-
-        private void Awake()
+        protected override void OnFacadeInited()
         {
-            characterFacade = FindAnyObjectByType<CharacterFacade>();
-            timerCountdown = FindAnyObjectByType<TimerCountdown>();
-            waveController = FindAnyObjectByType<ControllerEnemyWave>();
-        }
-
-        private void Start()
-        {
+            base.OnFacadeInited();
+            
             if (PlayerPrefs.GetInt("LoadGame", 0) == 1)
             {
                 LoadGameData();
@@ -39,8 +26,8 @@ namespace WaveShooter.Features.SaveSystem
 
         private void LoadGameData()
         {
-            var ammo = characterFacade.GetDataModule<AmmoModel>();
-            var health = characterFacade.GetDataModule<HealthModel>();
+            var ammo = container.FacadeInstance.GetDataModule<AmmoModel>();
+            var health = container.FacadeInstance.GetDataModule<HealthModel>();
             var wave = waveController.Model;
 
             timerCountdown.Seconds = SaveManager.GetTime();
@@ -57,8 +44,8 @@ namespace WaveShooter.Features.SaveSystem
 
         private void ResetForNewGame()
         {
-            var ammo = characterFacade.GetDataModule<AmmoModel>();
-            var health = characterFacade.GetDataModule<HealthModel>();
+            var ammo = container.FacadeInstance.GetDataModule<AmmoModel>();
+            var health = container.FacadeInstance.GetDataModule<HealthModel>();
             var wave = waveController.Model;
 
             ammo.OnModuleInited();
