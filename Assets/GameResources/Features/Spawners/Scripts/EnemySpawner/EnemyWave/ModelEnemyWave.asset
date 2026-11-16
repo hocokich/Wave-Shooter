@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.Spawner.EnemySpawner.EnemyWaveModel
   totalEnemies: 1000
   currentEnemies: 999
-  isInfinite: 0
+  isInfinite: 1

@@ -11,5 +11,5 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07fe8645e38c0b8489b08ea3480a6ac9, type: 3}
   m_Name: Container Enemy Wave
-  m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.Container.ContainerEnemyWave
+  m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.Spawner.EnemySpawner.ContainerEnemyWave.ContainerEnemyWave
   controllerInstance: {fileID: 0}

@@ -205,7 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 919bee526207fbe4588ddb3df0a8e5ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.ScoresEnemy.KillsView
-  container: {fileID: 11400000, guid: 8ed7ea1fb2495cb42af10c5b8b1935c1, type: 2}
+  container: {fileID: 11400000, guid: 06702af054c15254ebf1ebf95c9825e4, type: 2}
 --- !u!1 &4267978725540368924
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,7 +431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef0d6428be3fa3f4baa36536fc8ca374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.Spawner.EnemySpawner.EnemyWave.SpawnedEnemiesView
-  container: {fileID: 11400000, guid: 8ed7ea1fb2495cb42af10c5b8b1935c1, type: 2}
+  container: {fileID: 11400000, guid: 06702af054c15254ebf1ebf95c9825e4, type: 2}
 --- !u!1 &8452389200842082827
 GameObject:
   m_ObjectHideFlags: 0
