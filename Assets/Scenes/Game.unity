@@ -436,6 +436,7 @@ Transform:
   - {fileID: 561708359}
   - {fileID: 271547711}
   - {fileID: 670641091}
+  - {fileID: 812416513}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &271547710
@@ -792,7 +793,7 @@ GameObject:
   - component: {fileID: 551579471}
   - component: {fileID: 551579470}
   m_Layer: 0
-  m_Name: SaveLoadManager
+  m_Name: SaveController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -825,9 +826,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5c920c757f1b4747a912bae8e95db3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.SaveSystem.GameSessionLoader
-  characterFacade: {fileID: 0}
-  timerCountdown: {fileID: 0}
-  waveController: {fileID: 0}
+  container: {fileID: 11400000, guid: e89dd9cad07457f4d88ced8a36a95fb0, type: 2}
 --- !u!114 &551579471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -840,9 +839,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b84aec588ae9d57438915cb4f1e076a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.SaveSystem.SaveGameController
-  characterFacade: {fileID: 0}
-  timerCountdown: {fileID: 0}
-  waveController: {fileID: 0}
+  container: {fileID: 11400000, guid: e89dd9cad07457f4d88ced8a36a95fb0, type: 2}
 --- !u!1 &561708358
 GameObject:
   m_ObjectHideFlags: 0
@@ -960,8 +957,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8ef5f1e7abe94c4d96df6f3bca0e2f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.Container.InstallerEnemyWave
-  waveController: {fileID: 1034640084}
-  containerEnemyWave: {fileID: 11400000, guid: 8ed7ea1fb2495cb42af10c5b8b1935c1, type: 2}
+  waveController: {fileID: 812416514}
+  containerEnemyWave: {fileID: 11400000, guid: 06702af054c15254ebf1ebf95c9825e4, type: 2}
 --- !u!1 &641359147
 GameObject:
   m_ObjectHideFlags: 0
@@ -1089,7 +1086,7 @@ MonoBehaviour:
   hudPrefab: {fileID: 8489652479971974514, guid: 495d5f80f05ec88498a4e0a353246d78, type: 3}
   pauseMenuPrefab: {fileID: 3686367815886251612, guid: e9b72dbc1f593044092a4e6317cd0a08, type: 3}
   gameOverPrefab: {fileID: 9061998958059628570, guid: 167f16dd2d50afe4ebbfa0e215fb9c7a, type: 3}
-  pauseManager: {fileID: 1882286985}
+  pauseController: {fileID: 1882286985}
   timerCountdown: {fileID: 561708360}
   saveController: {fileID: 551579471}
 --- !u!1 &756091506
@@ -1141,6 +1138,51 @@ MonoBehaviour:
   swayAmount: 0.01
   bobAmount: 0.01
   sprintMultiplier: 1.5
+--- !u!1 &812416512
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 812416513}
+  - component: {fileID: 812416514}
+  m_Layer: 0
+  m_Name: ControllerEnemyWave
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &812416513
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812416512}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 188874645}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &812416514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812416512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d10ab9ea0bf2e8498c275a88a073660, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.Spawner.EnemySpawner.EnemyWaveController
+  waveModel: {fileID: 11400000, guid: 7dcd699ff30a9234fa8c1d4617f6c5ee, type: 2}
 --- !u!1 &867266281
 GameObject:
   m_ObjectHideFlags: 0
@@ -1544,7 +1586,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1034640081}
-  - component: {fileID: 1034640084}
   - component: {fileID: 1034640085}
   - component: {fileID: 1034640086}
   m_Layer: 0
@@ -1573,19 +1614,6 @@ Transform:
   - {fileID: 1950717008}
   m_Father: {fileID: 927355912}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1034640084
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1034640080}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d10ab9ea0bf2e8498c275a88a073660, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.Spawner.EnemySpawner.EnemyWaveController
-  waveModel: {fileID: 11400000, guid: 7dcd699ff30a9234fa8c1d4617f6c5ee, type: 2}
 --- !u!114 &1034640085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1599,7 +1627,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.Spawner.EnemySpawner.EnemySpawner
   itemPool: {fileID: 1034640086}
-  waveController: {fileID: 1034640084}
+  waveController: {fileID: 812416514}
   spawnInterval: 2
   spawnPoints:
   - {fileID: 1085667448}
@@ -2192,7 +2220,7 @@ GameObject:
   - component: {fileID: 1882286984}
   - component: {fileID: 1882286985}
   m_Layer: 0
-  m_Name: PauseManager
+  m_Name: PauseController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
