@@ -1,36 +1,31 @@
 namespace WaveShooter.Features.SaveSystem
 {
-    using UnityEngine;
-    using WaveShooter.Features.Timer;
-    using WaveShooter.Features.Facade;
     using WaveShooter.Features.HealthCharacter;
     using WaveShooter.Features.ShootingCharacter;
-    using WaveShooter.Features.Spawner.EnemySpawner.EnemyWave;
 
     /// <summary>
     /// Контроллер сохранений.
     /// </summary>
-    public sealed class SaveGameController : MonoBehaviour
+    public sealed class SaveGameController : SaveSystemController
     {
-        [SerializeField] private CharacterFacade characterFacade;
-        [SerializeField] private TimerCountdown timerCountdown;
-        [SerializeField] private ControllerEnemyWave waveController;
-
-
-        private void Awake()
+        protected override void OnFacadeInited()
         {
-            characterFacade = FindAnyObjectByType<CharacterFacade>();
-            timerCountdown = FindAnyObjectByType<TimerCountdown>();
-            waveController = FindAnyObjectByType<ControllerEnemyWave>();
+            base.OnFacadeInited();
+            SaveGame();
+        }
+        protected override void OnFacadeDisposed()
+        {
+            SaveGame();
+            base.OnFacadeDisposed();
         }
 
         /// <summary>
         /// Сохранить игру.
         /// </summary>
-        public void SaveGame()
+        private void SaveGame()
         {
-            var ammo = characterFacade.GetDataModule<AmmoModel>();
-            var health = characterFacade.GetDataModule<HealthModel>();
+            var ammo = container.FacadeInstance.GetDataModule<AmmoModel>();
+            var health = container.FacadeInstance.GetDataModule<HealthModel>();
             var wave = waveController.Model;
 
             SaveManager.SaveGame(

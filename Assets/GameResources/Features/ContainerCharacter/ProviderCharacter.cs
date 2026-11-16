@@ -34,7 +34,7 @@ namespace WaveShooter.Features.Container
         /// <summary>
         /// Фасад убран из контейнера. Прежняя ссылка в этот момент ещё на месте.
         /// </summary>
-        protected virtual void OnFacadeDisposed() { }
+        protected virtual void OnFacadeDisposed(){}
 
         protected abstract void OnFacadeInited();
     }

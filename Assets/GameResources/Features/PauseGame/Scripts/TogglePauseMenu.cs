@@ -15,10 +15,7 @@ namespace WaveShooter.Features.PauseGame
         public void Initialize(PauseManager pauseManager, SaveGameController saveController)
         {
             var resumeButton = GetComponentInChildren<ResumeButton>(true);
-            var backButton = GetComponentInChildren<BackMenuButton>(true);
-
             resumeButton.Initialize(pauseManager);
-            backButton.Initialize(saveController);
         }
 
         protected override void OnFacadeInited() { }
