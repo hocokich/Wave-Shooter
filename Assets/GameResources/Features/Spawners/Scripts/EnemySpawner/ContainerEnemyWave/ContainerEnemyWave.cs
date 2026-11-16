@@ -29,24 +29,12 @@ namespace WaveShooter.Features.Spawner.EnemySpawner.ContainerEnemyWave
             get => controllerInstance;
             set
             {
-                if (value == controllerInstance)
+                if (value != null)
                 {
                     controllerInstance = value;
-                    return;
-                }
-
-                if (controllerInstance != null)
-                {
-                    onContainerDisposed();
-                    controllerInstance = null;
-                }
-
-                controllerInstance = value;
-
-                if (controllerInstance != null)
-                {
                     onContainerInited();
                 }
+                else onContainerDisposed();
             }
         }
 

@@ -29,24 +29,12 @@ namespace WaveShooter.Features.Container
             get => characterFacade;
             set
             {
-                if (value == characterFacade)
+                if (value != null)
                 {
                     characterFacade = value;
-                    return;
-                }
-
-                if (characterFacade != null)
-                {
-                    onContainerDisposed();
-                    characterFacade = null;
-                }
-
-                characterFacade = value;
-
-                if (characterFacade != null)
-                {
                     onContainerInited();
                 }
+                else onContainerDisposed();
             }
         }
 
