@@ -10,7 +10,7 @@ namespace WaveShooter.Features.Timer
     /// </summary>
     public class GameOverScreen : ProviderCharacter
     {
-        public void Initialize(PauseManager pauseManager)
+        public void Initialize(PauseController pauseController)
         {
             Time.timeScale = 0f;
             Cursor.lockState = CursorLockMode.None;
@@ -25,9 +25,9 @@ namespace WaveShooter.Features.Timer
                 }
             }
             
-            if (pauseManager != null)
+            if (pauseController != null)
             {
-                pauseManager.DisablePauseInput();
+                pauseController.DisablePauseInput();
             }
         }
 

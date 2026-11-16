@@ -50,7 +50,6 @@ namespace WaveShooter.Features.Container
             }
         }
 
-
         [SerializeField] protected CharacterFacade characterFacade = default;
     }
 }

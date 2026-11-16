@@ -19,7 +19,7 @@ namespace WaveShooter.Features.ScreenSpawner
         [SerializeField] private GameObject gameOverPrefab;
 
         [Header("Контроллеры сцены")]
-        [SerializeField] private PauseManager pauseManager;
+        [SerializeField] private PauseController pauseController;
         [SerializeField] private TimerCountdown timerCountdown;
         [SerializeField] private SaveGameController saveController;
 
@@ -31,8 +31,8 @@ namespace WaveShooter.Features.ScreenSpawner
             if (hudPrefab != null)
                 Instantiate(hudPrefab, viewParent);
 
-            if (pauseManager != null)
-                pauseManager.onIsPausedChange += HandlePause;
+            if (pauseController != null)
+                pauseController.onIsPausedChange += HandlePause;
 
             if (timerCountdown != null)
                 timerCountdown.onTimerIsDone += HandleGameOver;
@@ -40,7 +40,7 @@ namespace WaveShooter.Features.ScreenSpawner
 
         private void OnDestroy()
         {
-            if (pauseManager != null) pauseManager.onIsPausedChange -= HandlePause;
+            if (pauseController != null) pauseController.onIsPausedChange -= HandlePause;
             if (timerCountdown != null) timerCountdown.onTimerIsDone -= HandleGameOver;
         }
 
@@ -56,7 +56,7 @@ namespace WaveShooter.Features.ScreenSpawner
                     var pauseView = currentPauseMenu.GetComponentInChildren<TogglePauseMenu>(true);
                     if (pauseView != null)
                     {
-                        pauseView.Initialize(pauseManager, saveController);
+                        pauseView.Initialize(pauseController);
                     }
                 }
             }
@@ -83,10 +83,10 @@ namespace WaveShooter.Features.ScreenSpawner
 
                 currentGameOver = Instantiate(gameOverPrefab, viewParent);
                 
-                if (pauseManager != null)
+                if (pauseController != null)
                 {
-                    pauseManager.SetPause(true);
-                    pauseManager.DisablePauseInput();
+                    pauseController.SetPause(true);
+                    pauseController.DisablePauseInput();
                 }
                 else
                 {

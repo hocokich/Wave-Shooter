@@ -9,6 +9,7 @@ namespace WaveShooter.Features.Spawner.EnemySpawner.ContainerEnemyWave
     public class InstallerEnemyWave : MonoBehaviour
     {
         [SerializeField] protected ControllerEnemyWave waveController = default;
+        
         [SerializeField] protected ContainerEnemyWave containerEnemyWave = default;
 
         protected virtual void Awake() => containerEnemyWave.ControllerInstance = waveController;
