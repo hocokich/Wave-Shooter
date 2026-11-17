@@ -16,13 +16,7 @@ namespace WaveShooter.Features.UIElements
                 btn = GetComponent<Button>();
         }
 
-        protected virtual void OnEnable()  
-        {
-            if (btn != null)
-                btn.onClick.AddListener(OnClick);
-            else
-                btn = GetComponent<Button>();
-        }
+        protected virtual void OnEnable() => btn.onClick.AddListener(OnClick);
         protected virtual void OnDisable() => btn.onClick.RemoveListener(OnClick);
 
         protected virtual void OnClick()
