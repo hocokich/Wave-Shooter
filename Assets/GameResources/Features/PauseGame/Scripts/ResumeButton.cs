@@ -1,6 +1,5 @@
 namespace WaveShooter.Features.PauseGame
 {
-    using UnityEngine;
     using WaveShooter.Features.UIElements;
 
     /// <summary>
@@ -8,22 +7,22 @@ namespace WaveShooter.Features.PauseGame
     /// </summary>
     public sealed class ResumeButton : AbstractButtonView
     {
-        private PauseManager pauseManager;
+        private PauseController pauseController;
 
         /// <summary>
         /// Вызывается из TogglePauseMenu
         /// </summary>
         /// <param name="manager"></param>
-        public void Initialize(PauseManager manager)
+        public void Initialize(PauseController manager)
         {
-            pauseManager = manager;
+            pauseController = manager;
         }
 
         protected override void OnClick()
         {
-            if (pauseManager != null)
+            if (pauseController != null)
             {
-                pauseManager.TogglePause(); 
+                pauseController.TogglePause(); 
             }
         }
     }

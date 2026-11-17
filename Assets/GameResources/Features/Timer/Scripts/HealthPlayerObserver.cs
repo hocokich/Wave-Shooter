@@ -10,8 +10,8 @@ namespace WaveShooter.Features.Timer
     /// </summary>
     public sealed class HealthPlayerObserver : ProviderCharacter
     {
-        TimerCountdown timerCountdown = default;
-        HealthController healthController = default;
+        private TimerCountdown timerCountdown = default;
+        private HealthController healthController = default;
 
         protected override void Awake()
         {

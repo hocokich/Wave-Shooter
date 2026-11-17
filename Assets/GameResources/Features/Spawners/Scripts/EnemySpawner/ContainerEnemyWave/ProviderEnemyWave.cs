@@ -38,7 +38,7 @@ namespace WaveShooter.Features.Spawner.EnemySpawner.ContainerEnemyWave
         /// <summary>
         /// Фасад убран из контейнера. Прежняя ссылка в этот момент ещё на месте.
         /// </summary>
-        protected virtual void OnWaveDisposed() { }
+        protected virtual void OnWaveDisposed(){}
 
         protected abstract void OnWaveInited();
     }

@@ -1,7 +1,5 @@
-
 namespace WaveShooter.Features.SaveSystem
 {
-    using UnityEngine;
     using WaveShooter.Features.Timer;
     using WaveShooter.Features.Container;
     using WaveShooter.Features.Spawner.EnemySpawner.EnemyWave;
@@ -9,7 +7,7 @@ namespace WaveShooter.Features.SaveSystem
     /// <summary>
     /// Абстрактный контроллер системы сохранения.
     /// </summary>
-    public abstract class SaveSystemController : ProviderCharacter
+    public abstract class AbstractSaveSystemController : ProviderCharacter
     {
         protected TimerCountdown timerCountdown;
         protected ControllerEnemyWave waveController;

@@ -6,9 +6,9 @@ namespace WaveShooter.Features.PauseGame
     using WaveShooter.Features.Input.InputModules;
 
     /// <summary>
-    /// Менеджер паузы, использующий контейнер для доступа к инпуту.
+    /// Контроллер паузы, использующий контейнер для доступа к инпуту.
     /// </summary>
-    public sealed class PauseManager : ProviderCharacter
+    public sealed class PauseController : ProviderCharacter
     {
         /// <summary>
         /// Событие что пауза изменилась.

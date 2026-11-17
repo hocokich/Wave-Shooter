@@ -7,7 +7,7 @@ namespace WaveShooter.Features.UIElements
     /// <summary>
     /// Кнопка загрузки сохраненной игры.
     /// </summary>
-    public class LoadSaveGameButton : SwitchSceneButton 
+    public class LoadGameButton : SwitchSceneButton 
     {
         protected override void Awake()
         {

@@ -1,8 +1,6 @@
 namespace WaveShooter.Features.PauseGame
 {
-    using UnityEngine;
     using WaveShooter.Features.Container;
-    using WaveShooter.Features.SaveSystem;
 
     /// <summary>
     /// Вкл/выкл меню паузы.
@@ -12,10 +10,10 @@ namespace WaveShooter.Features.PauseGame
         /// <summary>
         /// Вызывается из ScreenController при создании окна.
         /// </summary>
-        public void Initialize(PauseManager pauseManager, SaveGameController saveController)
+        public void Initialize(PauseController pauseController)
         {
             var resumeButton = GetComponentInChildren<ResumeButton>(true);
-            resumeButton.Initialize(pauseManager);
+            resumeButton.Initialize(pauseController);
         }
 
         protected override void OnFacadeInited() { }

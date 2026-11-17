@@ -361,7 +361,7 @@ GameObject:
   - component: {fileID: 6365390193916999454}
   - component: {fileID: 6688036210436273797}
   - component: {fileID: 4897841009975868052}
-  - component: {fileID: 6300868752369475109}
+  - component: {fileID: 9113524296551286359}
   m_Layer: 0
   m_Name: BackMenuButton
   m_TagString: Untagged
@@ -471,7 +471,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &6300868752369475109
+--- !u!114 &9113524296551286359
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -480,9 +480,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4849591942922979953}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36b3191a91db84b8aa2ecb33a138e253, type: 3}
+  m_Script: {fileID: 11500000, guid: d1213b49901a0f94aa74166f29941f0e, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.SwitchScenes.SwitchSceneButton
+  m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.UIElements.NewGameButton
   newSceneName: Menu
 --- !u!1 &5781556159456336641
 GameObject:
@@ -576,7 +576,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 919bee526207fbe4588ddb3df0a8e5ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.ScoresEnemy.KillsView
-  container: {fileID: 11400000, guid: 8ed7ea1fb2495cb42af10c5b8b1935c1, type: 2}
+  container: {fileID: 11400000, guid: 06702af054c15254ebf1ebf95c9825e4, type: 2}
 --- !u!1 &6423224773086610087
 GameObject:
   m_ObjectHideFlags: 0
@@ -589,7 +589,7 @@ GameObject:
   - component: {fileID: 4556653846410036733}
   - component: {fileID: 5409911590709125570}
   - component: {fileID: 1907527116955620497}
-  - component: {fileID: 2192462361619204009}
+  - component: {fileID: 3757406135273035576}
   m_Layer: 0
   m_Name: RestartButton
   m_TagString: Untagged
@@ -699,7 +699,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &2192462361619204009
+--- !u!114 &3757406135273035576
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -708,9 +708,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6423224773086610087}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36b3191a91db84b8aa2ecb33a138e253, type: 3}
+  m_Script: {fileID: 11500000, guid: d1213b49901a0f94aa74166f29941f0e, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.SwitchScenes.SwitchSceneButton
+  m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.UIElements.NewGameButton
   newSceneName: Game
 --- !u!1 &6711123495600016156
 GameObject:

@@ -7,7 +7,7 @@ namespace WaveShooter.Features.SaveSystem
     /// <summary>
     /// Контроллер загруки.
     /// </summary>
-    public sealed class LoadGameController : SaveSystemController
+    public sealed class LoadGameController : AbstractSaveSystemController
     {
         protected override void OnFacadeInited()
         {

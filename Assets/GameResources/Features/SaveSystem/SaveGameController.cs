@@ -6,23 +6,13 @@ namespace WaveShooter.Features.SaveSystem
     /// <summary>
     /// Контроллер сохранений.
     /// </summary>
-    public sealed class SaveGameController : SaveSystemController
+    public sealed class SaveGameController : AbstractSaveSystemController
     {
-        protected override void OnFacadeInited()
-        {
-            base.OnFacadeInited();
-            SaveGame();
-        }
-        protected override void OnFacadeDisposed()
-        {
-            SaveGame();
-            base.OnFacadeDisposed();
-        }
-
         /// <summary>
         /// Сохранить игру.
+        /// Вызывается из паузы при выходе в меню.
         /// </summary>
-        private void SaveGame()
+        public void SaveGame()
         {
             var ammo = container.FacadeInstance.GetDataModule<AmmoModel>();
             var health = container.FacadeInstance.GetDataModule<HealthModel>();

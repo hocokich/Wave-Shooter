@@ -4,6 +4,7 @@ namespace WaveShooter.Features.ScreenSpawner
     using WaveShooter.Features.PauseGame;
     using WaveShooter.Features.Timer;
     using WaveShooter.Features.SaveSystem;
+    using WaveShooter.Features.UIElements;
 
     /// <summary>
     /// Контроллер экранов.
@@ -19,7 +20,7 @@ namespace WaveShooter.Features.ScreenSpawner
         [SerializeField] private GameObject gameOverPrefab;
 
         [Header("Контроллеры сцены")]
-        [SerializeField] private PauseManager pauseManager;
+        [SerializeField] private PauseController pauseController;
         [SerializeField] private TimerCountdown timerCountdown;
         [SerializeField] private SaveGameController saveController;
 
@@ -31,8 +32,8 @@ namespace WaveShooter.Features.ScreenSpawner
             if (hudPrefab != null)
                 Instantiate(hudPrefab, viewParent);
 
-            if (pauseManager != null)
-                pauseManager.onIsPausedChange += HandlePause;
+            if (pauseController != null)
+                pauseController.onIsPausedChange += HandlePause;
 
             if (timerCountdown != null)
                 timerCountdown.onTimerIsDone += HandleGameOver;
@@ -40,7 +41,7 @@ namespace WaveShooter.Features.ScreenSpawner
 
         private void OnDestroy()
         {
-            if (pauseManager != null) pauseManager.onIsPausedChange -= HandlePause;
+            if (pauseController != null) pauseController.onIsPausedChange -= HandlePause;
             if (timerCountdown != null) timerCountdown.onTimerIsDone -= HandleGameOver;
         }
 
@@ -50,50 +51,45 @@ namespace WaveShooter.Features.ScreenSpawner
 
             if (isPaused)
             {
-                if (currentPauseMenu == null)
-                {
-                    currentPauseMenu = Instantiate(pauseMenuPrefab, viewParent);
-                    var pauseView = currentPauseMenu.GetComponentInChildren<TogglePauseMenu>(true);
-                    if (pauseView != null)
-                    {
-                        pauseView.Initialize(pauseManager, saveController);
-                    }
-                }
+                currentPauseMenu = Instantiate(pauseMenuPrefab, viewParent);
+                if (currentPauseMenu == null) return;
+
+                var pauseView = currentPauseMenu.GetComponentInChildren<TogglePauseMenu>(true);
+                pauseView.Initialize(pauseController);
+
+                var saveGameButton = currentPauseMenu.GetComponentInChildren<SaveGameButton>(true);
+                saveGameButton.Initialize(saveController);
             }
             else
             {
-                if (currentPauseMenu != null)
-                {
-                    Destroy(currentPauseMenu);
-                    currentPauseMenu = null;
-                }
+                Destroy(currentPauseMenu);
+                currentPauseMenu = null;
             }
         }
 
 
         private void HandleGameOver()
         {
-            if (currentGameOver == null)
-            {
-                if (currentPauseMenu != null)
-                {
-                    Destroy(currentPauseMenu);
-                    currentPauseMenu = null;
-                }
+            if (currentGameOver != null) return;
 
-                currentGameOver = Instantiate(gameOverPrefab, viewParent);
-                
-                if (pauseManager != null)
-                {
-                    pauseManager.SetPause(true);
-                    pauseManager.DisablePauseInput();
-                }
-                else
-                {
-                    Time.timeScale = 0f;
-                    Cursor.lockState = CursorLockMode.None;
-                    Cursor.visible = true;
-                }
+            if (currentPauseMenu != null)
+            {
+                Destroy(currentPauseMenu);
+                currentPauseMenu = null;
+            }
+
+            currentGameOver = Instantiate(gameOverPrefab, viewParent);
+            
+            if (pauseController != null)
+            {
+                pauseController.SetPause(true);
+                pauseController.DisablePauseInput();
+            }
+            else
+            {
+                Time.timeScale = 0f;
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
             }
         }
     }
