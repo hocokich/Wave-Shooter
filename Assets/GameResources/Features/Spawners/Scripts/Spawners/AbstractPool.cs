@@ -4,8 +4,10 @@ namespace WaveShooter.Features.Spawners
     using UnityEngine;
 
     /// <summary>
-    /// Базовый пул. Свободные объекты лежат выключенными в очереди,
-    /// занятые уходят в мир. Если пуст — создаёт новый (если наследник не запретил).
+    /// Абстрактный пул. 
+    /// Свободные объекты лежат выключенными в очереди, занятые уходят в мир. 
+    /// 
+    /// Если пул пуст, то создаёт новый экземпляр префаба (если наследник не запретил).
     /// </summary>
     public abstract class AbstractPool : MonoBehaviour
     {
@@ -15,7 +17,9 @@ namespace WaveShooter.Features.Spawners
 
         protected readonly Queue<SpawnItem> ready = new Queue<SpawnItem>();
 
-        /// <summary>Есть ли свободный объект / можно ли создать новый.</summary>
+        /// <summary>
+        /// Есть ли свободный объект / можно ли создать новый.
+        /// </summary>
         public virtual bool HasFreeObject => true;
 
         protected virtual void Awake()
@@ -30,6 +34,12 @@ namespace WaveShooter.Features.Spawners
             }
         }
 
+        /// <summary>
+        /// Возвращает экземпляр префаба.
+        /// С указанной позицией и поворотом.
+        /// 
+        /// Вызывается в AbstractSpawner.
+        /// </summary>
         public virtual SpawnItem Get(Vector3 position, Quaternion rotation)
         {
             SpawnItem item = ready.Count > 0 ? ready.Dequeue() : Create();
@@ -41,6 +51,10 @@ namespace WaveShooter.Features.Spawners
             return item;
         }
 
+        /// <summary>
+        /// Возвращает объект в пул.
+        /// Вызывается в AbstractSpawner.
+        /// </summary>
         public virtual void Release(SpawnItem item)
         {
             if (item == null || !item.gameObject.activeSelf) return;

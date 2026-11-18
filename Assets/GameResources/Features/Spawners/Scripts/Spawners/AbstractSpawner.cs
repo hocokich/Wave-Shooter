@@ -5,8 +5,8 @@ namespace WaveShooter.Features.Spawners
     using WaveShooter.Features.Container;
 
     /// <summary>
-    /// Базовый спаунер. Знает только про пул и жизненный цикл SpawnItem.
-    /// Откуда берётся выстрел/таймер — забота наследников.
+    /// Абстрактный спаунер.
+    /// Знает только про пул и жизненный цикл SpawnItem.
     /// </summary>
     public abstract class AbstractSpawner : ProviderCharacter
     {
@@ -19,13 +19,9 @@ namespace WaveShooter.Features.Spawners
         }
 
         /// <summary>
-        /// Взять из пула, назначить обработчик кулдауна, дать наследнику шанс
-        /// доинициализировать до Launch, запустить.
+        /// Взять из пула и запустить.
         /// </summary>
-        protected SpawnItem SpawnFromPool(
-            Vector3 position,
-            Quaternion rotation,
-            Action<SpawnItem> beforeLaunch = null)
+        protected SpawnItem SpawnFromPool(Vector3 position, Quaternion rotation, Action<SpawnItem> beforeLaunch = null)
         {
             if (Pool == null)
             {
@@ -44,7 +40,9 @@ namespace WaveShooter.Features.Spawners
             return item;
         }
 
-        /// <summary>Возврат в пул. Наследник может добавить свою логику (wave, статистика).</summary>
+        /// <summary>
+        /// Возврат в пул.
+        /// </summary>
         protected virtual void ReleaseItem(SpawnItem item)
         {
             if (item == null || Pool == null) return;

@@ -4,7 +4,9 @@ namespace WaveShooter.Features.Spawners
     using WaveShooter.Features.ShootingCharacter;
     using WaveShooter.Features.Spawners.Projectiles;
 
-    /// <summary>Спаунер снарядов игрока по выстрелу.</summary>
+    /// <summary>
+    /// Спаунит снаряды игрока по выстрелу.
+    /// </summary>
     [RequireComponent(typeof(PoolProjectiles))]
     public class SpawnerProjectiles : AbstractSpawner
     {
@@ -12,7 +14,6 @@ namespace WaveShooter.Features.Spawners
         [SerializeField, Min(0)] protected float spawnDistance = 11.0f;
 
         protected GunController gun;
-
         protected override AbstractPool Pool => itemPool;
 
         protected override void OnFacadeInited()
@@ -24,7 +25,6 @@ namespace WaveShooter.Features.Spawners
             gun = container.FacadeInstance.GetModuleFacade<GunController>();
             if (gun != null) gun.onGunShooted += OnGunShooted;
         }
-
         protected override void OnFacadeDisposed()
         {
             if (gun != null)

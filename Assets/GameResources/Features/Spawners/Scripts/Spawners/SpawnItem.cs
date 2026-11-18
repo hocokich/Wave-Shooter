@@ -5,8 +5,10 @@ namespace WaveShooter.Features.Spawners
     using UnityEngine;
 
     /// <summary>
-    /// Префаб ждёт кулдаун и сообщает об этом.
-    /// Удаление или возврат в пул решает тот, кто его заспаунил.
+    /// Объект для спавна.
+    /// Ждёт кулдаун и сообщает об этом.
+    /// 
+    /// Удаление или возврат в пул решает спавнер.
     /// </summary>
     public class SpawnItem : MonoBehaviour
     {
@@ -23,10 +25,19 @@ namespace WaveShooter.Features.Spawners
         [SerializeField, Min(0)] protected float cooldown = 2.0f;
 
         protected Coroutine coroutine = default;
-
         protected bool completed = false;
-
         protected Action<SpawnItem> cooldownHandler = delegate { };
+
+        protected virtual void OnDisable()
+        {
+            if (coroutine == null)
+            {
+                return;
+            }
+
+            StopCoroutine(coroutine);
+            coroutine = null;
+        }
 
         /// <summary>
         /// Подменить действие на конец кулдауна.
@@ -39,6 +50,7 @@ namespace WaveShooter.Features.Spawners
 
         /// <summary>
         /// Запустить кулдаун заново. Предыдущая корутина перезаписывается.
+        /// Вызывается в AbstractSpawner.
         /// </summary>
         public virtual void Launch()
         {
@@ -57,6 +69,7 @@ namespace WaveShooter.Features.Spawners
 
         /// <summary>
         /// Закончить жизнь итема сразу и вызвать действие спаунера.
+        /// Вызывается в AbstractSpawner.
         /// </summary>
         public virtual void Complete()
         {
@@ -77,24 +90,12 @@ namespace WaveShooter.Features.Spawners
             onComplete.Invoke();
         }
 
-        protected virtual void OnDisable()
-        {
-            if (coroutine == null)
-            {
-                return;
-            }
-
-            StopCoroutine(coroutine);
-            coroutine = null;
-        }
-
         protected IEnumerator WaitCooldown()
         {
             yield return new WaitForSeconds(cooldown);
             coroutine = null;
             Complete();
         }
-
         protected virtual void ResetMotion()
         {
             Rigidbody body = GetComponent<Rigidbody>();
