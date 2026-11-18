@@ -13,6 +13,12 @@ namespace WaveShooter.Features.Spawner.EnemySpawner
         protected int totalCreated = 0;
 
         /// <summary>
+        /// Жёсткий лимит одновременных экземпляров
+        /// (0 = без лимита).
+        /// </summary>
+        public int MaxCount => maxCount;
+
+        /// <summary>
         /// Есть ли свободный объект в пуле.
         /// </summary>
         public override bool HasFreeObject =>
