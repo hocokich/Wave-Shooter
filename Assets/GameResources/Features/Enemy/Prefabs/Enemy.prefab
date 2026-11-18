@@ -107,7 +107,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1597409888392044021
 Transform:
   m_ObjectHideFlags: 0
@@ -197,7 +197,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2112353363152742670
 Transform:
   m_ObjectHideFlags: 0
@@ -546,6 +546,7 @@ GameObject:
   - component: {fileID: 4356134574524539175}
   - component: {fileID: 1289450569037595724}
   - component: {fileID: 5554178463031151437}
+  - component: {fileID: 4267351768935096251}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -738,6 +739,21 @@ MonoBehaviour:
   seconds: 5
   timerCountdown: {fileID: 0}
   enemyHealth: {fileID: 0}
+--- !u!114 &4267351768935096251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7505810939294927453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efec208aa5b9f624da625c29409bfe77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.Enemy.ColoringEnemy
+  slowColor: {r: 1, g: 1, b: 1, a: 1}
+  fastColor: {r: 1, g: 0, b: 0, a: 1}
+  rendererView: {fileID: 3412793074863302887}
 --- !u!1 &7819110333173229733
 GameObject:
   m_ObjectHideFlags: 0
@@ -805,7 +821,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: d3fbf1c5c572a3c4391666cade5cdf46, type: 2}
-  - {fileID: 244880331765388325, guid: 4052bafe63c4eef489221dc973080238, type: 3}
+  - {fileID: 2100000, guid: d3fbf1c5c572a3c4391666cade5cdf46, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

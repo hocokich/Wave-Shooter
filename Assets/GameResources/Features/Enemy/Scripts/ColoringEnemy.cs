@@ -11,13 +11,12 @@ namespace WaveShooter.Features.Enemy
         [SerializeField] private Color slowColor = Color.green;
         [SerializeField] private Color fastColor = Color.red;
 
-        private Renderer rendererView = default;
+        [SerializeField] private Renderer rendererView = default;
         private EnemyMovement enemyMovement = default;
 
         private void Awake()
         {
-            rendererView = GetComponent<Renderer>();
-            enemyMovement = GetComponentInParent<EnemyMovement>();
+            enemyMovement = GetComponent<EnemyMovement>();
 
             enemyMovement.onSpeedChanged += SetColor;
         }
