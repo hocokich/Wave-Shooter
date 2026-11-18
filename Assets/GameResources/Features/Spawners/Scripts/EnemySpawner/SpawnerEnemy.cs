@@ -8,7 +8,9 @@ namespace WaveShooter.Features.Spawner.EnemySpawner
     using WaveShooter.Features.Spawners;
     using WaveShooter.Features.Spawner.EnemySpawner.EnemyWave;
 
-    /// <summary>Спаунер врагов по таймеру.</summary>
+    /// <summary>
+    /// Спаунер врагов по таймеру.
+    /// </summary>
     public class SpawnerEnemy : AbstractSpawner
     {
         [SerializeField] protected PoolEnemy itemPool = default;
@@ -19,7 +21,6 @@ namespace WaveShooter.Features.Spawner.EnemySpawner
         [SerializeField] protected Transform playerTarget = default;
 
         private Coroutine spawnRoutine;
-
         protected override AbstractPool Pool => itemPool;
 
         protected override void OnFacadeInited()
@@ -45,15 +46,9 @@ namespace WaveShooter.Features.Spawner.EnemySpawner
             }
         }
 
-        private IEnumerator SpawnRoutine()
-        {
-            while (true)
-            {
-                TrySpawnEnemy();
-                yield return new WaitForSeconds(spawnInterval);
-            }
-        }
-
+        /// <summary>
+        /// Попытка заспавнить врага.
+        /// </summary>
         public virtual void TrySpawnEnemy()
         {
             if (itemPool == null || !itemPool.HasFreeObject) return;
@@ -82,7 +77,6 @@ namespace WaveShooter.Features.Spawner.EnemySpawner
             if (enemy != null && waveController != null)
                 waveController.RegisterSpawn();
         }
-
         protected override void ReleaseItem(SpawnItem item)
         {
             if (item == null) return;
@@ -92,6 +86,13 @@ namespace WaveShooter.Features.Spawner.EnemySpawner
             if (waveController != null)
                 waveController.RegisterKill();
         }
-
+        private IEnumerator SpawnRoutine()
+        {
+            while (true)
+            {
+                TrySpawnEnemy();
+                yield return new WaitForSeconds(spawnInterval);
+            }
+        }
     }
 }
