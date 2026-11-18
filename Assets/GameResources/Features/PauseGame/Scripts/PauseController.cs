@@ -33,8 +33,6 @@ namespace WaveShooter.Features.PauseGame
         private InputActions inputActions;
         private bool isPaused = false;
 
-
-
         protected override void OnFacadeInited()
         {
             var inputSys = Container.FacadeInstance?.GetModuleFacade<InputSystemModule>();

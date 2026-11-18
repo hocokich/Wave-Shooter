@@ -43,14 +43,11 @@ namespace WaveShooter.Features.Timer
         [SerializeField] private float seconds = 60f;
         private Coroutine coroutine = default;
 
-        private void Start()
-        {
-            StartTimer();
-        }
         /// <summary>
         /// Запускает таймер.
+        /// Вызывается в DelayGame
         /// </summary>
-        public void StartTimer()
+        public void LaunchTimer()
         {
             onTimerStart.Invoke();
             coroutine = StartCoroutine(Countdown());
@@ -76,7 +73,7 @@ namespace WaveShooter.Features.Timer
                     onTimeChanged.Invoke(seconds);
                 }
                 yield return null;
-            } 
+            }
             onTimerDone.Invoke();
         }
     }
