@@ -1,31 +1,16 @@
 namespace WaveShooter.Features.Spawners
 {
-    using WaveShooter.Features.ShootingCharacter;
-    using WaveShooter.Features.Spawners.Projectiles;
-    using WaveShooter.Features.Container;
+    using System;
     using UnityEngine;
+    using WaveShooter.Features.Container;
 
     /// <summary>
-    /// Спаунер по выстрелу. Сам ставит кубик на луче фасада на своей дистанции.
+    /// Абстрактный спаунер.
+    /// Знает только про пул и жизненный цикл SpawnItem.
     /// </summary>
     public abstract class AbstractSpawner : ProviderCharacter
     {
-        [SerializeField, Min(0)] protected float spawnDistance = 11.0f;
-
-        protected override void OnFacadeInited()
-        {
-            container.FacadeInstance.GetModuleFacade<GunController>().onGunShooted += OnGunShooted;
-        }
-
-        protected override void OnFacadeDisposed()
-        {
-            if (container.FacadeInstance == null)
-            {
-                return;
-            }
-
-            container.FacadeInstance.GetModuleFacade<GunController>().onGunShooted -= OnGunShooted;
-        }
+        protected abstract AbstractPool Pool { get; }
 
         protected sealed override void OnDestroy()
         {
@@ -34,27 +19,34 @@ namespace WaveShooter.Features.Spawners
         }
 
         /// <summary>
-        /// Создать кубик в посчитанной точке.
+        /// Взять из пула и запустить.
         /// </summary>
-        protected abstract SpawnItem Spawn(Vector3 position, Quaternion rotation);
-
-        protected virtual void OnGunShooted()
+        protected SpawnItem SpawnFromPool(Vector3 position, Quaternion rotation, Action<SpawnItem> beforeLaunch = null)
         {
-            RaycastController raycast = container.FacadeInstance.GetModuleFacade<RaycastController>();
-
-            if (!isActiveAndEnabled || raycast == null || raycast.CameraView == null || !raycast.TryGetRay(out Ray ray))
+            if (Pool == null)
             {
-                return;
+                Debug.LogError($"Spawner '{name}': пул не задан", this);
+                return null;
             }
 
-            Vector3 position = ray.GetPoint(spawnDistance);
-            Quaternion rotation = raycast.CameraView.transform.rotation;
-            SpawnItem item = Spawn(position, rotation);
+            if (!Pool.HasFreeObject) return null;
 
-            if (item != null && item.TryGetComponent(out ProjectileImpulse impulse))
-            {
-                impulse.Apply(raycast.CameraView);
-            }
+            SpawnItem item = Pool.Get(position, rotation);
+            if (item == null) return null;
+
+            item.SetCooldownHandler(ReleaseItem);
+            beforeLaunch?.Invoke(item);
+            item.Launch();
+            return item;
+        }
+
+        /// <summary>
+        /// Возврат в пул.
+        /// </summary>
+        protected virtual void ReleaseItem(SpawnItem item)
+        {
+            if (item == null || Pool == null) return;
+            Pool.Release(item);
         }
     }
 }

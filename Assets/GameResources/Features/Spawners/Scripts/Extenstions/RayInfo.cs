@@ -8,7 +8,7 @@ namespace WaveShooter.Features.Spawners.Extenstions
     /// Утилитный класс.
     /// Информация ControllerRaycast из контейнера.
     /// </summary>
-    public static class ContainerRayInfo
+    public static class RayInfo
     {
         /// <summary>
         /// Возвращает направление и поворот рейкаста.
