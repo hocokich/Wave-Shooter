@@ -7,12 +7,17 @@ namespace WaveShooter.Features.Timer
     /// <summary>
     /// Таймер обратного отсчета.
     /// </summary>
-    public class TimerCountdown : MonoBehaviour
+    public sealed class TimerCountdown : MonoBehaviour
     {
         /// <summary>
-        /// Событие что таймер закончился.
+        /// Таймер запустился.
         /// </summary>
-        public event Action onTimerIsDone = delegate {};
+        public event Action onTimerStart = delegate {};
+
+        /// <summary>
+        /// Таймер закончился.
+        /// </summary>
+        public event Action onTimerDone = delegate {};
 
         /// <summary>
         /// Событие изменения таймера.
@@ -35,16 +40,26 @@ namespace WaveShooter.Features.Timer
             }
         }
         
-        [SerializeField] protected float seconds = 60f;
-        protected Coroutine coroutine = default;
+        [SerializeField] private float seconds = 60f;
+        private Coroutine coroutine = default;
 
-        protected virtual void Start()
+        private void Start()
         {
+            StartTimer();
+        }
+        /// <summary>
+        /// Запускает таймер.
+        /// </summary>
+        public void StartTimer()
+        {
+            onTimerStart.Invoke();
             coroutine = StartCoroutine(Countdown());
         }
 
-        protected IEnumerator Countdown()
+        private IEnumerator Countdown()
         {
+            onTimerStart.Invoke();
+
             float elapsed = 0f;
 
             while (seconds > 0) 
@@ -62,7 +77,7 @@ namespace WaveShooter.Features.Timer
                 }
                 yield return null;
             } 
-            onTimerIsDone.Invoke();
+            onTimerDone.Invoke();
         }
     }
 }
