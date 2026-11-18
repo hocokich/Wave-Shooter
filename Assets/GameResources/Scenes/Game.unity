@@ -1648,7 +1648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42c2538e7293aab438126bd0f90ac5c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.Spawner.EnemySpawner.LimitedSpawnItemPool
-  itemPrefab: {fileID: 7501443921230873615, guid: 2eed5addb4dd7a84899352ae7a4c714a, type: 3}
+  itemPrefab: {fileID: 5098636462449561588, guid: 86fc6b2c8e07b994aa8d8b4b497a3fbd, type: 3}
   preloadCount: 5
   poolRoot: {fileID: 1034640081}
   maxCount: 15
