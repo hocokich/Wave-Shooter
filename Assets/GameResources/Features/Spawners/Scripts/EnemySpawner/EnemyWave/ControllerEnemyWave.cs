@@ -16,8 +16,25 @@ namespace WaveShooter.Features.Spawner.EnemySpawner.EnemyWave
 
         protected virtual void Awake()
         {
-            if (waveModel != null)
+            if (waveModel == null) return;
+
+            // Свежий старт: все счётчики нули (значения из ассета).
+            // Загруженное сохранение уже содержит непустые значения — его не трогаем.
+            bool isFreshState =
+                waveModel.ActiveEnemies == 0 &&
+                waveModel.KilledEnemies == 0 &&
+                waveModel.CurrentEnemies == 0;
+
+            if (isFreshState)
+            {
                 waveModel.ResetModel();
+            }
+            else
+            {
+                // Пере-испускаем события, чтобы HUD подхватил загруженные значения.
+                waveModel.SetActiveEnemies(waveModel.ActiveEnemies);
+                waveModel.SetKilledEnemies(waveModel.KilledEnemies);
+            }
         }
 
         /// <summary>
@@ -38,10 +55,10 @@ namespace WaveShooter.Features.Spawner.EnemySpawner.EnemyWave
         /// </summary>
         public void RegisterKill()
         {
-            if (waveModel != null)
-            {
-                waveModel.AddKill();
-            }
+            if (waveModel == null) return;
+
+            waveModel.AddKill();
+            waveModel.RemoveActiveEnemy();
         }
 
         /// <summary>
@@ -49,10 +66,9 @@ namespace WaveShooter.Features.Spawner.EnemySpawner.EnemyWave
         /// </summary>
         public void RegisterSpawn()
         {
-            if (waveModel != null)
-            {
-                waveModel.AddActiveEnemy();
-            }
+            if (waveModel == null) return;
+            
+            waveModel.AddActiveEnemy();
         }
     }
 }

@@ -3,13 +3,24 @@ namespace WaveShooter.Features.Spawner.EnemySpawner
     using UnityEngine;
     using WaveShooter.Features.Spawners;
 
-    /// <summary>Пул врагов с жёстким лимитом на количество созданных экземпляров.</summary>
+    /// <summary>
+    /// Пул врагов с жёстким лимитом на количество созданных экземпляров.
+    /// </summary>
     public class PoolEnemy : AbstractPool
     {
         [SerializeField, Min(0)] protected int maxCount = 5;
 
         protected int totalCreated = 0;
 
+        /// <summary>
+        /// Жёсткий лимит одновременных экземпляров
+        /// (0 = без лимита).
+        /// </summary>
+        public int MaxCount => maxCount;
+
+        /// <summary>
+        /// Есть ли свободный объект в пуле.
+        /// </summary>
         public override bool HasFreeObject =>
             maxCount == 0 || ready.Count > 0 || totalCreated < maxCount;
 
