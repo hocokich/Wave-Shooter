@@ -56,7 +56,7 @@ namespace WaveShooter.Features.Spawners
         }
 
         /// <summary>
-        /// Закончить жизнь кубика сразу и вызвать действие спаунера.
+        /// Закончить жизнь итема сразу и вызвать действие спаунера.
         /// </summary>
         public virtual void Complete()
         {

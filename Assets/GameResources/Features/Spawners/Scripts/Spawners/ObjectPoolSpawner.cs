@@ -5,7 +5,7 @@ namespace WaveShooter.Features.Spawners
     /// <summary>
     /// Берёт префаб из пула. По кулдауну возвращает его в пул, а не удаляет.
     /// </summary>
-    public class ObjectPoolSpawner : AbstractSpawner
+    public class ObjectPoolSpawner : AbstractCharacterSpawner
     {
         [SerializeField] protected SpawnItemPool itemPool = default;
 
