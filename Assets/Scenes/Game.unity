@@ -1433,8 +1433,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1004057725}
-  - component: {fileID: 1004057726}
   - component: {fileID: 1004057727}
+  - component: {fileID: 1004057728}
   m_Layer: 0
   m_Name: ProjectileSpawnerPool
   m_TagString: Untagged
@@ -1457,21 +1457,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 927355912}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1004057726
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1004057724}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1a7c5f68d014e42b02f1b0c9d8e7f65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.Spawners.ObjectPoolSpawner
-  container: {fileID: 11400000, guid: e89dd9cad07457f4d88ced8a36a95fb0, type: 2}
-  spawnDistance: 1
-  itemPool: {fileID: 1004057727}
 --- !u!114 &1004057727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1481,12 +1466,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 1004057724}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0f6b4e57c904d31af1e0a9b8c7d6e54, type: 3}
+  m_Script: {fileID: 11500000, guid: c9e5a3d46b8f4c209e0d9f8a7b6c5d43, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.Spawners.SpawnItemPool
+  m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.Spawners.SpawnerProjectiles
+  container: {fileID: 11400000, guid: e89dd9cad07457f4d88ced8a36a95fb0, type: 2}
+  itemPool: {fileID: 1004057728}
+  spawnDistance: 1
+--- !u!114 &1004057728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004057724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47437923e2153af40b29d98c8e0d4122, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.Spawners.PoolSpawnProjectiles
   itemPrefab: {fileID: 3432639355292630380, guid: c536351fa33149c4b800b2b23af5c50f, type: 3}
   preloadCount: 4
-  poolRoot: {fileID: 1004057725}
+  poolRoot: {fileID: 0}
 --- !u!1 &1012223338
 GameObject:
   m_ObjectHideFlags: 0
@@ -1626,6 +1626,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab4be5c2dc4d11a4d93b93d950301745, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.Spawner.EnemySpawner.EnemySpawner
+  container: {fileID: 11400000, guid: e89dd9cad07457f4d88ced8a36a95fb0, type: 2}
   itemPool: {fileID: 1034640086}
   waveController: {fileID: 812416514}
   spawnInterval: 2

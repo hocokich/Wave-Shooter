@@ -8,23 +8,25 @@ namespace WaveShooter.Features.Spawner.EnemySpawner
     using WaveShooter.Features.Spawners;
     using WaveShooter.Features.Spawner.EnemySpawner.EnemyWave;
 
-    /// <summary>
-    /// Спавнер врага.
-    /// </summary>
-    public class SpawnerEnemy : MonoBehaviour
+    /// <summary>Спаунер врагов по таймеру.</summary>
+    public class SpawnerEnemy : AbstractSpawner
     {
-        [SerializeField] protected PoolSpawnEnemy itemPool = default;
+        [SerializeField] protected PoolEnemy itemPool = default;
         [SerializeField] protected ControllerEnemyWave waveController = default;
 
         [SerializeField] protected float spawnInterval = 1.5f;
         [SerializeField] protected List<Transform> spawnPoints = new List<Transform>();
-
-        [SerializeField] protected Transform playerTarget = default; 
+        [SerializeField] protected Transform playerTarget = default;
 
         private Coroutine spawnRoutine;
 
-        protected virtual void Start()
+        protected override AbstractPool Pool => itemPool;
+
+        protected override void OnFacadeInited()
         {
+            if (playerTarget == null && container?.FacadeInstance != null)
+                playerTarget = container.FacadeInstance.transform;
+
             if (playerTarget == null)
             {
                 var facade = FindAnyObjectByType<CharacterFacade>();
@@ -36,7 +38,11 @@ namespace WaveShooter.Features.Spawner.EnemySpawner
 
         protected virtual void OnDisable()
         {
-            if (spawnRoutine != null) StopCoroutine(spawnRoutine);
+            if (spawnRoutine != null)
+            {
+                StopCoroutine(spawnRoutine);
+                spawnRoutine = null;
+            }
         }
 
         private IEnumerator SpawnRoutine()
@@ -48,22 +54,10 @@ namespace WaveShooter.Features.Spawner.EnemySpawner
             }
         }
 
-        /// <summary>
-        /// Пробуем заспавнить врага.
-        /// </summary>
         public virtual void TrySpawnEnemy()
         {
-            if (itemPool == null) return;
-
-            if (!itemPool.HasFreeObject)
-            {
-                return; 
-            }
-
-            if (waveController != null && !waveController.TryConsumeEnemy())
-            {
-                return;
-            }
+            if (itemPool == null || !itemPool.HasFreeObject) return;
+            if (waveController != null && !waveController.TryConsumeEnemy()) return;
 
             Vector3 position = transform.position;
             Quaternion rotation = transform.rotation;
@@ -72,7 +66,6 @@ namespace WaveShooter.Features.Spawner.EnemySpawner
             {
                 int randomIndex = Random.Range(0, spawnPoints.Count);
                 Transform randomPoint = spawnPoints[randomIndex];
-
                 if (randomPoint != null)
                 {
                     position = randomPoint.position;
@@ -80,30 +73,25 @@ namespace WaveShooter.Features.Spawner.EnemySpawner
                 }
             }
 
-            SpawnItem enemy = itemPool.Get(position, rotation);
-
-            if (enemy != null)
+            SpawnItem enemy = SpawnFromPool(position, rotation, item =>
             {
-                enemy.SetCooldownHandler(ReleaseEnemy);
-
-                if (enemy.TryGetComponent(out EnemyMovement movement))
-                {
+                if (item.TryGetComponent(out EnemyMovement movement))
                     movement.Initialize(playerTarget);
-                }
+            });
 
-                enemy.Launch();
-
-                if (waveController != null)
-                {
-                    waveController.RegisterSpawn();
-                }
-            }
+            if (enemy != null && waveController != null)
+                waveController.RegisterSpawn();
         }
 
-        protected virtual void ReleaseEnemy(SpawnItem item)
+        protected override void ReleaseItem(SpawnItem item)
         {
-            itemPool.Release(item);
-            waveController.RegisterKill();
+            if (item == null) return;
+
+            base.ReleaseItem(item);
+
+            if (waveController != null)
+                waveController.RegisterKill();
         }
+
     }
 }

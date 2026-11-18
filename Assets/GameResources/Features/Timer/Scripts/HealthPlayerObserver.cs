@@ -35,8 +35,6 @@ namespace WaveShooter.Features.Timer
                 healthController.onDied -= ZeroTime;
                 healthController = null;
             }
-
-            base.OnFacadeDisposed();
         }
 
 
