@@ -17,36 +17,43 @@ namespace WaveShooter.Features.Timer.DelayGame
             delayGame = FindAnyObjectByType<DelayGameController>();
             textView = GetComponent<Text>();
 
-            if(delayGame == null)
+            if (delayGame == null)
             {
-                DisableView();
+                textView.enabled = false;
                 return;
             }
-
-            delayGame.onDelaySecondsChange += UpdateView;
-            delayGame.onDelayEnd += DisableView;
-
-            UpdateView(delayGame.DelaySeconds);
         }
+
         private void OnEnable()
         {
-            if(delayGame == null) return;
+            if (delayGame == null) return;
 
             delayGame.onDelaySecondsChange += UpdateView;
             delayGame.onDelayEnd += DisableView;
 
-            UpdateView(delayGame.DelaySeconds);
+            if (delayGame.IsDelayActive)
+                UpdateView(delayGame.DelaySeconds);
+            else
+                DisableView();
         }
+
         private void OnDisable()
         {
-            if(delayGame == null) return;
+            if (delayGame == null) return;
 
             delayGame.onDelaySecondsChange -= UpdateView;
             delayGame.onDelayEnd -= DisableView;
-            delayGame = null;
         }
-        
-        private void UpdateView(int sec) => textView.text = $"{sec}";
-        private void DisableView() => gameObject.SetActive(false);
+
+        private void UpdateView(int sec)
+        {
+            textView.enabled = true;
+            textView.text = $"{sec}";
+        }
+
+        private void DisableView()
+        {
+            textView.enabled = false;
+        }
     }
 }
