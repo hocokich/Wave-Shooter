@@ -30,5 +30,10 @@ namespace WaveShooter.Features.GameState
             CurrentState = next;
             onStateChanged.Invoke(next);
         }
+
+        public void ResetState()
+        {
+            CurrentState = GameState.Load;
+        }
     }
 }

@@ -15,6 +15,12 @@ namespace WaveShooter.Features.GameState
 
         private InputActions inputActions;
 
+        protected override void Awake()
+        {
+            stateModel.ResetState();
+            base.Awake();
+        }
+        
         protected override void OnFacadeInited()
         {
             stateModel.SetState(GameState.DelayGameplay);
