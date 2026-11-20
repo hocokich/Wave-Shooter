@@ -7,21 +7,29 @@ namespace WaveShooter.Features.Timer.DelayGame
     using WaveShooter.Features.PauseGame;
 
     /// <summary>
-    /// Контроллер задержки начала игры / возобновления после паузы.
+    /// Контроллер задержки начала игры.
     /// </summary>
     [RequireComponent(typeof(TimerCountdown))]
     public sealed class DelayGameController : ProviderCharacter
     {
-        /// <summary>Время задержки изменилось.</summary>
+        /// <summary>
+        /// Время задержки изменилось.
+        /// </summary>
         public event Action<int> onDelaySecondsChange = delegate { };
 
-        /// <summary>Задержка кончилась.</summary>
+        /// <summary>
+        /// Задержка кончилась.
+        /// </summary>
         public event Action onDelayEnd = delegate { };
 
-        /// <summary>Время задержки.</summary>
+        /// <summary>
+        /// Время задержки.
+        /// </summary>
         public int DelaySeconds => delaySeconds;
 
-        /// <summary>Задержка сейчас активна.</summary>
+        /// <summary>
+        /// Задержка сейчас активна.
+        /// </summary>
         public bool IsDelayActive => isDelayActive;
 
         [SerializeField, Range(0, 10)] private int delaySeconds = 3;
@@ -51,7 +59,6 @@ namespace WaveShooter.Features.Timer.DelayGame
             {
                 pauseController.onResumeRequested -= OnResumeRequested;
 
-                // Страховка: если нас выключили во время отсчёта — снимаем блок.
                 if (isDelayActive)
                     pauseController.SetInputBlocked(false);
             }
@@ -61,19 +68,22 @@ namespace WaveShooter.Features.Timer.DelayGame
 
         protected override void OnFacadeInited()
         {
-            // Стартовый отсчёт: полный блок ввода, без меню паузы.
             pauseController.SetInputBlocked(true);
             LaunchDelay(isResume: false);
         }
 
-        /// <summary>Запуск задержки.</summary>
+        /// <summary>
+        /// Запуск задержки.
+        /// </summary>
         public void LaunchDelay(bool isResume = false)
         {
             StopDelay();
             coroutine = StartCoroutine(Delay(isResume));
         }
 
-        /// <summary>Остановка задержки.</summary>
+        /// <summary>
+        /// Остановка задержки.
+        /// </summary>
         public void StopDelay()
         {
             if (coroutine != null)
@@ -87,10 +97,8 @@ namespace WaveShooter.Features.Timer.DelayGame
 
         private void OnResumeRequested()
         {
-            // Уже идёт отсчёт — игнорируем повторные запросы.
             if (isDelayActive) return;
 
-            // Скрываем меню паузы, но НЕ снимаем блок ввода и НЕ возвращаем timeScale.
             pauseController.SetInputBlocked(true);
             pauseController.SetPause(false);
 
@@ -122,7 +130,6 @@ namespace WaveShooter.Features.Timer.DelayGame
                 yield return null;
             }
 
-            // Небольшая пауза, чтобы «0» успел отобразиться.
             yield return new WaitForSecondsRealtime(0.5f);
 
             pauseController.SetInputBlocked(false);
@@ -132,7 +139,6 @@ namespace WaveShooter.Features.Timer.DelayGame
 
             onDelayEnd.Invoke();
 
-            // Таймер включаем только один раз — после стартового отсчёта.
             if (!isResume)
                 timer.enabled = true;
         }

@@ -11,18 +11,26 @@ namespace WaveShooter.Features.PauseGame
     public sealed class PauseController : ProviderCharacter
     {
         /// <summary>
-        /// Пауза изменилась (true — включили, false — выключили).
+        /// Состояние паузы изменилось.
         /// </summary>
         public event Action<bool> onIsPausedChange = delegate { };
 
         /// <summary>
         /// Запрос на снятие паузы (Esc / кнопка Resume).
+        /// 
         /// Если есть подписчик — он ОБЯЗАН сам вызвать <see cref="SetPause"/>(false)
         /// (например, после обратного отсчёта). Если подписчиков нет — пауза снимается сразу.
         /// </summary>
         public event Action onResumeRequested;
 
+        /// <summary>
+        /// Текущее состояние паузы.
+        /// </summary>
         public bool IsPaused { get; private set; }
+
+        /// <summary>
+        /// Состояние блокировки инпута.
+        /// </summary>
         public bool IsInputBlocked { get; private set; }
 
         private InputActions inputActions;
@@ -41,10 +49,8 @@ namespace WaveShooter.Features.PauseGame
             inputActions.Gameplay.Pause.performed += OnPausePressed;
             inputActions.UI.Pause.performed += OnPausePressed;
 
-            // Применяем текущее состояние (на случай, если DelayGame уже вызвал SetInputBlocked до нас).
             ApplyInputState();
         }
-
         protected override void OnFacadeDisposed()
         {
             Unsubscribe();
@@ -77,8 +83,6 @@ namespace WaveShooter.Features.PauseGame
                 return;
             }
 
-            // Просят снять паузу — отдаём решение подписчикам (например, отсчёту),
-            // иначе снимаем сразу.
             if (onResumeRequested != null)
                 onResumeRequested.Invoke();
             else
@@ -126,7 +130,6 @@ namespace WaveShooter.Features.PauseGame
 
             if (IsInputBlocked)
             {
-                // Полный блок: время стоит, ввод полностью выключен, меню паузы скрыто.
                 Time.timeScale = 0f;
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
