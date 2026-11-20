@@ -3,11 +3,12 @@ namespace WaveShooter.Features.Timer
     using System;
     using System.Collections;
     using UnityEngine;
+    using WaveShooter.Features.Container;
 
     /// <summary>
     /// Таймер обратного отсчета.
     /// </summary>
-    public sealed class TimerCountdown : MonoBehaviour
+    public sealed class TimerCountdown : ProviderCharacter
     {
         /// <summary>
         /// Таймер запустился.
@@ -43,16 +44,6 @@ namespace WaveShooter.Features.Timer
         [SerializeField] private float seconds = 60f;
         private Coroutine coroutine = default;
 
-        /// <summary>
-        /// Запускает таймер.
-        /// Вызывается в DelayGame
-        /// </summary>
-        public void LaunchTimer()
-        {
-            onTimerStart.Invoke();
-            coroutine = StartCoroutine(Countdown());
-        }
-
         private IEnumerator Countdown()
         {
             onTimerStart.Invoke();
@@ -75,6 +66,12 @@ namespace WaveShooter.Features.Timer
                 yield return null;
             }
             onTimerDone.Invoke();
+        }
+
+        protected override void OnFacadeInited()
+        {
+            onTimerStart.Invoke();
+            coroutine = StartCoroutine(Countdown());
         }
     }
 }

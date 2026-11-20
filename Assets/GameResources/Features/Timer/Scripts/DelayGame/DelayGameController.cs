@@ -37,7 +37,9 @@ namespace WaveShooter.Features.Timer.DelayGame
         protected override void Awake()
         {
             base.Awake();
+
             timer = GetComponent<TimerCountdown>();
+            timer.enabled = false;
         }
         private void OnEnable()
         {
@@ -84,10 +86,10 @@ namespace WaveShooter.Features.Timer.DelayGame
                 yield return null;
             }
             pauseController.SetPause(false);
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
             
             onDelayEnd.Invoke();
-            timer.LaunchTimer();
+            timer.enabled = true;
         }
     }
 }

@@ -17,6 +17,12 @@ namespace WaveShooter.Features.Timer.DelayGame
             delayGame = FindAnyObjectByType<DelayGameController>();
             textView = GetComponent<Text>();
 
+            if(delayGame == null)
+            {
+                DisableView();
+                return;
+            }
+
             delayGame.onDelaySecondsChange += UpdateView;
             delayGame.onDelayEnd += DisableView;
 
