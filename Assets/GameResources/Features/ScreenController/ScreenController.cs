@@ -36,13 +36,13 @@ namespace WaveShooter.Features.ScreenSpawner
                 pauseController.onIsPausedChange += HandlePause;
 
             if (timerCountdown != null)
-                timerCountdown.onTimerIsDone += HandleGameOver;
+                timerCountdown.onTimerDone += HandleGameOver;
         }
 
         private void OnDestroy()
         {
             if (pauseController != null) pauseController.onIsPausedChange -= HandlePause;
-            if (timerCountdown != null) timerCountdown.onTimerIsDone -= HandleGameOver;
+            if (timerCountdown != null) timerCountdown.onTimerDone -= HandleGameOver;
         }
 
         private void HandlePause(bool isPaused)

@@ -850,8 +850,8 @@ GameObject:
   m_Component:
   - component: {fileID: 561708359}
   - component: {fileID: 561708360}
-  - component: {fileID: 561708361}
   - component: {fileID: 561708362}
+  - component: {fileID: 561708363}
   m_Layer: 0
   m_Name: TimerCountdown
   m_TagString: Untagged
@@ -886,20 +886,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e981cd3eaaf62477c86586014488c5d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Timer
-  seconds: 60
---- !u!114 &561708361
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 561708358}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7eef49a6daab0f429513c605df00145, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.Timer.EndScreen
   container: {fileID: 11400000, guid: e89dd9cad07457f4d88ced8a36a95fb0, type: 2}
+  seconds: 60
 --- !u!114 &561708362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -913,6 +901,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.Timer.HealthPlayerObserver
   container: {fileID: 11400000, guid: e89dd9cad07457f4d88ced8a36a95fb0, type: 2}
+--- !u!114 &561708363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561708358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b402e378d5ab71944bb4da28b84d922e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.Timer.DelayGame.DelayGameController
+  container: {fileID: 11400000, guid: e89dd9cad07457f4d88ced8a36a95fb0, type: 2}
+  delaySeconds: 3
+  pauseController: {fileID: 1882286985}
 --- !u!1 &597850756
 GameObject:
   m_ObjectHideFlags: 0
