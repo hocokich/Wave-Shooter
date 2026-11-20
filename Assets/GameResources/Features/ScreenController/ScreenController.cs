@@ -1,13 +1,14 @@
 namespace WaveShooter.Features.ScreenSpawner
 {
     using UnityEngine;
+    using WaveShooter.Features.GameState;
     using WaveShooter.Features.PauseGame;
-    using WaveShooter.Features.Timer;
     using WaveShooter.Features.SaveSystem;
+    using WaveShooter.Features.Timer;
     using WaveShooter.Features.UIElements;
 
     /// <summary>
-    /// Контроллер экранов.
+    /// Спавнит/удаляет окна в зависимости от состояния игры.
     /// </summary>
     public class ScreenController : MonoBehaviour
     {
@@ -20,6 +21,7 @@ namespace WaveShooter.Features.ScreenSpawner
         [SerializeField] private GameObject gameOverPrefab;
 
         [Header("Контроллеры сцены")]
+        [SerializeField] private GameStateModel stateModel;
         [SerializeField] private PauseController pauseController;
         [SerializeField] private TimerCountdown timerCountdown;
         [SerializeField] private SaveGameController saveController;
@@ -32,65 +34,74 @@ namespace WaveShooter.Features.ScreenSpawner
             if (hudPrefab != null)
                 Instantiate(hudPrefab, viewParent);
 
-            if (pauseController != null)
-                pauseController.onIsPausedChange += HandlePause;
+            stateModel.onStateChanged += HandleStateChanged;
+            timerCountdown.onTimerDone += HandleTimerDone;
 
-            if (timerCountdown != null)
-                timerCountdown.onTimerDone += HandleGameOver;
+            HandleStateChanged(stateModel.CurrentState);
         }
 
         private void OnDestroy()
         {
-            if (pauseController != null) pauseController.onIsPausedChange -= HandlePause;
-            if (timerCountdown != null) timerCountdown.onTimerDone -= HandleGameOver;
+            if (stateModel != null) stateModel.onStateChanged -= HandleStateChanged;
+            if (timerCountdown != null) timerCountdown.onTimerDone -= HandleTimerDone;
         }
 
-        private void HandlePause(bool isPaused)
+        private void HandleTimerDone()
         {
-            if (currentGameOver != null) return; 
+            stateModel.SetState(GameState.GameOver);
+        }
 
-            if (isPaused)
+        private void HandleStateChanged(GameState state)
+        {
+            switch (state)
             {
-                currentPauseMenu = Instantiate(pauseMenuPrefab, viewParent);
-                if (currentPauseMenu == null) return;
+                case GameState.Pause:
+                    SpawnPauseMenu();
+                    break;
 
-                var pauseView = currentPauseMenu.GetComponentInChildren<TogglePauseMenu>(true);
-                pauseView.Initialize(pauseController);
+                case GameState.GameOver:
+                    DestroyPauseMenu();
+                    SpawnGameOver();
+                    break;
 
-                var saveGameButton = currentPauseMenu.GetComponentInChildren<SaveGameButton>(true);
-                saveGameButton.Initialize(saveController);
-            }
-            else
-            {
-                Destroy(currentPauseMenu);
-                currentPauseMenu = null;
+                default:
+                    DestroyPauseMenu();
+                    DestroyGameOver();
+                    break;
             }
         }
 
-
-        private void HandleGameOver()
+        private void SpawnPauseMenu()
         {
-            if (currentGameOver != null) return;
+            if (currentPauseMenu != null || pauseMenuPrefab == null) return;
 
-            if (currentPauseMenu != null)
-            {
-                Destroy(currentPauseMenu);
-                currentPauseMenu = null;
-            }
+            currentPauseMenu = Instantiate(pauseMenuPrefab, viewParent);
 
+            var pauseView = currentPauseMenu.GetComponentInChildren<TogglePauseMenu>(true);
+            if (pauseView != null) pauseView.Initialize(pauseController);
+
+            var saveButton = currentPauseMenu.GetComponentInChildren<SaveGameButton>(true);
+            if (saveButton != null) saveButton.Initialize(saveController);
+        }
+
+        private void DestroyPauseMenu()
+        {
+            if (currentPauseMenu == null) return;
+            Destroy(currentPauseMenu);
+            currentPauseMenu = null;
+        }
+
+        private void SpawnGameOver()
+        {
+            if (currentGameOver != null || gameOverPrefab == null) return;
             currentGameOver = Instantiate(gameOverPrefab, viewParent);
-            
-            if (pauseController != null)
-            {
-                pauseController.SetPause(true);
-                pauseController.DisablePauseInput();
-            }
-            else
-            {
-                Time.timeScale = 0f;
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
-            }
+        }
+
+        private void DestroyGameOver()
+        {
+            if (currentGameOver == null) return;
+            Destroy(currentGameOver);
+            currentGameOver = null;
         }
     }
 }

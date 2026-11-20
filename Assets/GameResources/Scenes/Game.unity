@@ -431,12 +431,13 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 593987677}
   - {fileID: 551579469}
   - {fileID: 1882286984}
   - {fileID: 561708359}
-  - {fileID: 271547711}
   - {fileID: 670641091}
   - {fileID: 812416513}
+  - {fileID: 271547711}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &271547710
@@ -853,7 +854,7 @@ GameObject:
   - component: {fileID: 561708362}
   - component: {fileID: 561708363}
   m_Layer: 0
-  m_Name: TimerCountdown
+  m_Name: TimerController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -888,6 +889,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Timer
   container: {fileID: 11400000, guid: e89dd9cad07457f4d88ced8a36a95fb0, type: 2}
   seconds: 60
+  stateModel: {fileID: 11400000, guid: 42e1144b02130ed499a0e7778dc22700, type: 2}
 --- !u!114 &561708362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -915,7 +917,53 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.Timer.DelayGame.DelayGameController
   container: {fileID: 11400000, guid: e89dd9cad07457f4d88ced8a36a95fb0, type: 2}
   delaySeconds: 3
-  pauseController: {fileID: 1882286985}
+  stateModel: {fileID: 11400000, guid: 42e1144b02130ed499a0e7778dc22700, type: 2}
+--- !u!1 &593987676
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 593987677}
+  - component: {fileID: 593987679}
+  m_Layer: 0
+  m_Name: GameState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &593987677
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593987676}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 188874645}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &593987679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593987676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a761fa4379e83d4480c1241628808c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.GameState.GameStateApplier
+  container: {fileID: 11400000, guid: e89dd9cad07457f4d88ced8a36a95fb0, type: 2}
+  stateModel: {fileID: 11400000, guid: 42e1144b02130ed499a0e7778dc22700, type: 2}
 --- !u!1 &597850756
 GameObject:
   m_ObjectHideFlags: 0
@@ -1089,6 +1137,7 @@ MonoBehaviour:
   hudPrefab: {fileID: 8489652479971974514, guid: 495d5f80f05ec88498a4e0a353246d78, type: 3}
   pauseMenuPrefab: {fileID: 3686367815886251612, guid: e9b72dbc1f593044092a4e6317cd0a08, type: 3}
   gameOverPrefab: {fileID: 9061998958059628570, guid: 167f16dd2d50afe4ebbfa0e215fb9c7a, type: 3}
+  stateModel: {fileID: 11400000, guid: 42e1144b02130ed499a0e7778dc22700, type: 2}
   pauseController: {fileID: 1882286985}
   timerCountdown: {fileID: 561708360}
   saveController: {fileID: 551579471}
@@ -2258,6 +2307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.UI.SimplePause
   container: {fileID: 11400000, guid: e89dd9cad07457f4d88ced8a36a95fb0, type: 2}
+  stateModel: {fileID: 11400000, guid: 42e1144b02130ed499a0e7778dc22700, type: 2}
 --- !u!1 &1950717007
 GameObject:
   m_ObjectHideFlags: 0

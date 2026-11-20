@@ -1,37 +1,16 @@
 namespace WaveShooter.Features.PauseGame
 {
-    using System;
     using UnityEngine;
     using WaveShooter.Features.Container;
+    using WaveShooter.Features.GameState;
     using WaveShooter.Features.Input.InputModules;
 
     /// <summary>
-    /// Контроллер паузы, использующий контейнер для доступа к инпуту.
+    /// Обрабатывает ввод паузы.
     /// </summary>
     public sealed class PauseController : ProviderCharacter
     {
-        /// <summary>
-        /// Состояние паузы изменилось.
-        /// </summary>
-        public event Action<bool> onIsPausedChange = delegate { };
-
-        /// <summary>
-        /// Запрос на снятие паузы (Esc / кнопка Resume).
-        /// 
-        /// Если есть подписчик — он ОБЯЗАН сам вызвать <see cref="SetPause"/>(false)
-        /// (например, после обратного отсчёта). Если подписчиков нет — пауза снимается сразу.
-        /// </summary>
-        public event Action onResumeRequested;
-
-        /// <summary>
-        /// Текущее состояние паузы.
-        /// </summary>
-        public bool IsPaused { get; private set; }
-
-        /// <summary>
-        /// Состояние блокировки инпута.
-        /// </summary>
-        public bool IsInputBlocked { get; private set; }
+        [SerializeField] private GameStateModel stateModel = default;
 
         private InputActions inputActions;
 
@@ -41,27 +20,21 @@ namespace WaveShooter.Features.PauseGame
 
             if (inputSys == null || inputSys.InputActions == null)
             {
-                Debug.LogError("PauseManager: Не удалось получить InputActions из контейнера.");
+                Debug.LogError("PauseController: не удалось получить InputActions.");
                 return;
             }
 
             inputActions = inputSys.InputActions;
             inputActions.Gameplay.Pause.performed += OnPausePressed;
             inputActions.UI.Pause.performed += OnPausePressed;
-
-            ApplyInputState();
         }
-        protected override void OnFacadeDisposed()
-        {
-            Unsubscribe();
-        }
+        protected override void OnFacadeDisposed() => Unsubscribe();
 
         protected override void OnDestroy()
         {
-            base.OnDestroy();
             Unsubscribe();
+            base.OnDestroy();
         }
-
         private void Unsubscribe()
         {
             if (inputActions != null)
@@ -73,86 +46,18 @@ namespace WaveShooter.Features.PauseGame
         }
 
         /// <summary>
-        /// Переключает паузу.
+        /// Обрабатывает запрос паузы с учетом текущего состояния.
         /// </summary>
         public void TogglePause()
         {
-            if (!IsPaused)
+            switch (stateModel.CurrentState)
             {
-                SetPause(true);
-                return;
-            }
-
-            if (onResumeRequested != null)
-                onResumeRequested.Invoke();
-            else
-                SetPause(false);
-        }
-
-        /// <summary>
-        /// Жестко задаёт состояние паузы.
-        /// </summary>
-        public void SetPause(bool pauseState)
-        {
-            if (IsPaused == pauseState) return;
-
-            IsPaused = pauseState;
-            onIsPausedChange.Invoke(IsPaused);
-            ApplyInputState();
-        }
-
-        /// <summary>
-        /// Полный блок ввода без показа меню паузы (используется во время обратного отсчёта).
-        /// </summary>
-        public void SetInputBlocked(bool blocked)
-        {
-            if (IsInputBlocked == blocked) return;
-
-            IsInputBlocked = blocked;
-            ApplyInputState();
-        }
-
-        /// <summary>
-        /// Отключает возможность ставить паузу (для Game Over).
-        /// </summary>
-        public void DisablePauseInput()
-        {
-            if (inputActions != null)
-            {
-                inputActions.Gameplay.Pause.Disable();
-                inputActions.UI.Pause.Disable();
-            }
-        }
-
-        private void ApplyInputState()
-        {
-            if (inputActions == null) return;
-
-            if (IsInputBlocked)
-            {
-                Time.timeScale = 0f;
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
-                inputActions.Gameplay.Disable();
-                inputActions.UI.Disable();
-                return;
-            }
-
-            if (IsPaused)
-            {
-                Time.timeScale = 0f;
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
-                inputActions.Gameplay.Disable();
-                inputActions.UI.Enable();
-            }
-            else
-            {
-                Time.timeScale = 1f;
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
-                inputActions.UI.Disable();
-                inputActions.Gameplay.Enable();
+                case GameState.Gameplay:
+                    stateModel.SetState(GameState.Pause);
+                    break;
+                case GameState.Pause:
+                    stateModel.SetState(GameState.DelayGameplay);
+                    break;
             }
         }
 
