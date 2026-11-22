@@ -1,8 +1,7 @@
-namespace WaveShooter.Features.UIElements
+namespace WaveShooter.Features.UIElements.Buttons
 {
     using UnityEngine;
     using WaveShooter.Features.SaveSystem;
-    using WaveShooter.Features.SwitchScenes;
 
     /// <summary>
     /// Кнопка начала новой игры.

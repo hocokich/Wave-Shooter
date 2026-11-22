@@ -1,8 +1,7 @@
-namespace WaveShooter.Features.SwitchScenes
+namespace WaveShooter.Features.UIElements.Buttons
 {
     using UnityEngine;
-    using UnityEngine.UI;
-    using WaveShooter.Features.UIElements;
+    using WaveShooter.Features.SwitchScenes;
 
     /// <summary>
     /// Кнопка переключения сцен.

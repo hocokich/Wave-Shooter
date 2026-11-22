@@ -1,6 +1,6 @@
 namespace WaveShooter.Features.PauseGame
 {
-    using WaveShooter.Features.UIElements;
+    using WaveShooter.Features.UIElements.Buttons;
 
     /// <summary>
     /// Кнопка, которая делает то же самое, что и нажатие Esc.

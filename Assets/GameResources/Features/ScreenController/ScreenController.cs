@@ -5,12 +5,12 @@ namespace WaveShooter.Features.ScreenSpawner
     using WaveShooter.Features.PauseGame;
     using WaveShooter.Features.SaveSystem;
     using WaveShooter.Features.Timer;
-    using WaveShooter.Features.UIElements;
+    using WaveShooter.Features.UIElements.Buttons;
 
     /// <summary>
     /// Спавнит/удаляет окна в зависимости от состояния игры.
     /// </summary>
-    public class ScreenController : MonoBehaviour
+    public sealed class ScreenController : MonoBehaviour
     {
         [Header("Контейнер для окон")]
         [SerializeField] private Transform viewParent = default;

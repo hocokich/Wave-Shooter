@@ -1,4 +1,4 @@
-namespace WaveShooter.Features.UIElements
+namespace WaveShooter.Features.UIElements.Buttons
 {
     using WaveShooter.Features.SaveSystem;
 
