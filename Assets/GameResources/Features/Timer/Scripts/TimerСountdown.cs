@@ -4,6 +4,7 @@ namespace WaveShooter.Features.Timer
     using System.Collections;
     using UnityEngine;
     using WaveShooter.Features.Container;
+    using WaveShooter.Features.GameState;
 
     /// <summary>
     /// Таймер обратного отсчета.
@@ -16,17 +17,17 @@ namespace WaveShooter.Features.Timer
         public event Action onTimerStart = delegate {};
 
         /// <summary>
-        /// Таймер закончился.
+        /// Таймер истек.
         /// </summary>
         public event Action onTimerDone = delegate {};
 
         /// <summary>
-        /// Событие изменения таймера.
+        /// Таймер тикает.
         /// </summary>
         public event Action<float> onTimeChanged = delegate {};
 
         /// <summary>
-        /// Текущее время.
+        /// Оставшееся время.
         /// </summary>
         public float Seconds
         {
@@ -40,38 +41,53 @@ namespace WaveShooter.Features.Timer
                 }
             }
         }
-        
+
         [SerializeField] private float seconds = 60f;
-        private Coroutine coroutine = default;
+        [SerializeField] private GameStateModel stateModel = default;
+
+        private Coroutine coroutine;
+        private bool hasStarted;
+
+        protected override void OnFacadeInited()
+        {
+            stateModel.onStateChanged += OnStateChanged;
+            OnStateChanged(stateModel.CurrentState);
+        }
+        protected override void OnFacadeDisposed()
+        {
+            if (stateModel != null)
+                stateModel.onStateChanged -= OnStateChanged;
+        }
+
+        private void OnStateChanged(GameState state)
+        {
+            if (state == GameState.Gameplay && !hasStarted)
+            {
+                hasStarted = true;
+                onTimerStart.Invoke();
+                coroutine = StartCoroutine(Countdown());
+            }
+        }
 
         private IEnumerator Countdown()
         {
-            onTimerStart.Invoke();
-
             float elapsed = 0f;
 
-            while (seconds > 0) 
+            while (seconds > 0)
             {
-                elapsed += Time.deltaTime; 
+                elapsed += Time.deltaTime;
 
                 if (elapsed >= 1f)
                 {
                     elapsed -= 1f;
                     seconds--;
-
-                    if (seconds < 0) seconds = 0; 
+                    if (seconds < 0) seconds = 0;
 
                     onTimeChanged.Invoke(seconds);
                 }
                 yield return null;
             }
             onTimerDone.Invoke();
-        }
-
-        protected override void OnFacadeInited()
-        {
-            onTimerStart.Invoke();
-            coroutine = StartCoroutine(Countdown());
         }
     }
 }

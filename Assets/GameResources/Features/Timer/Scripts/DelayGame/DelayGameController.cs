@@ -4,12 +4,11 @@ namespace WaveShooter.Features.Timer.DelayGame
     using System.Collections;
     using UnityEngine;
     using WaveShooter.Features.Container;
-    using WaveShooter.Features.PauseGame;
+    using WaveShooter.Features.GameState;
 
     /// <summary>
-    /// Контроллер задержки начала игры.
+    /// Обратный отсчёт до запуска state = Gameplay.
     /// </summary>
-    [RequireComponent(typeof(TimerCountdown))]
     public sealed class DelayGameController : ProviderCharacter
     {
         /// <summary>
@@ -33,79 +32,49 @@ namespace WaveShooter.Features.Timer.DelayGame
         public bool IsDelayActive => isDelayActive;
 
         [SerializeField, Range(0, 10)] private int delaySeconds = 3;
-        [SerializeField] private PauseController pauseController = default;
+        [SerializeField] private GameStateModel stateModel = default;
 
-        private TimerCountdown timer = default;
-        private Coroutine coroutine = default;
+        private Coroutine coroutine;
         private bool isDelayActive;
-
-        protected override void Awake()
-        {
-            base.Awake();
-
-            timer = GetComponent<TimerCountdown>();
-            timer.enabled = false;
-        }
-
-        private void OnEnable()
-        {
-            if (pauseController != null)
-                pauseController.onResumeRequested += OnResumeRequested;
-        }
-
-        private void OnDisable()
-        {
-            if (pauseController != null)
-            {
-                pauseController.onResumeRequested -= OnResumeRequested;
-
-                if (isDelayActive)
-                    pauseController.SetInputBlocked(false);
-            }
-
-            StopDelay();
-        }
 
         protected override void OnFacadeInited()
         {
-            pauseController.SetInputBlocked(true);
-            LaunchDelay(isResume: false);
+            stateModel.onStateChanged += OnStateChanged;
+            OnStateChanged(stateModel.CurrentState);
         }
-
-        /// <summary>
-        /// Запуск задержки.
-        /// </summary>
-        public void LaunchDelay(bool isResume = false)
+        protected override void OnFacadeDisposed()
         {
+            if (stateModel != null)
+                stateModel.onStateChanged -= OnStateChanged;
             StopDelay();
-            coroutine = StartCoroutine(Delay(isResume));
         }
 
-        /// <summary>
-        /// Остановка задержки.
-        /// </summary>
-        public void StopDelay()
+        private void OnDisable() => StopDelay();
+
+        private void OnStateChanged(GameState state)
+        {
+            if (state == GameState.DelayGameplay)
+            {
+                StopDelay();
+                coroutine = StartCoroutine(Delay());
+            }
+            else
+            {
+                StopDelay();
+            }
+        }
+
+        private void StopDelay()
         {
             if (coroutine != null)
             {
                 StopCoroutine(coroutine);
                 coroutine = null;
             }
-
             isDelayActive = false;
         }
 
-        private void OnResumeRequested()
-        {
-            if (isDelayActive) return;
-
-            pauseController.SetInputBlocked(true);
-            pauseController.SetPause(false);
-
-            LaunchDelay(isResume: true);
-        }
-
-        private IEnumerator Delay(bool isResume)
+        private IEnumerator Delay()
         {
             isDelayActive = true;
 
@@ -121,26 +90,21 @@ namespace WaveShooter.Features.Timer.DelayGame
                 if (elapsed >= 1f)
                 {
                     elapsed -= 1f;
-                    remaining--;
-                    if (remaining < 0) remaining = 0;
-
+                    remaining = Mathf.Max(0, remaining - 1);
                     onDelaySecondsChange.Invoke(remaining);
                 }
-
                 yield return null;
             }
 
             yield return new WaitForSecondsRealtime(0.5f);
-
-            pauseController.SetInputBlocked(false);
 
             isDelayActive = false;
             coroutine = null;
 
             onDelayEnd.Invoke();
 
-            if (!isResume)
-                timer.enabled = true;
+            if (stateModel.CurrentState == GameState.DelayGameplay)
+                stateModel.SetState(GameState.Gameplay);
         }
     }
 }

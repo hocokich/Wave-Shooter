@@ -14,27 +14,47 @@ namespace WaveShooter.Features.Container
 
         [SerializeField] protected ContainerCharacter container = default;
 
+        private bool isFacadeInited;
+
         protected virtual void Awake()
         {
-            container.onContainerInited += OnFacadeInited;
-            container.onContainerDisposed += OnFacadeDisposed;
+            container.onContainerInited += HandleContainerInited;
+            container.onContainerDisposed += HandleContainerDisposed;
 
             if (container.FacadeInstance != null)
-            {
-                OnFacadeInited();
-            }
+                HandleContainerInited();
         }
 
         protected virtual void OnDestroy()
         {
-            container.onContainerInited -= OnFacadeInited;
-            container.onContainerDisposed -= OnFacadeDisposed;
+            container.onContainerInited -= HandleContainerInited;
+            container.onContainerDisposed -= HandleContainerDisposed;
+
+            if (isFacadeInited)
+            {
+                isFacadeInited = false;
+                OnFacadeDisposed();
+            }
+        }
+
+        private void HandleContainerInited()
+        {
+            if (isFacadeInited) return;
+            isFacadeInited = true;
+            OnFacadeInited();
+        }
+
+        private void HandleContainerDisposed()
+        {
+            if (!isFacadeInited) return;
+            isFacadeInited = false;
+            OnFacadeDisposed();
         }
 
         /// <summary>
         /// Фасад убран из контейнера. Прежняя ссылка в этот момент ещё на месте.
         /// </summary>
-        protected virtual void OnFacadeDisposed(){}
+        protected virtual void OnFacadeDisposed() { }
 
         protected abstract void OnFacadeInited();
     }
