@@ -27,6 +27,16 @@
                     "priority": 0
                 },
                 {
+                    "name": "Hints",
+                    "type": "Button",
+                    "id": "877f631e-6c31-4de3-b13a-8d6e9d753aab",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
                     "name": "Look",
                     "type": "Value",
                     "id": "6b444451-8a00-4d00-a97e-f47457f736a8",
@@ -544,6 +554,17 @@
                     "processors": "",
                     "groups": ";Gamepad",
                     "action": "Reload",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "33ae3501-99fa-41c8-9f91-b29284b29896",
+                    "path": "<Keyboard>/slash",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Hints",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
