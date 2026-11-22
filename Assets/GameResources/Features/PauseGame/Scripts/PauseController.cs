@@ -28,14 +28,7 @@ namespace WaveShooter.Features.PauseGame
             inputActions.Gameplay.Pause.performed += OnPausePressed;
             inputActions.UI.Pause.performed += OnPausePressed;
         }
-        protected override void OnFacadeDisposed() => Unsubscribe();
-
-        protected override void OnDestroy()
-        {
-            Unsubscribe();
-            base.OnDestroy();
-        }
-        private void Unsubscribe()
+        protected override void OnFacadeDisposed()
         {
             if (inputActions != null)
             {
