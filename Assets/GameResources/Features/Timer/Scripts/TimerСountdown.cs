@@ -53,11 +53,6 @@ namespace WaveShooter.Features.Timer
             stateModel.onStateChanged += OnStateChanged;
             OnStateChanged(stateModel.CurrentState);
         }
-        protected override void OnDestroy()
-        {
-            OnFacadeDisposed();
-            base.OnDestroy();
-        }
         protected override void OnFacadeDisposed()
         {
             if (stateModel != null)
