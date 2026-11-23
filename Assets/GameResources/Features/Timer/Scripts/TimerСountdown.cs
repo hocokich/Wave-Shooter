@@ -42,8 +42,9 @@ namespace WaveShooter.Features.Timer
             }
         }
 
-        [SerializeField] private float seconds = 60f;
         [SerializeField] private GameStateModel stateModel = default;
+        
+        [SerializeField] private float seconds = 60f;
 
         private Coroutine coroutine;
         private bool hasStarted;
