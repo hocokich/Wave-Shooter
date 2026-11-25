@@ -1,5 +1,6 @@
 namespace WaveShooter.Features.Spawners.Physics
 {
+    using System;
     using UnityEngine;
     using WaveShooter.Features.Enemy;
 
@@ -7,19 +8,26 @@ namespace WaveShooter.Features.Spawners.Physics
     /// Пуля ломается при попадании по врагу.
     /// </summary>
     [RequireComponent(typeof(Bullet))]
-    public class DestroyBullet : AbstractGenericTrigger<EnemyHealth>
+    public sealed class DestroyBullet : AbstractGenericTrigger<EnemyHealth>
     {
-        private int damage = default;
+        /// <summary>
+        /// Взрыв
+        /// </summary>
+        public event Action OnExpolde = delegate { };
+
         private Bullet bullet = default;
+        private int damage = default;
         
         private void Awake()
         {
             bullet = GetComponent<Bullet>();
-
             damage = bullet.Damage;
         }
+
         protected override void OnTriggerEnterSuccessfully(EnemyHealth enemyHealth)
         {
+            OnExpolde.Invoke();
+
             enemyHealth.TakeDamage(damage);
             Destroy(gameObject);
         }

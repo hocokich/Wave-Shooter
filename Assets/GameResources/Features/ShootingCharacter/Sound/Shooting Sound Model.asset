@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c9bc560733cc224aa4904311065cd26, type: 3}
+  m_Name: Shooting Sound Model
+  m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.ShootingCharacter.Sound.ShootingSoundModel
+  Fire: {fileID: 8300000, guid: a98537918d51770428f1314034a17112, type: 3}
+  Empty: {fileID: 8300000, guid: dc159cd35eef8f34ca16c2a347948b91, type: 3}
+  Reload: {fileID: 8300000, guid: 0e62a987cd8ba71459592120ff2f26fc, type: 3}

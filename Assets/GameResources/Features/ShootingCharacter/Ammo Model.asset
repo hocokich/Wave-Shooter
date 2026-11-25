@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.Shooting.AmmoModel
   id: 
   facade: {fileID: 0}
-  maxAmmoMag: 30
-  maxAmmoTotal: 300
-  ammoMag: 30
-  ammoTotal: 300
+  maxAmmoMag: 20
+  maxAmmoTotal: 60
+  ammoMag: 11
+  ammoTotal: 40

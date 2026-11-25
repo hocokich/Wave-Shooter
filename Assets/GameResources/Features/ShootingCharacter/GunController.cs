@@ -24,6 +24,11 @@ namespace WaveShooter.Features.ShootingCharacter
         /// Оружие перезаряжено
         /// </summary>
         public event Action onGunReload = delegate { };
+        
+        /// <summary>
+        /// Оружие пустое
+        /// </summary>
+        public event Action onGunEmpty = delegate { };
 
         /// <summary>
         /// Дата патрон
@@ -45,8 +50,13 @@ namespace WaveShooter.Features.ShootingCharacter
         {
             onGunTryShoot.Invoke();
 
-            if (Time.time < nextShotTime || modelAmmo.AmmoMag <= 0)
+            if (modelAmmo.AmmoMag <= 0)
+            {
+                onGunEmpty.Invoke();
                 return;
+            }
+
+            if (Time.time < nextShotTime) return;
 
             modelAmmo.AmmoMag--;
             onGunShooted();
