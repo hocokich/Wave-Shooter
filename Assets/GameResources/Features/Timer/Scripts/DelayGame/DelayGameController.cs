@@ -31,8 +31,9 @@ namespace WaveShooter.Features.Timer.DelayGame
         /// </summary>
         public bool IsDelayActive => isDelayActive;
 
-        [SerializeField, Range(0, 10)] private int delaySeconds = 3;
         [SerializeField] private GameStateModel stateModel = default;
+
+        [SerializeField, Range(0, 60)] private int delaySeconds = 3;
 
         private Coroutine coroutine;
         private bool isDelayActive;

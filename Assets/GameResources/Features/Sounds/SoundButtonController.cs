@@ -11,7 +11,7 @@ namespace WaveShooter.Features.Sounds
     /// </summary>
     [RequireComponent(typeof(Button))]
     [RequireComponent(typeof(AudioSource))]
-    public class SoundButtonController : MonoBehaviour,
+    public sealed class SoundButtonController : MonoBehaviour,
         IPointerEnterHandler,
         IPointerExitHandler,
         IPointerDownHandler

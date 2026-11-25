@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e30708cb3da22574682bb07b84ef1889, type: 3}
+  m_Name: DelayGame Sound Model
+  m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.Timer.DelayGame.Sound.SoundModel
+  Tik: {fileID: 8300000, guid: f5ee6a50a5fc4b3409741826a79c5f3d, type: 3}
+  EndDelay: {fileID: 8300000, guid: c66397db280ae5043ac19a8e0981365e, type: 3}
