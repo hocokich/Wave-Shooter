@@ -16,5 +16,5 @@ MonoBehaviour:
   facade: {fileID: 0}
   maxAmmoMag: 20
   maxAmmoTotal: 60
-  ammoMag: 13
-  ammoTotal: 60
+  ammoMag: 11
+  ammoTotal: 40

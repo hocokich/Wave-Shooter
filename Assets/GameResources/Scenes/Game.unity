@@ -935,7 +935,7 @@ MonoBehaviour:
   _soundModel: {fileID: 11400000, guid: 47edc135dd1c8704794510856a1879cc, type: 2}
   _audioSource: {fileID: 271547726}
   _fireVolume: 0.1
-  _emptyVolume: 0.35
+  _emptyVolume: 0.1
   _reloadVolume: 0.35
   _emptyCooldown: 0.25
 --- !u!1 &532451816

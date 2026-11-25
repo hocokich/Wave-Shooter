@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Shooting Sound Model
   m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.ShootingCharacter.Sound.ShootingSoundModel
   Fire: {fileID: 8300000, guid: a98537918d51770428f1314034a17112, type: 3}
-  Empty: {fileID: 8300000, guid: cdae3b170ecf26e4fa1e9a6e4dec6195, type: 3}
+  Empty: {fileID: 8300000, guid: dc159cd35eef8f34ca16c2a347948b91, type: 3}
   Reload: {fileID: 8300000, guid: 0e62a987cd8ba71459592120ff2f26fc, type: 3}
