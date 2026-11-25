@@ -7,7 +7,7 @@ namespace WaveShooter.Features.ShootingCharacter
     /// <summary>
     /// Модель патронов
     /// </summary>
-    [CreateAssetMenu(fileName = "New Ammo Model", menuName = "WaveShooter/Features/Ammo")]
+    [CreateAssetMenu(fileName = "New Ammo Model", menuName = "WaveShooter/Features/Shooting/Ammo Model")]
     public class AmmoModel : GenericDataModuleFacade<CharacterFacade>
     {
         /// <summary>
