@@ -7,7 +7,7 @@ namespace WaveShooter.Features.HealthCharacter
     /// <summary>
     /// Модель здоровья игрока.
     /// </summary>
-    [CreateAssetMenu(fileName = "New Health Model", menuName = "WaveShooter/Features/HealthModel")]
+    [CreateAssetMenu(fileName = "New Health Model", menuName = "WaveShooter/Features/Health/HealthModel")]
     public class HealthModel : DataModuleFacade
     {
         /// <summary>
