@@ -11,6 +11,21 @@ namespace WaveShooter.Features.MoveCharacter
     public class MoveController : GenericModuleFacade<CharacterFacade>
     {
         /// <summary>
+        /// Персонаж начал двигаться.
+        /// </summary>
+        public event Action onMoveStart = delegate { };
+
+        /// <summary>
+        /// Персонаж перестал двигаться.
+        /// </summary>
+        public event Action onMoveStop = delegate { };
+
+        /// <summary>
+        /// Состояние спринта изменилось. true — бег, false — ходьба.
+        /// </summary>
+        public event Action<bool> onSprintChanged = delegate { };
+
+        /// <summary>
         /// Текущая скорость.
         /// </summary>
         public float CurrentSpeed { get; private set; }
@@ -22,11 +37,12 @@ namespace WaveShooter.Features.MoveCharacter
         protected Vector2 moveVector = Vector2.zero;
         protected Transform characterBody;
         protected Coroutine moveRoutine;
+        protected bool isSprinting;
 
         protected override void OnInited()
         {
             CurrentSpeed = walkSpeed;
-
+            isSprinting = false;
             characterBody = ConcreteFacade.transform;
         }
         protected override void OnDisposed()
@@ -43,8 +59,14 @@ namespace WaveShooter.Features.MoveCharacter
         /// Вкл/Выкл спринт.
         /// Вызывается из InputActionSprint
         /// </summary>
-        public void SetSprint(bool isSprinting)
+        public void SetSprint(bool sprinting)
         {
+            if (isSprinting == sprinting) return;
+
+            isSprinting = sprinting;
+            CurrentSpeed = isSprinting ? sprintSpeed : walkSpeed;
+            onSprintChanged.Invoke(isSprinting);
+
             CurrentSpeed = isSprinting ? sprintSpeed : walkSpeed;
         }
 
@@ -54,13 +76,17 @@ namespace WaveShooter.Features.MoveCharacter
         /// </summary>
         public void SetMoveDirection(Vector2 vector)
         {
+            bool wasMoving = moveVector.sqrMagnitude > 0.01f;
             moveVector = vector;
+            bool isMoving = moveVector.sqrMagnitude > 0.01f;
 
-            if (moveVector.sqrMagnitude > 0.01f)
-            {
-                if (moveRoutine == null) 
-                    moveRoutine = StartCoroutine(MoveRoutine());
-            }
+            if (isMoving && !wasMoving)
+                onMoveStart.Invoke();
+            else if (!isMoving && wasMoving)
+                onMoveStop.Invoke();
+
+            if (isMoving && moveRoutine == null)
+                moveRoutine = StartCoroutine(MoveRoutine());
         }
 
         protected IEnumerator MoveRoutine()
