@@ -668,6 +668,7 @@ MonoBehaviour:
   - {fileID: 271547721}
   - {fileID: 647401607}
   - {fileID: 647401606}
+  - {fileID: 647401608}
   - {fileID: 145276420}
   - {fileID: 145276422}
   - {fileID: 145276419}
@@ -1250,6 +1251,7 @@ GameObject:
   - component: {fileID: 647401604}
   - component: {fileID: 647401607}
   - component: {fileID: 647401606}
+  - component: {fileID: 647401608}
   - component: {fileID: 647401605}
   m_Layer: 0
   m_Name: Sound
@@ -1409,6 +1411,26 @@ MonoBehaviour:
   _emptyVolume: 0.1
   _reloadVolume: 0.35
   _emptyCooldown: 0.25
+--- !u!114 &647401608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 647401603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b6405a20c87c4343b96c7b8f258b1aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.MoveCharacter.Sound.FootstepSoundController
+  id: 
+  facade: {fileID: 0}
+  _soundModel: {fileID: 11400000, guid: aa97c1eef331e634b8f1cebdfe5a168d, type: 2}
+  _audioSource: {fileID: 0}
+  _walkVolume: 0.3
+  _sprintVolume: 0.6
+  _walkInterval: 0.5
+  _sprintInterval: 0.3
 --- !u!1 &670641090
 GameObject:
   m_ObjectHideFlags: 0

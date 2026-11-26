@@ -12,5 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59fce22676fd3744cae6d7fd935e36c7, type: 3}
   m_Name: Footstep Sound Model
   m_EditorClassIdentifier: Assembly-CSharp::WaveShooter.Features.MoveCharacter.Sound.FootstepSoundModel
-  WalkSteps: []
-  SprintSteps: []
+  WalkSteps:
+  - {fileID: 8300000, guid: c9c4335209593f646b1d2d8f1465f7be, type: 3}
+  - {fileID: 8300000, guid: 9ae7c3d60f6fb3b45abebe8fdc831fac, type: 3}
+  - {fileID: 8300000, guid: a67715f73f72b164eba6f2c4f59cfee5, type: 3}
+  - {fileID: 8300000, guid: 15ff437831d076148934ab5c5f204ac4, type: 3}
+  - {fileID: 8300000, guid: 620cc173734a77040a02edea8046c28d, type: 3}
+  - {fileID: 8300000, guid: 53fc64ba926031140a94268f925b3c6d, type: 3}
+  SprintSteps:
+  - {fileID: 8300000, guid: c9c4335209593f646b1d2d8f1465f7be, type: 3}
+  - {fileID: 8300000, guid: 9ae7c3d60f6fb3b45abebe8fdc831fac, type: 3}
+  - {fileID: 8300000, guid: a67715f73f72b164eba6f2c4f59cfee5, type: 3}
+  - {fileID: 8300000, guid: 15ff437831d076148934ab5c5f204ac4, type: 3}
+  - {fileID: 8300000, guid: 620cc173734a77040a02edea8046c28d, type: 3}
+  - {fileID: 8300000, guid: 53fc64ba926031140a94268f925b3c6d, type: 3}
